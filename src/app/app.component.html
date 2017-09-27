@@ -1,5 +1,9 @@
 <div class="main-container">
-  <a routerLink="/welcome" routerLinkActive="active">Home</a>
-  <a routerLink="/register" routerLinkActive="active">Sign Up</a>
-  <router-outlet></router-outlet>
+  <app-header></app-header>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </div>
