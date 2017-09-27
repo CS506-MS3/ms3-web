@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {ClarityModule} from 'clarity-angular';
+import {StoreModule} from '@ngrx/store';
+import {routerReducer} from '@ngrx/router-store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -10,6 +13,10 @@ import {ClarityModule} from 'clarity-angular';
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot({ routerReducer: routerReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
     ClarityModule.forRoot(),
   ],
   providers: [],
