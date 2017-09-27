@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Dependencies
+
+This app uses the following dependencies
+- Clarity UI
+- ngrx/store 4.x.x
+- ngrx/effects 4.x.x
+- ngrx/router-store 4.x.x
+The ngrx modules provide redux-like application flow
