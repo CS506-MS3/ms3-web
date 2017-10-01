@@ -1,0 +1,13 @@
+<div id="app-level-alert"
+     class="alert alert-app-level"
+     *ngIf="alert.show"
+     [ngClass]="alert.type">
+  <button type="button" class="close" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="alert-item">
+    <div id="app-level-alert-text" class="alert-text">
+      {{alert.message}}
+    </div>
+  </div>
+</div>
