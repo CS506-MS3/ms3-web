@@ -1,15 +1,44 @@
 import { Injectable } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AccountActions} from '../actions/account.actions';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AccountService {
 
-  constructor() { }
+  constructor(private _store: Store<any>, private _router: Router) {
 
-  create() {}
+  }
 
-  activate() {}
+  create(signUpForm) {
+
+    return this._store.dispatch({
+      type: AccountActions.CREATE,
+      payload: signUpForm
+    });
+  }
+
+  notifyActivationRequired() {
+
+    return this._router.navigate(['activate']);
+  }
+
+  activate() {
+    let token = this.getActivationToken();
+
+    return this._store.dispatch({
+      type: AccountActions.ACTIVATE,
+      payload: token
+    });
+  }
 
   reactivate() {}
 
   deactivate() {}
+
+  private getActivationToken(): string {
+    // Get activation token from url
+
+    return '';
+  }
 }
