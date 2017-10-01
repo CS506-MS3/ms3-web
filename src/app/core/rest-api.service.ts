@@ -11,7 +11,7 @@ export class RestApiService {
   constructor(private http: Http) {
   }
 
-  request(options: RequestOptionsArgs, pathParams, searchParams?): Observable<any> {
+  request(options: RequestOptionsArgs, pathParams?, searchParams?): Observable<any> {
     options.headers = new Headers();
     options.url = this.buildUrl(options.url, pathParams);
     if (searchParams) {
