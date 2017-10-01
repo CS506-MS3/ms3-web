@@ -9,6 +9,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
+import {AccountModule} from './account/account.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {SharedModule} from './shared/shared.module';
     }),
     AppRoutingModule,
     SharedModule,
+    AccountModule,
     ClarityModule.forRoot(),
   ],
   providers: [],
