@@ -7,7 +7,6 @@ import {StoreModule} from '@ngrx/store';
 import {routerReducer} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {LandingPageComponent} from './landing-page/landing-page.component';
-import {SignUpComponent} from './sign-up/sign-up.component';
 import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 
@@ -15,7 +14,6 @@ import {SharedModule} from './shared/shared.module';
   declarations: [
     AppComponent,
     LandingPageComponent,
-    SignUpComponent
   ],
   imports: [
     BrowserModule,
