@@ -1,4 +1,5 @@
 import {Action, ActionReducer} from '@ngrx/store';
+import {SignUpForm} from '../_domains/sign-up-form';
 
 export namespace AccountActions {
   const initialState = null;
@@ -10,14 +11,9 @@ export namespace AccountActions {
 
   export class Create implements Action {
     type: string;
-    payload: SignUpForm;
-  }
 
-  export class SignUpForm {
-    email: string;
-    password: string;
-    phoneNumber?: string;
-    notificationSetting?: boolean;
+    constructor(public payload: SignUpForm) {
+    }
   }
 
   export const reducer: ActionReducer<any> = (state = initialState, action: Action = {type: INIT}) => {

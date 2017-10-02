@@ -23,14 +23,12 @@ export class AccountEffects {
 
   @Effect() signUpError$: Observable<Action> = this.actions$
     .ofType(AccountActions.SIGN_UP_FAILURE)
-    .map(() => ({
-      type: AlertActions.SET_ALERT,
-      payload: {
+    .map(() => (new AlertActions.SetAlert({
         show: true,
         type: 'alert-danger',
         message: 'Login Error'
-      }
-    }));
+      }))
+    );
 
   constructor(private _api: RestApiService,
               private _account: AccountService,

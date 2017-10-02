@@ -1,5 +1,5 @@
-export interface AppAlert {
-  show: boolean;
-  type: string;
-  message: string;
+export class AppAlert {
+
+  constructor(public show: boolean = false, public type: string = null, public message: string = null) {
+  }
 }

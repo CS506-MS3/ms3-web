@@ -28,6 +28,6 @@ export class AlertBarComponent implements OnInit {
   }
 
   onClose() {
-    this._store.dispatch({type: AlertActions.HIDE_ALERT});
+    this._store.dispatch(new AlertActions.HideAlert());
   }
 }
