@@ -10,6 +10,7 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
 import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 import {AccountModule} from './account/account.module';
+import {CoreModule} from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {AccountModule} from './account/account.module';
       maxAge: 25
     }),
     AppRoutingModule,
+    CoreModule,
     SharedModule,
     AccountModule,
     ClarityModule.forRoot(),
