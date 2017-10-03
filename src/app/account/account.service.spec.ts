@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 
 describe('AccountService', () => {
   let mockAccountReducer;
-  let routerMock = {
+  const routerMock = {
     navigate: jasmine.createSpy('navigate')
   };
 

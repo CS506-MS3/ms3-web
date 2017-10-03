@@ -4,7 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from '../../auth/auth.service';
 
 describe('SignInFormComponent', () => {
-  let mockAuthService = {
+  const mockAuthService = {
     authenticate: jasmine.createSpy('authenticate')
   };
   let component: SignInFormComponent;

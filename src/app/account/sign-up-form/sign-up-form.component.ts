@@ -19,7 +19,7 @@ export class SignUpFormComponent implements OnInit {
       passwordVerify: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       notification: ['', Validators.required],
-    })
+    });
   }
 
 }
