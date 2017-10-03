@@ -2,11 +2,28 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { AccountService } from './account.service';
 import {SignUpForm} from '../_domains/sign-up-form';
+import {StoreModule} from '@ngrx/store';
+import {Router} from '@angular/router';
 
 describe('AccountService', () => {
+  let mockAccountReducer;
+  let routerMock = {
+    navigate: jasmine.createSpy('navigate')
+  };
+
+  beforeEach(() => {
+    mockAccountReducer = jasmine.createSpy('account');
+  });
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AccountService]
+      imports: [
+        StoreModule.forRoot({account: mockAccountReducer})
+      ],
+      providers: [
+        AccountService,
+        {provide: Router, useValue: routerMock}
+      ]
     });
   });
 

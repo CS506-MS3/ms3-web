@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SignUpPageComponent } from './sign-up-page.component';
+import {SignUpPageComponent} from './sign-up-page.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('SignUpPageComponent', () => {
   let component: SignUpPageComponent;
@@ -8,9 +9,14 @@ describe('SignUpPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignUpPageComponent ]
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
+      declarations: [
+        SignUpPageComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
