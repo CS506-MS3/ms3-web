@@ -24,11 +24,10 @@ export class AccountService {
   }
 
   activate() {
-    let token = this.getActivationToken();
 
     return this._store.dispatch({
       type: AccountActions.ACTIVATE,
-      payload: token
+      payload: this.getActivationToken()
     });
   }
 

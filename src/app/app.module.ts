@@ -11,6 +11,9 @@ import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 import {AccountModule} from './account/account.module';
 import {CoreModule} from './core/core.module';
+import {AccountActions} from './actions/account.actions';
+import {AuthActions} from './actions/auth.actions';
+import {AlertActions} from './actions/alert.actions';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,12 @@ import {CoreModule} from './core/core.module';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({routerReducer: routerReducer}),
+    StoreModule.forRoot({
+      alert: AlertActions.reducer,
+      auth: AuthActions.reducer,
+      account: AccountActions.reducer,
+      routerReducer: routerReducer
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

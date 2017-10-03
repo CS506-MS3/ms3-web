@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/of';
+import 'rxjs/add/operator/do';
 import {Action} from '@ngrx/store';
 import {AccountActions} from '../actions/account.actions';
 import {AlertActions} from '../actions/alert.actions';
@@ -26,7 +28,7 @@ export class AccountEffects {
     .map(() => (new AlertActions.SetAlert({
         show: true,
         type: 'alert-danger',
-        message: 'Login Error'
+        message: 'Sign Up Error'
       }))
     );
 

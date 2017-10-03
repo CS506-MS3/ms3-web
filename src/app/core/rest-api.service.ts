@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, Request, Response, RequestOptionsArgs} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import {HttpStatus} from './http-status.enum';
 import {environment} from '../../environments/environment';
 import {RequestArgs} from '@angular/http/src/interfaces';
@@ -55,11 +57,11 @@ export class RestApiService {
   }
 
   private setOptions = (options: RequestOptionsArgs) =>
-    options.body !== 'string' ? JSON.stringify(options.body) : options.body;
+    options.body !== 'string' ? JSON.stringify(options.body) : options.body
 
   private throwResponseError(error: any) {
-    let errorBody = error.json();
-    let errorMessage = `[${error.status} ${HttpStatus[error.status]}] ${errorBody.message || 'Unknown Error'}`;
+    const errorBody = error.json();
+    const errorMessage = `[${error.status} ${HttpStatus[error.status]}] ${errorBody.message || 'Unknown Error'}`;
 
     return Observable.throw({error: errorMessage});
   }

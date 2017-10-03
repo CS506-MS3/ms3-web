@@ -8,6 +8,7 @@ export namespace AuthActions {
   export const AUTHENTICATED = 'AuthActions.AUTHENTICATED';
   export const ACTIVATION_REQUIRED = 'AuthActions.ACTIVATION_REQUIRED';
   export const UNAUTHENTICATED = 'AuthActions.UNAUTHENTICATED';
+  export const AUTHENTICATION_DENIED = 'AuthActions.AUTHENTICATION_DENIED';
   const INIT = UNAUTHENTICATED;
 
   export class Authenticate implements Action {
@@ -27,9 +28,18 @@ export namespace AuthActions {
     }
   }
 
+  export class AuthenticationDenied implements Action {
+    readonly type = AUTHENTICATION_DENIED;
+
+    constructor(public payload) {
+    }
+  }
+
   export const reducer: ActionReducer<string> = (state = INIT, action: Action = {type: INIT}) => {
 
     switch (action.type) {
+      case AUTHENTICATE:
+        return AUTHENTICATING;
       case AUTHENTICATED:
         return AUTHENTICATED;
 

@@ -21,5 +21,5 @@ export namespace AccountActions {
     switch (action.type) {
 
     }
-  }
+  };
 }

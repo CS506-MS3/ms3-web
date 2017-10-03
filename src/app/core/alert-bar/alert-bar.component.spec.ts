@@ -5,7 +5,7 @@ import {AlertBarComponent} from './alert-bar.component';
 import {StoreModule} from '@ngrx/store';
 import {AppAlert} from '../../_domains/app-alert';
 import {AlertActions} from '../../actions/alert.actions';
-import {ALERT_TYPE_CSS} from "../../_constants/alert-bar-css.constant";
+import {ALERT_TYPE_CSS} from '../../_constants/alert-bar-css.constant';
 
 describe('AlertBarComponent', () => {
   let component: AlertBarComponent;

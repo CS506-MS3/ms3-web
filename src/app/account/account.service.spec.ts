@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { AccountService } from './account.service';
+import {SignUpForm} from '../_domains/sign-up-form';
 
 describe('AccountService', () => {
   beforeEach(() => {
@@ -16,7 +17,7 @@ describe('AccountService', () => {
   it('should have create method', inject([AccountService], (service: AccountService) => {
     spyOn(service, 'create');
 
-    service.create();
+    service.create(new SignUpForm('test@email.com', 'password'));
 
     expect(service.create).toHaveBeenCalled();
   }));
