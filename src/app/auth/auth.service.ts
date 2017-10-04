@@ -15,6 +15,9 @@ export class AuthService {
     this._store.dispatch(new AuthActions.Authenticate(credentials));
   }
 
-  signOut() {}
+  unauthenticate() {
+
+    this._store.dispatch(new AuthActions.Unauthenticate());
+  }
 
 }
