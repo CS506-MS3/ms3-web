@@ -4,9 +4,14 @@ import { AuthService } from './auth.service';
 import {StoreModule} from '@ngrx/store';
 import {Credentials} from '../_domains/credentials';
 import {AuthActions} from '../_actions/auth.actions';
+import {Router} from '@angular/router';
 
 describe('AuthService', () => {
   let mockAuthReducer;
+  const routerMock = {
+    navigate: jasmine.createSpy('navigate')
+  };
+
   beforeEach(() => {
     mockAuthReducer = jasmine.createSpy('reducer');
   });
@@ -17,7 +22,10 @@ describe('AuthService', () => {
           auth: mockAuthReducer
         })
       ],
-      providers: [AuthService]
+      providers: [
+        AuthService,
+        {provide: Router, useValue: routerMock}
+      ]
     });
   });
 

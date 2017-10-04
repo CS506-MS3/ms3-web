@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AccountActions} from '../_actions/account.actions';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Injectable()
 export class AccountService {
+  private _activationToken: string;
 
-  constructor(private _store: Store<any>, private _router: Router) {
-
+  constructor(private _store: Store<any>, private _router: Router, private _currentRoute: ActivatedRoute) {
+    this._currentRoute.params.subscribe((params: Params) => {
+      this._activationToken = params['activationToken'];
+    });
   }
 
   create(signUpForm) {
 
-    return this._store.dispatch({
-      type: AccountActions.CREATE,
-      payload: signUpForm
-    });
+    return this._store.dispatch(new AccountActions.Create(signUpForm));
   }
 
   notifyActivationRequired() {
@@ -25,19 +25,10 @@ export class AccountService {
 
   activate() {
 
-    return this._store.dispatch({
-      type: AccountActions.ACTIVATE,
-      payload: this.getActivationToken()
-    });
+    return this._store.dispatch(new AccountActions.Activate(this._activationToken));
   }
 
   reactivate() {}
 
   deactivate() {}
-
-  private getActivationToken(): string {
-    // Get activation token from url
-
-    return '';
-  }
 }

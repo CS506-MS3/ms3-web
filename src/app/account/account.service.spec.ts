@@ -1,14 +1,21 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 
-import { AccountService } from './account.service';
+import {AccountService} from './account.service';
 import {SignUpForm} from '../_domains/sign-up-form';
-import {StoreModule} from '@ngrx/store';
-import {Router} from '@angular/router';
+import {Store, StoreModule} from '@ngrx/store';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/Observable/of';
+import {AccountActions} from '../_actions/account.actions';
 
 describe('AccountService', () => {
   let mockAccountReducer;
+  const testToken = 'testToken';
   const routerMock = {
     navigate: jasmine.createSpy('navigate')
+  };
+  const storeMock = {
+    dispatch: jasmine.createSpy('dispatch')
   };
 
   beforeEach(() => {
@@ -22,7 +29,9 @@ describe('AccountService', () => {
       ],
       providers: [
         AccountService,
-        {provide: Router, useValue: routerMock}
+        {provide: ActivatedRoute, useValue: {params: Observable.of({activationToken: testToken})}},
+        {provide: Router, useValue: routerMock},
+        {provide: Store, useValue: storeMock}
       ]
     });
   });
@@ -62,4 +71,28 @@ describe('AccountService', () => {
 
     expect(service.reactivate).toHaveBeenCalled();
   }));
+
+  describe('create', () => {
+    it('should dispatch an AccountActions.Create with input', inject([AccountService], (service: AccountService) => {
+      const inputSignUpForm = new SignUpForm('test@email.com', 'testPassword', false);
+
+      service.create(inputSignUpForm);
+
+      expect(storeMock.dispatch).toHaveBeenCalledWith(new AccountActions.Create(inputSignUpForm));
+    }));
+  });
+
+  describe('notifyActivationRequired', () => {
+    it('should call navigate to activate page', inject([AccountService], (service: AccountService) => {
+      service.notifyActivationRequired();
+
+      expect(routerMock.navigate).toHaveBeenCalledWith(['activate']);
+    }));
+  });
+
+  describe('activate', () => {
+    it('should dispatch a new AccountActions.Activate with the subscribed token', inject([AccountService], (service: AccountService) => {
+      service.activate
+    }));
+  });
 });

@@ -16,6 +16,14 @@ export namespace AccountActions {
     }
   }
 
+  export class ActivationRequired implements Action {
+    readonly type = ACTIVATION_REQUIRED;
+  }
+
+  export class SignUpFailure implements Action {
+    readonly type = SIGN_UP_FAILURE;
+  }
+
   export class Activate implements Action {
     readonly type = ACTIVATE;
 
