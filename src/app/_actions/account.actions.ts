@@ -1,26 +1,33 @@
-import {Action, ActionReducer} from '@ngrx/store';
+import {Action} from '@ngrx/store';
 import {SignUpForm} from '../_domains/sign-up-form';
 
 export namespace AccountActions {
-  const initialState = null;
-  const INIT = 'INIT';
   export const CREATE = 'AccountActions.CREATE';
   export const ACTIVATION_REQUIRED = 'AccountActions.ACTIVATION_REQUIRED';
   export const SIGN_UP_FAILURE = 'AccountActions.SIGN_UP_FAILURE';
   export const ACTIVATE = 'AccountActions.ACTIVATE';
+  export const DEACTIVATE = 'AccountActions.DEACTIVATE';
+  export const REACTIVATE = 'AccountActions.REACTIVATE';
 
   export class Create implements Action {
-    type: string;
+    readonly type = CREATE;
 
     constructor(public payload: SignUpForm) {
     }
   }
 
-  export const reducer: ActionReducer<any> = (state = initialState, action: Action = {type: INIT}) => {
+  export class Activate implements Action {
+    readonly type = ACTIVATE;
 
-    switch (action.type) {
-      default:
-        return state;
+    constructor(public payload: string) {
     }
-  };
+  }
+
+  export class Deactivate implements Action {
+    readonly type = DEACTIVATE;
+  }
+
+  export class Reactivate implements Action {
+    readonly type = REACTIVATE;
+  }
 }

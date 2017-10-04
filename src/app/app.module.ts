@@ -11,7 +11,6 @@ import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 import {AccountModule} from './account/account.module';
 import {CoreModule} from './core/core.module';
-import {AccountActions} from './_actions/account.actions';
 import {AuthActions} from './_actions/auth.actions';
 import {AlertActions} from './_actions/alert.actions';
 import {EffectsModule} from '@ngrx/effects';
@@ -26,7 +25,6 @@ import {EffectsModule} from '@ngrx/effects';
     StoreModule.forRoot({
       alert: AlertActions.reducer,
       auth: AuthActions.reducer,
-      account: AccountActions.reducer,
       routerReducer: routerReducer
     }),
     EffectsModule.forRoot([]),
