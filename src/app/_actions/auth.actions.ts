@@ -1,6 +1,6 @@
 import {Action, ActionReducer} from '@ngrx/store';
 import {Credentials} from '../_domains/credentials';
-import {Member} from '../_domains/member';
+import {Auth} from '../_domains/auth';
 
 export namespace AuthActions {
   export const AUTHENTICATE = 'AuthActions.AUTHENTICATE';
@@ -24,7 +24,7 @@ export namespace AuthActions {
   export class Authenticated implements Action {
     readonly type = AUTHENTICATED;
 
-    constructor(public payload: Member) {
+    constructor(public payload: Auth) {
     }
   }
 
