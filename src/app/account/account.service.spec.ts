@@ -34,7 +34,7 @@ describe('AccountService', () => {
   it('should have create method', inject([AccountService], (service: AccountService) => {
     spyOn(service, 'create');
 
-    service.create(new SignUpForm('test@email.com', 'password'));
+    service.create(new SignUpForm('test@email.com', 'password', true));
 
     expect(service.create).toHaveBeenCalled();
   }));
