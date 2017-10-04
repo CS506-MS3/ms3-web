@@ -19,7 +19,8 @@ export namespace AccountActions {
   export const reducer: ActionReducer<any> = (state = initialState, action: Action = {type: INIT}) => {
 
     switch (action.type) {
-
+      default:
+        return state;
     }
   };
 }
