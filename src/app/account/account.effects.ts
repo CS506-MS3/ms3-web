@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/of';
+import 'rxjs/add/Observable/of';
 import 'rxjs/add/operator/do';
 import {Action} from '@ngrx/store';
 import {AccountActions} from '../actions/account.actions';

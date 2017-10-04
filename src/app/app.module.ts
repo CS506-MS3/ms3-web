@@ -14,6 +14,7 @@ import {CoreModule} from './core/core.module';
 import {AccountActions} from './actions/account.actions';
 import {AuthActions} from './actions/auth.actions';
 import {AlertActions} from './actions/alert.actions';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {AlertActions} from './actions/alert.actions';
       account: AccountActions.reducer,
       routerReducer: routerReducer
     }),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
