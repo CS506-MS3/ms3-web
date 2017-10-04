@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AuthActions} from '../actions/auth.actions';
+import {AuthActions} from '../_actions/auth.actions';
 import {Credentials} from '../_domains/credentials';
 
 @Injectable()

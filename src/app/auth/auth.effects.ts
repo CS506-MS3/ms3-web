@@ -5,10 +5,10 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/Observable/of';
 import {Action} from '@ngrx/store';
 // import {AccountActions} from '../actions/account.actions';
-import {AlertActions} from '../actions/alert.actions';
+import {AlertActions} from '../_actions/alert.actions';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiService} from '../core/rest-api.service';
-import {AuthActions} from '../actions/auth.actions';
+import {AuthActions} from '../_actions/auth.actions';
 // import {Member} from '../_domains/member';
 
 @Injectable()

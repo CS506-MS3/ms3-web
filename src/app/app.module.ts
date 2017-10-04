@@ -11,9 +11,9 @@ import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 import {AccountModule} from './account/account.module';
 import {CoreModule} from './core/core.module';
-import {AccountActions} from './actions/account.actions';
-import {AuthActions} from './actions/auth.actions';
-import {AlertActions} from './actions/alert.actions';
+import {AccountActions} from './_actions/account.actions';
+import {AuthActions} from './_actions/auth.actions';
+import {AlertActions} from './_actions/alert.actions';
 import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({

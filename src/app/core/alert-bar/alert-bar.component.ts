@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AlertActions} from '../../actions/alert.actions';
+import {AlertActions} from '../../_actions/alert.actions';
 import {AppAlert} from '../../_domains/app-alert';
 
 @Component({
