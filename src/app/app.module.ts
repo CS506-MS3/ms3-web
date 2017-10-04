@@ -11,9 +11,9 @@ import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 import {AccountModule} from './account/account.module';
 import {CoreModule} from './core/core.module';
-import {AccountActions} from './actions/account.actions';
-import {AuthActions} from './actions/auth.actions';
-import {AlertActions} from './actions/alert.actions';
+import {AuthActions} from './_actions/auth.actions';
+import {AlertActions} from './_actions/alert.actions';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,9 @@ import {AlertActions} from './actions/alert.actions';
     StoreModule.forRoot({
       alert: AlertActions.reducer,
       auth: AuthActions.reducer,
-      account: AccountActions.reducer,
       routerReducer: routerReducer
     }),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

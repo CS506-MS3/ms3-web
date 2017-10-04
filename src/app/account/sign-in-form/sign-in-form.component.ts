@@ -19,6 +19,7 @@ export class SignInFormComponent implements OnInit {
       email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
     });
+    // TODO: Proper Validator attachment required
   }
 
   onSubmit({value, valid}: { value: Credentials, valid: boolean }) {

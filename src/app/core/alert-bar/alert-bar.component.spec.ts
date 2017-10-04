@@ -4,9 +4,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {AlertBarComponent} from './alert-bar.component';
 import {StoreModule} from '@ngrx/store';
 import {AppAlert} from '../../_domains/app-alert';
-import {AlertActions} from '../../actions/alert.actions';
+import {AlertActions} from '../../_actions/alert.actions';
 import {ALERT_TYPE_CSS} from '../../_constants/alert-bar-css.constant';
-import HideAlert = AlertActions.HideAlert;
 
 describe('AlertBarComponent', () => {
   let component: AlertBarComponent;
@@ -47,7 +46,7 @@ describe('AlertBarComponent', () => {
     it('should call dispatch with AlertActions.HIDE_ALERT', () => {
       component.onClose();
 
-      expect(mockAppAlertReducer).toHaveBeenCalledWith(testAlert, new HideAlert());
+      expect(mockAppAlertReducer).toHaveBeenCalledWith(testAlert, new AlertActions.HideAlert());
     });
   });
 });
