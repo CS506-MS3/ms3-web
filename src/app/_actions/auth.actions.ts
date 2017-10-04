@@ -4,21 +4,19 @@ import {Auth} from '../_domains/auth';
 
 export namespace AuthActions {
   export const AUTHENTICATE = 'AuthActions.AUTHENTICATE';
-  export const AUTHENTICATING = 'AuthActions.AUTHENTICATING';
   export const AUTHENTICATED = 'AuthActions.AUTHENTICATED';
-  export const ACTIVATION_REQUIRED = 'AuthActions.ACTIVATION_REQUIRED';
-  export const UNAUTHENTICATED = 'AuthActions.UNAUTHENTICATED';
   export const AUTHENTICATION_DENIED = 'AuthActions.AUTHENTICATION_DENIED';
-  const INIT = UNAUTHENTICATED;
+  export const REACTIVATION_REQUIRED = 'AuthActions.REACTIVATION_REQUIRED';
+  export const UNAUTHENTICATE = 'AuthActions.UNAUTHENTICATE';
+  export const UNAUTHENTICATED = 'AuthActions.UNAUTHENTICATED';
+  const INIT = 'AuthActions.INIT';
+
+  const initialState = null;
 
   export class Authenticate implements Action {
     readonly type = AUTHENTICATE;
     constructor(public payload: Credentials) {
     }
-  }
-
-  export class Authenticating implements Action {
-    readonly type = AUTHENTICATING;
   }
 
   export class Authenticated implements Action {
@@ -30,19 +28,33 @@ export namespace AuthActions {
 
   export class AuthenticationDenied implements Action {
     readonly type = AUTHENTICATION_DENIED;
-
-    constructor(public payload) {
-    }
   }
 
-  export const reducer: ActionReducer<string> = (state = INIT, action: Action = {type: INIT}) => {
+  export class ReactivationRequired implements Action {
+    readonly type = REACTIVATION_REQUIRED;
+  }
+
+  export class Unauthenticate implements Action {
+    readonly type = UNAUTHENTICATE;
+  }
+
+  export class Unauthenticated implements Action {
+    readonly type = UNAUTHENTICATED;
+  }
+
+  export const reducer: ActionReducer<Auth> = (state = initialState, action: Action = {type: INIT}) => {
 
     switch (action.type) {
-      case AUTHENTICATE:
-        return AUTHENTICATING;
       case AUTHENTICATED:
-        return AUTHENTICATED;
+        return (<Authenticated>action).payload;
 
+      case AUTHENTICATION_DENIED:
+      case REACTIVATION_REQUIRED:
+      case UNAUTHENTICATED:
+        return initialState;
+
+      case AUTHENTICATE:
+      case UNAUTHENTICATE:
       default:
         return state;
     }
