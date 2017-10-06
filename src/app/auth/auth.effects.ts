@@ -4,12 +4,15 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/Observable/of';
 import {Action} from '@ngrx/store';
-// import {AccountActions} from '../actions/account.actions';
-import {AlertActions} from '../actions/alert.actions';
+import {AlertActions} from '../_actions/alert.actions';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiService} from '../core/rest-api.service';
-import {AuthActions} from '../actions/auth.actions';
-// import {Member} from '../_domains/member';
+import {AuthActions} from '../_actions/auth.actions';
+import {AppAlert} from '../_domains/app-alert';
+import {Auth} from '../_domains/auth';
+import {HttpStatus} from '../core/http-status.enum';
+import {AccountActions} from '../_actions/account.actions';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class AuthEffects {
@@ -17,33 +20,29 @@ export class AuthEffects {
     .ofType(AuthActions.AUTHENTICATE)
     .map((action: AuthActions.Authenticate) => action.payload)
     .switchMap((payload) => {
-      const requestOptions = API.AUTH.SIGN_IN;
-      return this._api.request(Object.assign(requestOptions, {body: payload})); // TODO: (refact) request should have body param
+      const requestOptions = Object.assign({}, API.AUTH.SIGN_IN);
+
+      return this._api.request(Object.assign(requestOptions, {body: payload}));
     })
     .map(response => new AuthActions.Authenticated(response))
-    .catch(error => Observable.of(new AuthActions.AuthenticationDenied(error))
-    );
+    .catch(error => {
+      switch (error.status) {
+        case HttpStatus.FORBIDDEN:
+          this._auth.notifyReactivationRequired();
+          break;
+        case HttpStatus.UNAUTHORIZED:
+          this._auth.notifyAuthenticationDenied();
+          break;
+        default:
+          break;
+      }
 
-  // @Effect() authenticated$: Observable<Action> = this.actions$
-  //   .ofType(AuthActions.AUTHENTICATED)
-  //   .map((action: AuthActions.Authenticated) => action.payload)
-  //   .mergeMap((data: Member) => {
-  //     return [
-  //       new TokenActions.Update(data.token),
-  //       new UserActions.Update(data.accountInfo),
-  //     ];
-  //   });
-
-  @Effect() signInError$: Observable<Action> = this.actions$
-    .ofType(AuthActions.AUTHENTICATION_DENIED)
-    .map(() => (new AlertActions.SetAlert({
-        show: true,
-        type: 'alert-danger',
-        message: 'Login Error'
-      }))
-    );
+      return Observable.of(new AlertActions.SetAlert(
+        new AppAlert(true, 'alert-danger', error.errorMessage)));
+    });
 
   constructor(private _api: RestApiService,
+              private _auth: AuthService,
               private actions$: Actions) {
   }
 }

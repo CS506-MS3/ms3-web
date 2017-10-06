@@ -2,9 +2,16 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 import {StoreModule} from '@ngrx/store';
+import {Credentials} from '../_domains/credentials';
+import {AuthActions} from '../_actions/auth.actions';
+import {Router} from '@angular/router';
 
 describe('AuthService', () => {
   let mockAuthReducer;
+  const routerMock = {
+    navigate: jasmine.createSpy('navigate')
+  };
+
   beforeEach(() => {
     mockAuthReducer = jasmine.createSpy('reducer');
   });
@@ -15,11 +22,28 @@ describe('AuthService', () => {
           auth: mockAuthReducer
         })
       ],
-      providers: [AuthService]
+      providers: [
+        AuthService,
+        {provide: Router, useValue: routerMock}
+      ]
     });
   });
 
   it('should be created', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
+  }));
+
+  it('should dispatch a new authenticate action with credentials', inject([AuthService], (service: AuthService) => {
+    const testCredentials = new Credentials('test@email.com', 'testPassword');
+
+    service.authenticate(testCredentials);
+
+    expect(mockAuthReducer).toHaveBeenCalledWith(undefined, new AuthActions.Authenticate(testCredentials));
+  }));
+
+  it('should dispatch a new authenticate action with credentials', inject([AuthService], (service: AuthService) => {
+    service.unauthenticate();
+
+    expect(mockAuthReducer).toHaveBeenCalledWith(undefined, new AuthActions.Unauthenticate());
   }));
 });
