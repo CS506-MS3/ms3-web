@@ -60,7 +60,7 @@ describe('AuthActions', () => {
 
   describe('Reducer', () => {
     it('should return the auth if authenticated action was called', () => {
-      const initialState = null;
+      const initialState = new Auth();
       const action = new AuthActions.Authenticated(testAuth);
 
       const outputState = AuthActions.reducer(initialState, action);
@@ -74,9 +74,9 @@ describe('AuthActions', () => {
       const reactivateAction = new AuthActions.ReactivationRequired();
       const unAuthAction = new AuthActions.Unauthenticated();
 
-      expect(AuthActions.reducer(initialState, deniedAction)).toEqual(null);
-      expect(AuthActions.reducer(initialState, reactivateAction)).toEqual(null);
-      expect(AuthActions.reducer(initialState, unAuthAction)).toEqual(null);
+      expect(AuthActions.reducer(initialState, deniedAction)).toEqual(new Auth());
+      expect(AuthActions.reducer(initialState, reactivateAction)).toEqual(new Auth());
+      expect(AuthActions.reducer(initialState, unAuthAction)).toEqual(new Auth());
     });
 
     it('should return current state on default and transition actions', () => {
