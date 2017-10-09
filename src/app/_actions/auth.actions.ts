@@ -11,7 +11,7 @@ export namespace AuthActions {
   export const UNAUTHENTICATED = 'AuthActions.UNAUTHENTICATED';
   const INIT = 'AuthActions.INIT';
 
-  const initialState = null;
+  const initialState = new Auth();
 
   export class Authenticate implements Action {
     readonly type = AUTHENTICATE;
