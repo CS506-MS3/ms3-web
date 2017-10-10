@@ -7,7 +7,7 @@ const prefix = WishlistActions.ACTION_NAME;
 const INIT = 'INIT';
 const initialState = new Wishlist();
 
-export const reducer: ActionReducer<any> = (state = initialState, action: Action = {type: INIT}) => {
+export const reducer: ActionReducer<Wishlist> = (state = initialState, action: Action = {type: INIT}) => {
   const newState = Crud.reducer(state, action, prefix, initialState);
 
   return newState === null ? initialState : newState;
