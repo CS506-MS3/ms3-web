@@ -3,7 +3,7 @@ import * as CrudActions from './crud.actions';
 import {Accesses} from '../_domains/accesses';
 import {Access} from '../_domains/access';
 
-export const ACTION_NAME = 'AccessActions';
+export const ACTION_NAME = 'AccessesActions';
 
 export const SET  = ACTION_NAME + CrudActions.SET;
 export const ADD_ITEM  = ACTION_NAME + CrudActions.ADD_ITEM;

@@ -1,4 +1,4 @@
-import {UserInfo} from '../_domains/user-info';
+import {Wishlist} from '../_domains/wishlist';
 import {PropertySummary} from '../_domains/property-summary';
 import {ItemId} from '../_domains/item-id';
 import * as CrudActions from './crud.actions';
@@ -11,7 +11,7 @@ export const REMOVE_ITEM  = ACTION_NAME + CrudActions.REMOVE_ITEM;
 export const CLEAR  = ACTION_NAME + CrudActions.CLEAR;
 
 export class Set extends CrudActions.Set {
-  constructor(public payload: UserInfo) {
+  constructor(public payload: Wishlist) {
     super(ACTION_NAME);
   }
 }
