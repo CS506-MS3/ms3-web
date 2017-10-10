@@ -26,7 +26,7 @@ describe('RestApiService', () => {
       password: 'testPassword'
     };
     testRequest = new RestApiRequest(API.AUTH.SIGN_IN);
-    testRequest.setBody(testCredentials)
+    testRequest.setBody(testCredentials);
   });
 
   beforeEach(() => {
@@ -50,10 +50,10 @@ describe('RestApiService', () => {
 
   describe('request', () => {
     it('should send http request', inject([XHRBackend, RestApiService], (mockBackend, service) => {
-      let expectedHeaders = new Headers({
+      const expectedHeaders = new Headers({
         'Content-Type': 'application/json'
       });
-      let expectedRequest = new Request({
+      const expectedRequest = new Request({
         method: 'POST',
         url: API.AUTH.SIGN_IN.url,
         headers: expectedHeaders,
@@ -79,11 +79,11 @@ describe('RestApiService', () => {
     it('should add token if available', inject([XHRBackend, RestApiService], (mockBackend, service) => {
       const token = 'testToken';
       const action = new AuthActions.Authenticated(new Auth(token));
-      let expectedHeaders = new Headers({
+      const expectedHeaders = new Headers({
         'Authorization': token,
         'Content-Type': 'application/json'
       });
-      let expectedRequest = new Request({
+      const expectedRequest = new Request({
         method: 'POST',
         url: API.AUTH.SIGN_IN.url,
         headers: expectedHeaders,
@@ -109,10 +109,10 @@ describe('RestApiService', () => {
     }));
 
     it('should throw response error if request returns an error', inject([XHRBackend, RestApiService], (mockBackend, service) => {
-      let expectedHeaders = new Headers({
+      const expectedHeaders = new Headers({
         'Content-Type': 'application/json'
       });
-      let expectedRequest = new Request({
+      const expectedRequest = new Request({
         method: 'POST',
         url: API.AUTH.SIGN_IN.url,
         headers: expectedHeaders,
