@@ -92,7 +92,6 @@ describe('AccountService', () => {
 
   describe('activate', () => {
     it('should dispatch a new AccountActions.Activate with the subscribed token', inject([AccountService], (service: AccountService) => {
-      service.activate
     }));
   });
 });

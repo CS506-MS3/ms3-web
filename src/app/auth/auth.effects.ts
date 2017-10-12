@@ -13,6 +13,7 @@ import {Auth} from '../_domains/auth';
 import {HttpStatus} from '../core/http-status.enum';
 import {AccountActions} from '../_actions/account.actions';
 import {AuthService} from './auth.service';
+import {RestApiRequest} from '../core/rest-api-request';
 
 @Injectable()
 export class AuthEffects {
@@ -20,9 +21,10 @@ export class AuthEffects {
     .ofType(AuthActions.AUTHENTICATE)
     .map((action: AuthActions.Authenticate) => action.payload)
     .switchMap((payload) => {
-      const requestOptions = Object.assign({}, API.AUTH.SIGN_IN);
+      const requestOptions = new RestApiRequest(API.AUTH.SIGN_IN);
+      requestOptions.setBody(payload);
 
-      return this._api.request(Object.assign(requestOptions, {body: payload}));
+      return this._api.request(requestOptions);
     })
     .map(response => new AuthActions.Authenticated(response))
     .catch(error => {

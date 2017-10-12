@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AccountActions} from '../_actions/account.actions';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {SignUpForm} from '../_domains/sign-up-form';
 
 @Injectable()
 export class AccountService {
@@ -13,7 +14,7 @@ export class AccountService {
     });
   }
 
-  create(signUpForm) {
+  create(signUpForm: SignUpForm) {
 
     return this._store.dispatch(new AccountActions.Create(signUpForm));
   }
@@ -28,7 +29,7 @@ export class AccountService {
     return this._store.dispatch(new AccountActions.Activate(this._activationToken));
   }
 
-  reactivate() {}
+  requestActivationLink() {}
 
   deactivate() {}
 }
