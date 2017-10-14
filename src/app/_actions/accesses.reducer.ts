@@ -9,8 +9,8 @@ const initialState: Accesses = {
   list: []
 };
 
-export const reducer: ActionReducer<Accesses> = (state = initialState, action: Action = {type: INIT}) => {
+export function reducer(state = initialState, action: Action = {type: INIT}): Accesses {
   const newState = Crud.reducer(state, action, prefix, initialState);
 
   return newState === null ? initialState : newState;
-};
+}

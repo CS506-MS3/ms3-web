@@ -3,6 +3,7 @@ import {Store} from '@ngrx/store';
 import {AccountActions} from '../_actions/account.actions';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {SignUpForm} from '../_domains/sign-up-form';
+import {SignUpEffects} from './sign-up.effects';
 
 @Injectable()
 export class AccountService {
@@ -16,20 +17,24 @@ export class AccountService {
 
   create(signUpForm: SignUpForm) {
 
-    return this._store.dispatch(new AccountActions.Create(signUpForm));
+    return this._store.dispatch(new SignUpEffects.Request(signUpForm));
   }
 
   notifyActivationRequired() {
-
+    // WILL_CHANGE
     return this._router.navigate(['activate']);
   }
 
   activate() {
-
+    // WILL_CHANGE
     return this._store.dispatch(new AccountActions.Activate(this._activationToken));
   }
 
-  requestActivationLink() {}
+  requestActivationLink() {
+    // WILL_CHANGE
+  }
 
-  deactivate() {}
+  deactivate() {
+    // WILL_CHANGE
+  }
 }

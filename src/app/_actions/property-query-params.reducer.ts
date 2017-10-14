@@ -7,7 +7,7 @@ const prefix = PropertyQueryParamsActions.ACTION_NAME;
 const INIT = 'INIT';
 const initialState = null;
 
-export const reducer: ActionReducer<PropertyQueryParams> = (state = initialState, action: Action = {type: INIT}) => {
+export function reducer(state = initialState, action: Action = {type: INIT}): PropertyQueryParams {
   switch (action.type) {
     case PropertyQueryParamsActions.SET_SEARCH_PARAMS:
       return {
@@ -35,4 +35,4 @@ export const reducer: ActionReducer<PropertyQueryParams> = (state = initialState
 
       return newState === null ? initialState : newState;
   }
-};
+}

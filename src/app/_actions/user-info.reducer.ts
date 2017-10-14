@@ -10,8 +10,8 @@ const initialState = {
   notification: null
 };
 
-export const reducer: ActionReducer<UserInfo> = (state = initialState, action: Action = {type: INIT}) => {
+export function reducer(state = initialState, action: Action = {type: INIT}): UserInfo {
   const newState = Crud.reducer(state, action, prefix, initialState);
 
   return newState === null ? initialState : newState;
-};
+}
