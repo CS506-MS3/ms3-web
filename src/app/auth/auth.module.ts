@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {AuthService} from './auth.service';
 import {EffectsModule} from '@ngrx/effects';
 import {SignInEffects} from './sign-in.effects';
+import {AuthGuard} from './auth.guard';
+import {AuthPermissions} from './auth.permission';
 
 @NgModule({
   imports: [
@@ -12,7 +14,7 @@ import {SignInEffects} from './sign-in.effects';
     ])
   ],
   declarations: [],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuard, AuthPermissions]
 })
 export class AuthModule {
 }
