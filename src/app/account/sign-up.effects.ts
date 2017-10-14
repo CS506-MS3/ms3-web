@@ -9,6 +9,8 @@ import {RestApiRequest} from '../core/rest-api-request';
 import 'rxjs/add/operator/switchMap';
 import {AuthActions} from '../_actions/auth.actions';
 import {Router} from '@angular/router';
+import {AlertActions} from '../_actions/alert.actions';
+import {RequestError} from '../_domains/request-error';
 
 export namespace SignUpEffects {
   export const REQUEST = 'SignUpEffects.REQUEST';
@@ -32,7 +34,7 @@ export namespace SignUpEffects {
   export class Error implements Action {
     readonly type = ERROR;
 
-    constructor(public payload: any) {
+    constructor(public payload: RequestError) {
       //TODO: define request error object
     }
   }
@@ -56,6 +58,11 @@ export namespace SignUpEffects {
       .map((action: Success) => {
         return new AuthActions.Authenticated(action.payload)
       });
+
+    @Effect() onError$: Observable<Action> = this.actions$
+      .ofType(ERROR)
+      .map((action: Error) => action.payload)
+      .map((error: RequestError) => new AlertActions.SetError('Sign Up Error: ' + error.error));
 
     constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
     }
