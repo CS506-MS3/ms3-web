@@ -1,23 +1,32 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 
-import { RestApiService } from './rest-api.service';
+import {RestApiService} from './rest-api.service';
 import {RestApiRequest} from './rest-api-request';
 import {API} from './api-endpoints.constant';
 import {Headers, HttpModule, XHRBackend, Request, Response, ResponseOptions} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
-import {Store, StoreModule} from '@ngrx/store';
-import {AuthActions} from '../_actions/auth.actions';
-import {Auth} from '../_domains/auth';
 import {HttpStatus} from './http-status.enum';
+import {AuthService} from '../auth/auth.service';
+import {Observable} from 'rxjs/Observable';
+import {Auth} from '../_domains/auth';
+import 'rxjs/add/Observable/of';
 
 describe('RestApiService', () => {
   let testRequest: RestApiRequest;
   let testCredentials;
-  let store: Store<Auth>;
+  let mockAuthService;
 
   class ErrorResponse extends Response implements Error {
     name: any;
     message: any;
+  }
+
+  class MockAuthService {
+    public auth$ = Observable.of(new Auth());
+
+    setAuth(auth: Auth) {
+      this.auth$ = Observable.of(auth);
+    }
   }
 
   beforeEach(() => {
@@ -32,16 +41,16 @@ describe('RestApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({auth: AuthActions.reducer}),
         HttpModule
       ],
       providers: [
         {provide: XHRBackend, useClass: MockBackend},
+        {provide: AuthService, useClass: MockAuthService},
         RestApiService
       ]
     });
 
-    store = TestBed.get(Store);
+    mockAuthService = TestBed.get(AuthService);
   });
 
   it('should be created', inject([XHRBackend, RestApiService], (mockBackend, service) => {
@@ -76,38 +85,42 @@ describe('RestApiService', () => {
       });
     }));
 
-    it('should add token if available', inject([XHRBackend, RestApiService], (mockBackend, service) => {
+    describe('request with Auth', () => {
       const token = 'testToken';
-      const action = new AuthActions.Authenticated(new Auth(token));
-      const expectedHeaders = new Headers({
-        'Authorization': token,
-        'Content-Type': 'application/json'
-      });
-      const expectedRequest = new Request({
-        method: 'POST',
-        url: API.AUTH.SIGN_IN.url,
-        headers: expectedHeaders,
-        body: JSON.stringify(testCredentials)
+      beforeEach(() => {
+        mockAuthService.setAuth(new Auth(token));
       });
 
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        expect(connection.request).toEqual(expectedRequest);
-        expect(connection.request.headers.toJSON()).toEqual(expectedRequest.headers.toJSON());
-        connection.mockRespond(new Response(
-          new ResponseOptions({
-            body: {
-              test: 'response'
-            }
-          })
-        ));
-      });
+      it('should add token if available', inject([XHRBackend, RestApiService], (mockBackend, service) => {
+        const expectedHeaders = new Headers({
+          'Authorization': token,
+          'Content-Type': 'application/json'
+        });
+        const expectedRequest = new Request({
+          method: 'POST',
+          url: API.AUTH.SIGN_IN.url,
+          headers: expectedHeaders,
+          body: JSON.stringify(testCredentials)
+        });
 
-      store.dispatch(action);
-      service.request(testRequest).subscribe((res) => {
-        expect(res.test).toEqual('response');
-      });
-    }));
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          expect(connection.request).toEqual(expectedRequest);
+          expect(connection.request.headers.toJSON()).toEqual(expectedRequest.headers.toJSON());
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+              body: {
+                test: 'response'
+              }
+            })
+          ));
+        });
 
+        service.request(testRequest).subscribe((res) => {
+          expect(res.test).toEqual('response');
+        });
+      }));
+    });
+    
     it('should throw response error if request returns an error', inject([XHRBackend, RestApiService], (mockBackend, service) => {
       const expectedHeaders = new Headers({
         'Content-Type': 'application/json'
