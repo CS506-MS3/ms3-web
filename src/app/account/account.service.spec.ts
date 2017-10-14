@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/Observable/of';
 import {SignUpEffects} from "./sign-up.effects";
 import {ActivateEffects} from './activate.effects';
+import {ActivationLinkEffects} from './activation-link.effects';
 
 describe('AccountService', () => {
   let mockAccountReducer;
@@ -66,9 +67,12 @@ describe('AccountService', () => {
   }));
 
   it('should have reactivate method', inject([AccountService], (service: AccountService) => {
+    const testForm = {
+      email: 'test@email.com'
+    };
     spyOn(service, 'requestActivationLink');
 
-    service.requestActivationLink();
+    service.requestActivationLink(testForm);
 
     expect(service.requestActivationLink).toHaveBeenCalled();
   }));
@@ -89,5 +93,16 @@ describe('AccountService', () => {
 
       expect(storeMock.dispatch).toHaveBeenCalledWith(new ActivateEffects.Request(testToken));
     }));
+  });
+
+  describe('requestActivationLink', () => {
+    it('should dispatch a new ActivationLinkEffects.Request with the supplied email form', inject([AccountService], (service: AccountService) => {
+      const testForm = {
+        email: 'test@email.com'
+      };
+      service.requestActivationLink(testForm);
+
+      expect(storeMock.dispatch).toHaveBeenCalledWith(new ActivationLinkEffects.Request(testForm));
+    }))
   });
 });
