@@ -19,6 +19,7 @@ import * as UserInfo from './_actions/user-info.reducer';
 import * as Wishlist from './_actions/wishlist.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
+import {PropertiesModule} from './properties/properties.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import {UserModule} from './user/user.module';
     SharedModule,
     AccountModule,
     UserModule,
-    PropertyModule,
+    PropertiesModule,
     ClarityModule.forRoot(),
   ],
   providers: [],
