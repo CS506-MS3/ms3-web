@@ -13,6 +13,10 @@ import {AccountModule} from './account/account.module';
 import {CoreModule} from './core/core.module';
 import {AuthActions} from './_actions/auth.actions';
 import {AlertActions} from './_actions/alert.actions';
+import * as Accesses from './_actions/accesses.reducer';
+import * as MyProperties from './_actions/my-properties.reducer';
+import * as UserInfo from './_actions/user-info.reducer';
+import * as Wishlist from './_actions/wishlist.reducer';
 import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
@@ -25,6 +29,10 @@ import {EffectsModule} from '@ngrx/effects';
     StoreModule.forRoot({
       alert: AlertActions.reducer,
       auth: AuthActions.reducer,
+      accesses: Accesses.reducer,
+      myProperties: MyProperties.reducer,
+      userInfo: UserInfo.reducer,
+      wishlist: Wishlist.reducer,
       routerReducer: routerReducer
     }),
     EffectsModule.forRoot([]),
