@@ -55,7 +55,7 @@ export namespace SignUpEffects {
 
     @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .do(() => this._router.navigate(['activate']));
+      .do(() => this._router.navigate(['signUpSuccess']));
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)

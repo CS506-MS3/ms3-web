@@ -8,6 +8,10 @@ import {EffectsModule} from '@ngrx/effects';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SignUpEffects} from './sign-up.effects';
 import {ActivateEffects} from './activate.effects';
+import { ActivatePageComponent } from './activate-page/activate-page.component';
+import { ActivationSuccessPageComponent } from './activation-success-page/activation-success-page.component';
+import { ActivationLinkRequestPageComponent } from './activation-link-request-page/activation-link-request-page.component';
+import { SignUpSuccessPageComponent } from './sign-up-success-page/sign-up-success-page.component';
 
 @NgModule({
   imports: [
@@ -21,7 +25,11 @@ import {ActivateEffects} from './activate.effects';
   declarations: [
     SignUpFormComponent,
     SignUpPageComponent,
-    SignInFormComponent
+    SignInFormComponent,
+    ActivatePageComponent,
+    ActivationSuccessPageComponent,
+    ActivationLinkRequestPageComponent,
+    SignUpSuccessPageComponent
   ],
   providers: [AccountService]
 })
