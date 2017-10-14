@@ -6,7 +6,7 @@ import {Store, StoreModule} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/Observable/of';
-import {AccountActions} from '../_actions/account.actions';
+import {SignUpEffects} from "./sign-up.effects";
 
 describe('AccountService', () => {
   let mockAccountReducer;
@@ -65,11 +65,11 @@ describe('AccountService', () => {
   }));
 
   it('should have reactivate method', inject([AccountService], (service: AccountService) => {
-    spyOn(service, 'reactivate');
+    spyOn(service, 'requestActivationLink');
 
-    service.reactivate();
+    service.requestActivationLink();
 
-    expect(service.reactivate).toHaveBeenCalled();
+    expect(service.requestActivationLink).toHaveBeenCalled();
   }));
 
   describe('create', () => {
@@ -78,7 +78,7 @@ describe('AccountService', () => {
 
       service.create(inputSignUpForm);
 
-      expect(storeMock.dispatch).toHaveBeenCalledWith(new AccountActions.Create(inputSignUpForm));
+      expect(storeMock.dispatch).toHaveBeenCalledWith(new SignUpEffects.Request(inputSignUpForm));
     }));
   });
 
