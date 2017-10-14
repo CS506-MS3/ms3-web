@@ -11,6 +11,7 @@ import {AuthActions} from '../_actions/auth.actions';
 import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
+import 'rxjs/add/operator/do';
 
 export namespace SignUpEffects {
   export const REQUEST = 'SignUpEffects.REQUEST';
@@ -52,12 +53,9 @@ export namespace SignUpEffects {
           .catch(error => Observable.of(new Error(error)));
       });
 
-    @Effect() onSuccess$: Observable<Action> = this.actions$
+    @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .do(() => this._router.navigate(['activate']))
-      .map((action: Success) => {
-        return new AuthActions.Authenticated(action.payload)
-      });
+      .do(() => this._router.navigate(['activate']));
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
