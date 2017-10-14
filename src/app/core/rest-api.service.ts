@@ -1,22 +1,20 @@
 import {Injectable} from '@angular/core';
-import {Http, Request, Response, RequestOptionsArgs} from '@angular/http';
+import {Http, Request, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {HttpStatus} from './http-status.enum';
 import {RequestArgs} from '@angular/http/src/interfaces';
 import {Auth} from '../_domains/auth';
-import {Store} from '@ngrx/store';
 import {RestApiRequest} from './rest-api-request';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class RestApiService {
-  private _auth$;
   private _token: string;
 
-  constructor(private http: Http, private _store: Store<any>) {
-    this._auth$ = this._store.select('auth');
-    this._auth$.subscribe((auth: Auth) => {
+  constructor(private http: Http, private _authService: AuthService) {
+    this._authService.auth$.subscribe((auth: Auth) => {
 
       this._token = auth.token;
     });
