@@ -11,7 +11,7 @@ import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
 import {AccountModule} from './account/account.module';
 import {CoreModule} from './core/core.module';
-import {AuthActions} from './_actions/auth.actions';
+import * as Auth from './_actions/auth.reducer';
 import {AlertActions} from './_actions/alert.actions';
 import * as Accesses from './_actions/accesses.reducer';
 import * as MyProperties from './_actions/my-properties.reducer';
@@ -30,7 +30,7 @@ import {PropertiesModule} from './properties/properties.module';
     BrowserModule,
     StoreModule.forRoot({
       alert: AlertActions.reducer,
-      auth: AuthActions.reducer,
+      auth: Auth.reducer,
       accesses: Accesses.reducer,
       myProperties: MyProperties.reducer,
       userInfo: UserInfo.reducer,

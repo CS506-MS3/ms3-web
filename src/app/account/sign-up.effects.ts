@@ -7,11 +7,12 @@ import {RestApiService} from '../core/rest-api.service';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import 'rxjs/add/operator/switchMap';
-import {AuthActions} from '../_actions/auth.actions';
 import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
 import 'rxjs/add/operator/do';
+import {Injectable} from '@angular/core';
+import {SignUpForm} from '../_domains/sign-up-form';
 
 export namespace SignUpEffects {
   export const REQUEST = 'SignUpEffects.REQUEST';
@@ -21,15 +22,12 @@ export namespace SignUpEffects {
   export class Request implements Action {
     readonly type = REQUEST;
 
-    constructor(public payload: Credentials) {
+    constructor(public payload: SignUpForm) {
     }
   }
 
   export class Success implements Action {
     readonly type = SUCCESS;
-
-    constructor(public payload: Auth) {
-    }
   }
 
   export class Error implements Action {
@@ -40,6 +38,7 @@ export namespace SignUpEffects {
     }
   }
 
+  @Injectable()
   export class Effects {
     @Effect() onRequest$: Observable<Action> = this.actions$
       .ofType(REQUEST)
@@ -49,7 +48,7 @@ export namespace SignUpEffects {
         request.setBody(payload);
 
         return this._api.request(request)
-          .map(response => new Success(response))
+          .map(response => new Success())
           .catch(error => Observable.of(new Error(error)));
       });
 

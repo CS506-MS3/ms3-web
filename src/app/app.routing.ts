@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
   {path: 'welcome', component: LandingPageComponent},
   {path: 'register', component: SignUpPageComponent},
-  {path: 'signUpSuccess', component: SignUpSuccessPageComponentPageComponent},
+  {path: 'signUpSuccess', component: SignUpSuccessPageComponent},
   {path: 'activate', component: ActivatePageComponent},
   {path: 'activationSuccess', component: ActivationSuccessPageComponent},
   {path: 'activationLinkRequest', component: ActivationLinkRequestPageComponent}

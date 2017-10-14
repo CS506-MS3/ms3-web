@@ -1,4 +1,5 @@
 import {Action} from '@ngrx/store';
+import {Credentials} from '../_domains/credentials';
 import {Auth} from '../_domains/auth';
 import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
@@ -6,23 +7,23 @@ import {RestApiService} from '../core/rest-api.service';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import 'rxjs/add/operator/switchMap';
-import * as AuthActions from '../_actions/auth.actions';
 import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
-import {HttpStatus} from '../core/http-status.enum';
 import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
+import * as AuthActions from '../_actions/auth.actions';
+import {HttpStatus} from '../core/http-status.enum';
 
-export namespace ActivateEffects {
-  export const REQUEST = 'ActivateEffects.REQUEST';
-  export const SUCCESS = 'ActivateEffects.SUCCESS';
-  export const ERROR = 'ActivateEffects.ERROR';
+export namespace SignInEffects {
+  export const REQUEST = 'SignInEffects.REQUEST';
+  export const SUCCESS = 'SignInEffects.SUCCESS';
+  export const ERROR = 'SignInEffects.ERROR';
 
   export class Request implements Action {
     readonly type = REQUEST;
 
-    constructor(public payload: string) {
+    constructor(public payload: Credentials) {
     }
   }
 
@@ -37,6 +38,7 @@ export namespace ActivateEffects {
     readonly type = ERROR;
 
     constructor(public payload: RequestError) {
+      //TODO: define request error object
     }
   }
 
@@ -46,8 +48,8 @@ export namespace ActivateEffects {
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
-        let request = new RestApiRequest(API.ACTIVATE);
-        request.setBody({activationToken: payload});
+        let request = new RestApiRequest(API.AUTH.SIGN_IN);
+        request.setBody(payload);
 
         return this._api.request(request)
           .map(response => new Success(response))
@@ -56,26 +58,23 @@ export namespace ActivateEffects {
 
     @Effect() onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .do(() => this._router.navigate(['activationSuccess']))
-      .map((action: Success) => {
-        return new AuthActions.Set(action.payload)
-      });
+      .map((action: Success) => action.payload)
+      .map((response) => new AuthActions.Set(response));
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
       .map((action: Error) => action.payload)
       .map((error: RequestError) => {
         switch (error.status) {
-          case HttpStatus.UNAUTHORIZED: // TODO: In case token invalid. confirm with server
-            this._router.navigate(['activationLinkRequest']);
-            return new AlertActions.SetError('Invalid Link: ' + error.error);
+          case HttpStatus.UNAUTHORIZED: // Invalid Credentials
+            return new AlertActions.SetError('Invalid Credentials');
 
-          case HttpStatus.BAD_REQUEST: // TODO: In case account has been activated. confirm with server
-            this._router.navigate(['landingPage']);
-            return new AlertActions.SetError('Account has already been activated');
+          case HttpStatus.FORBIDDEN:
+            this._router.navigate['activationLinkRequest'];
+            return new AlertActions.SetError('Activation Required');
 
           default:
-            return new AlertActions.SetError('Unknown Error: ' + error.error);
+            return new AlertActions.SetError('Unknown Error');
         }
       });
 
