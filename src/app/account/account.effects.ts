@@ -9,13 +9,14 @@ import {AlertActions} from '../_actions/alert.actions';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiService} from '../core/rest-api.service';
 import {AccountService} from './account.service';
+import {RestApiRequest} from '../core/rest-api-request';
 
 @Injectable()
 export class AccountEffects {
   @Effect() onCreate$: Observable<Action> = this.actions$
     .ofType(AccountActions.CREATE)
     .map((action: AccountActions.Create) => action.payload)
-    .switchMap((payload) => this._api.request(API.USER.CREATE)
+    .switchMap((payload) => this._api.request(new RestApiRequest(API.USER.CREATE))
       .map(response => new AccountActions.ActivationRequired())
       .catch(error => Observable.of(new AccountActions.SignUpFailure()))
     );
