@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { PasswordResetService } from './password-reset.service';
 
-describe('PasswordResetService', () => {
+xdescribe('PasswordResetService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PasswordResetService]
