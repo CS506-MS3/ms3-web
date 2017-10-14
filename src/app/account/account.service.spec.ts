@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/Observable/of';
 import {SignUpEffects} from "./sign-up.effects";
+import {ActivateEffects} from './activate.effects';
 
 describe('AccountService', () => {
   let mockAccountReducer;
@@ -29,7 +30,7 @@ describe('AccountService', () => {
       ],
       providers: [
         AccountService,
-        {provide: ActivatedRoute, useValue: {params: Observable.of({activationToken: testToken})}},
+        {provide: ActivatedRoute, useValue: {params: Observable.of({activate: testToken})}},
         {provide: Router, useValue: routerMock},
         {provide: Store, useValue: storeMock}
       ]
@@ -73,7 +74,7 @@ describe('AccountService', () => {
   }));
 
   describe('create', () => {
-    it('should dispatch an AccountActions.Create with input', inject([AccountService], (service: AccountService) => {
+    it('should dispatch an SignUpEffects.Request with input', inject([AccountService], (service: AccountService) => {
       const inputSignUpForm = new SignUpForm('test@email.com', 'testPassword', false);
 
       service.create(inputSignUpForm);
@@ -82,16 +83,11 @@ describe('AccountService', () => {
     }));
   });
 
-  describe('notifyActivationRequired', () => {
-    it('should call navigate to activate page', inject([AccountService], (service: AccountService) => {
-      service.notifyActivationRequired();
-
-      expect(routerMock.navigate).toHaveBeenCalledWith(['activate']);
-    }));
-  });
-
   describe('activate', () => {
-    it('should dispatch a new AccountActions.Activate with the subscribed token', inject([AccountService], (service: AccountService) => {
+    it('should dispatch a new ActivateEffects.Request with the subscribed token', inject([AccountService], (service: AccountService) => {
+      service.activate();
+
+      expect(storeMock.dispatch).toHaveBeenCalledWith(new ActivateEffects.Request(testToken));
     }));
   });
 });

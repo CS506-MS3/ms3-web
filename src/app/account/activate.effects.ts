@@ -1,5 +1,4 @@
 import {Action} from '@ngrx/store';
-import {Credentials} from '../_domains/credentials';
 import {Auth} from '../_domains/auth';
 import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
@@ -11,17 +10,18 @@ import {AuthActions} from '../_actions/auth.actions';
 import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
+import {HttpStatus} from '../core/http-status.enum';
 import 'rxjs/add/operator/do';
 
-export namespace SignUpEffects {
-  export const REQUEST = 'SignUpEffects.REQUEST';
-  export const SUCCESS = 'SignUpEffects.SUCCESS';
-  export const ERROR = 'SignUpEffects.ERROR';
+export namespace ActivateEffects {
+  export const REQUEST = 'ActivateEffects.REQUEST';
+  export const SUCCESS = 'ActivateEffects.SUCCESS';
+  export const ERROR = 'ActivateEffects.ERROR';
 
   export class Request implements Action {
     readonly type = REQUEST;
 
-    constructor(public payload: Credentials) {
+    constructor(public payload: string) {
     }
   }
 
@@ -36,7 +36,6 @@ export namespace SignUpEffects {
     readonly type = ERROR;
 
     constructor(public payload: RequestError) {
-      //TODO: define request error object
     }
   }
 
@@ -45,22 +44,38 @@ export namespace SignUpEffects {
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
-        let request = new RestApiRequest(API.USER.CREATE);
-        request.setBody(payload);
+        let request = new RestApiRequest(API.ACTIVATE);
+        request.setBody({activationToken: payload});
 
         return this._api.request(request)
           .map(response => new Success(response))
           .catch(error => Observable.of(new Error(error)));
       });
 
-    @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
+    @Effect() onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .do(() => this._router.navigate(['signUpSuccess']));
+      .do(() => this._router.navigate(['activationSuccess']))
+      .map((action: Success) => {
+        return new AuthActions.Authenticated(action.payload)
+      });
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
       .map((action: Error) => action.payload)
-      .map((error: RequestError) => new AlertActions.SetError('Sign Up Error: ' + error.error));
+      .map((error: RequestError) => {
+        switch (error.status) {
+          case HttpStatus.UNAUTHORIZED: // TODO: In case token invalid. confirm with server
+            this._router.navigate(['activationLinkRequest']);
+            return new AlertActions.SetError('Invalid Link: ' + error.error);
+
+          case HttpStatus.BAD_REQUEST: // TODO: In case account has been activated. confirm with server
+            this._router.navigate(['landingPage']);
+            return new AlertActions.SetError('Account has already been activated');
+
+          default:
+            return new AlertActions.SetError('Unknown Error: ' + error.error);
+        }
+      });
 
     constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
     }
