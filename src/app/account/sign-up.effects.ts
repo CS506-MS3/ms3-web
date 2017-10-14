@@ -36,7 +36,7 @@ export namespace SignUpEffects {
   }
 
   export class Effects {
-    @Effect() onRequest: Observable<Action> = this.actions$
+    @Effect() onRequest$: Observable<Action> = this.actions$
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
