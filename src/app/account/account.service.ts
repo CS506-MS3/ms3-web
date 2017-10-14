@@ -4,6 +4,8 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {SignUpForm} from '../_domains/sign-up-form';
 import {SignUpEffects} from './sign-up.effects';
 import {ActivateEffects} from './activate.effects';
+import {EmailForm} from "../_domains/email-form";
+import {ActivationLinkEffects} from './activation-link.effects';
 
 @Injectable()
 export class AccountService {
@@ -27,8 +29,9 @@ export class AccountService {
     return this._store.dispatch(new ActivateEffects.Request(this._activationToken));
   }
 
-  requestActivationLink() {
-    // WILL_CHANGE
+  requestActivationLink(form: EmailForm) {
+
+    return this._store.dispatch(new ActivationLinkEffects.Request(form));
   }
 
   deactivate() {

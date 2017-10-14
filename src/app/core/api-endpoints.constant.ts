@@ -3,7 +3,7 @@ export const API = {
     method: 'POST',
     url: '/activate'
   },
-  REACTIVATE: {
+  ACTIVATION_LINK: {
     method: 'POST',
     url: '/reactivate'
   },
