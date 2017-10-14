@@ -6,12 +6,13 @@ import {RestApiService} from '../core/rest-api.service';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import 'rxjs/add/operator/switchMap';
-import {AuthActions} from '../_actions/auth.actions';
+import * as AuthActions from '../_actions/auth.actions';
 import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
 import {HttpStatus} from '../core/http-status.enum';
 import 'rxjs/add/operator/do';
+import {Injectable} from '@angular/core';
 
 export namespace ActivateEffects {
   export const REQUEST = 'ActivateEffects.REQUEST';
@@ -39,6 +40,7 @@ export namespace ActivateEffects {
     }
   }
 
+  @Injectable()
   export class Effects {
     @Effect() onRequest$: Observable<Action> = this.actions$
       .ofType(REQUEST)
@@ -56,7 +58,7 @@ export namespace ActivateEffects {
       .ofType(SUCCESS)
       .do(() => this._router.navigate(['activationSuccess']))
       .map((action: Success) => {
-        return new AuthActions.Authenticated(action.payload)
+        return new AuthActions.Set(action.payload)
       });
 
     @Effect() onError$: Observable<Action> = this.actions$

@@ -7,11 +7,11 @@ import {RestApiService} from '../core/rest-api.service';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import 'rxjs/add/operator/switchMap';
-import {AuthActions} from '../_actions/auth.actions';
 import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
 import 'rxjs/add/operator/do';
+import {Injectable} from '@angular/core';
 
 export namespace SignUpEffects {
   export const REQUEST = 'SignUpEffects.REQUEST';
@@ -40,6 +40,7 @@ export namespace SignUpEffects {
     }
   }
 
+  @Injectable()
   export class Effects {
     @Effect() onRequest$: Observable<Action> = this.actions$
       .ofType(REQUEST)
