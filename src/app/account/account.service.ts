@@ -20,11 +20,6 @@ export class AccountService {
     return this._store.dispatch(new SignUpEffects.Request(signUpForm));
   }
 
-  notifyActivationRequired() {
-    // WILL_CHANGE
-    return this._router.navigate(['activate']);
-  }
-
   activate() {
     // WILL_CHANGE
     return this._store.dispatch(new AccountActions.Activate(this._activationToken));
