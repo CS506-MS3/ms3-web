@@ -9,7 +9,7 @@ const initialState: Properties = {
   list: []
 };
 
-export const reducer: ActionReducer<Properties> = (state = initialState, action: Action = {type: INIT}) => {
+export function reducer(state = initialState, action: Action = {type: INIT}): Properties {
   switch (action.type) {
     case PropertiesActions.INCREASE_LIST:
       return {
@@ -22,4 +22,4 @@ export const reducer: ActionReducer<Properties> = (state = initialState, action:
 
       return newState === null ? initialState : newState;
   }
-};
+}

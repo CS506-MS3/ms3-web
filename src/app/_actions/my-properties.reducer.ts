@@ -9,8 +9,8 @@ const initialState = {
   list: []
 };
 
-export const reducer: ActionReducer<Properties> = (state = initialState, action: Action = {type: INIT}) => {
+export function reducer(state = initialState, action: Action = {type: INIT}): Properties {
   const newState = Crud.reducer(state, action, prefix, initialState);
 
   return newState === null ? initialState : newState;
-};
+}
