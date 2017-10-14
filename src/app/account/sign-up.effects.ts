@@ -7,6 +7,8 @@ import {RestApiService} from '../core/rest-api.service';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import 'rxjs/add/operator/switchMap';
+import {AuthActions} from '../_actions/auth.actions';
+import {Router} from '@angular/router';
 
 export namespace SignUpEffects {
   export const REQUEST = 'SignUpEffects.REQUEST';
@@ -48,6 +50,14 @@ export namespace SignUpEffects {
           .catch(error => Observable.of(new Error(error)));
       });
 
-    constructor(private _api: RestApiService, private actions$: Actions) {}
+    @Effect() onSuccess$: Observable<Action> = this.actions$
+      .ofType(SUCCESS)
+      .do(() => this._router.navigate(['activate']))
+      .map((action: Success) => {
+        return new AuthActions.Authenticated(action.payload)
+      });
+
+    constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
+    }
   }
 }
