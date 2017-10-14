@@ -18,6 +18,7 @@ import * as MyProperties from './_actions/my-properties.reducer';
 import * as UserInfo from './_actions/user-info.reducer';
 import * as Wishlist from './_actions/wishlist.reducer';
 import {EffectsModule} from '@ngrx/effects';
+import {UserModule} from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,8 @@ import {EffectsModule} from '@ngrx/effects';
     CoreModule,
     SharedModule,
     AccountModule,
+    UserModule,
+    PropertyModule,
     ClarityModule.forRoot(),
   ],
   providers: [],
