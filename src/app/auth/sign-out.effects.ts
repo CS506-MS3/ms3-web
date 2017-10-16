@@ -45,7 +45,7 @@ export namespace SignOutEffects {
 
     @Effect() onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .map((response) => new AuthActions.Clear());
+      .map(() => new AuthActions.Clear());
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
@@ -57,7 +57,6 @@ export namespace SignOutEffects {
           new AlertActions.SetError('Server Error')
         ];
       });
-
 
     constructor(private _api: RestApiService, private actions$: Actions) {
     }
