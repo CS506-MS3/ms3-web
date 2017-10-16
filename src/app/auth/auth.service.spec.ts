@@ -5,6 +5,7 @@ import {StoreModule} from '@ngrx/store';
 import {Credentials} from '../_domains/credentials';
 import {Router} from '@angular/router';
 import {SignInEffects} from './sign-in.effects';
+import {SignOutEffects} from './sign-out.effects';
 
 describe('AuthService', () => {
   let mockAuthReducer;
@@ -41,9 +42,9 @@ describe('AuthService', () => {
     expect(mockAuthReducer).toHaveBeenCalledWith(undefined, new SignInEffects.Request(testCredentials));
   }));
 
-  // it('should dispatch a new authenticate action with credentials', inject([AuthService], (service: AuthService) => {
-  //   service.unauthenticate();
-  //
-  //   expect(mockAuthReducer).toHaveBeenCalledWith(undefined, new SignOutEffects.Request());
-  // }));
+  it('should dispatch a new authenticate action with credentials', inject([AuthService], (service: AuthService) => {
+    service.unauthenticate();
+
+    expect(mockAuthReducer).toHaveBeenCalledWith(undefined, new SignOutEffects.Request());
+  }));
 });

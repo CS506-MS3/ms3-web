@@ -5,12 +5,14 @@ import {EffectsModule} from '@ngrx/effects';
 import {SignInEffects} from './sign-in.effects';
 import {AuthGuard} from './auth.guard';
 import {AuthPermissions} from './auth.permission';
+import {SignOutEffects} from './sign-out.effects';
 
 @NgModule({
   imports: [
     CommonModule,
     EffectsModule.forFeature([
-      SignInEffects.Effects
+      SignInEffects.Effects,
+      SignOutEffects.Effects
     ])
   ],
   declarations: [],
