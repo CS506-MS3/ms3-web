@@ -4,6 +4,7 @@ import {Credentials} from '../_domains/credentials';
 import {SignInEffects} from './sign-in.effects';
 import {Observable} from 'rxjs/Observable';
 import {Auth} from '../_domains/auth';
+import {SignOutEffects} from './sign-out.effects';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +21,6 @@ export class AuthService {
 
   unauthenticate() {
 
-    // this._store.dispatch(new AuthActions.Unauthenticate());
+    this._store.dispatch(new SignOutEffects.Request());
   }
 }
