@@ -6,6 +6,8 @@ import {SignUpEffects} from './sign-up.effects';
 import {ActivateEffects} from './activate.effects';
 import {EmailForm} from "../_domains/email-form";
 import {ActivationLinkEffects} from './activation-link.effects';
+import {PasswordForm} from "../_domains/password-form";
+import {DeactivateEffects} from './deactivate.effects';
 
 @Injectable()
 export class AccountService {
@@ -34,7 +36,8 @@ export class AccountService {
     return this._store.dispatch(new ActivationLinkEffects.Request(form));
   }
 
-  deactivate() {
-    // WILL_CHANGE
+  deactivate(form: PasswordForm) {
+
+    return this._store.dispatch(new DeactivateEffects.Request(form));
   }
 }
