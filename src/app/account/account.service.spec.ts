@@ -9,6 +9,7 @@ import 'rxjs/add/Observable/of';
 import {SignUpEffects} from "./sign-up.effects";
 import {ActivateEffects} from './activate.effects';
 import {ActivationLinkEffects} from './activation-link.effects';
+import {DeactivateEffects} from './deactivate.effects';
 
 describe('AccountService', () => {
   let mockAccountReducer;
@@ -42,41 +43,6 @@ describe('AccountService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should have create method', inject([AccountService], (service: AccountService) => {
-    spyOn(service, 'create');
-
-    service.create(new SignUpForm('test@email.com', 'password', true));
-
-    expect(service.create).toHaveBeenCalled();
-  }));
-
-  it('should have activate method', inject([AccountService], (service: AccountService) => {
-    spyOn(service, 'activate');
-
-    service.activate();
-
-    expect(service.activate).toHaveBeenCalled();
-  }));
-
-  it('should have deactivate method', inject([AccountService], (service: AccountService) => {
-    spyOn(service, 'deactivate');
-
-    service.deactivate();
-
-    expect(service.deactivate).toHaveBeenCalled();
-  }));
-
-  it('should have reactivate method', inject([AccountService], (service: AccountService) => {
-    const testForm = {
-      email: 'test@email.com'
-    };
-    spyOn(service, 'requestActivationLink');
-
-    service.requestActivationLink(testForm);
-
-    expect(service.requestActivationLink).toHaveBeenCalled();
-  }));
-
   describe('create', () => {
     it('should dispatch an SignUpEffects.Request with input', inject([AccountService], (service: AccountService) => {
       const inputSignUpForm = new SignUpForm('test@email.com', 'testPassword', false);
@@ -103,6 +69,17 @@ describe('AccountService', () => {
       service.requestActivationLink(testForm);
 
       expect(storeMock.dispatch).toHaveBeenCalledWith(new ActivationLinkEffects.Request(testForm));
-    }))
+    }));
+  });
+
+  describe('deactivate', () => {
+    it('should dispatch a new DeactivateEffects.Request with the input password form', inject([AccountService], (service: AccountService) => {
+      const testForm = {
+        password: 'password'
+      };
+      service.deactivate(testForm);
+
+      expect(storeMock.dispatch).toHaveBeenCalledWith(new DeactivateEffects.Request(testForm));
+    }));
   });
 });

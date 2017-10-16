@@ -3,6 +3,10 @@ export const API = {
     method: 'POST',
     url: '/activate'
   },
+  DEACTIVATE: {
+    method: 'PUT',
+    url: '/deactivate'
+  },
   ACTIVATION_LINK: {
     method: 'POST',
     url: '/reactivate'
@@ -39,10 +43,6 @@ export const API = {
     CREATE: {
       method: 'POST',
       url: '/users'
-    },
-    DEACTIVATE: {
-      method: 'PUT',
-      url: '/users/${userId}/deactivate'
     },
     BID: {
       method: 'POST',
