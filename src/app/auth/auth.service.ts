@@ -16,11 +16,16 @@ export class AuthService {
 
   authenticate(credentials: Credentials) {
 
-    this._store.dispatch(new SignInEffects.Request(credentials));
+    this._store.dispatch({
+      type: 'SignInEffects.REQUEST',
+      payload: credentials
+    });
   }
 
   unauthenticate() {
 
-    this._store.dispatch(new SignOutEffects.Request());
+    this._store.dispatch({
+      type: 'SignOutEffects.REQUEST'
+    });
   }
 }
