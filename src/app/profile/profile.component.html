@@ -1,0 +1,127 @@
+<div class="content-container">
+
+
+  <!-- SIDENAV PROFILE DETAILS -->
+  <div class="sidenav" style="margin-left:20px">
+    <!--Profile picture goes here-->
+    <img src="../assets/images/bucky.jpg" class="profilepic"/>
+    <h3>Personal Information</h3>
+    <!--Email and Phone comes from the backend-->
+    <p>E-mail: example@wisc.edu</p>
+    Phone: 608-594-1234
+    <p>
+      <clr-checkbox>Receive E-mail Notifications</clr-checkbox>
+    </p>
+    <button class="btn btn-primary">Change Password</button>
+    <button class="btn btn-primary">Click to edit your info</button>
+
+    <h3>Your Subscription</h3>
+    <div>
+      <button class="btn btn-success">Get POST Access</button>
+      <button class="btn btn-success">Get VIEW Access</button>
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title">
+            <u>Post Access</u>
+          </div>
+          <div class="card-text">
+            Next payment: 2017/11/15
+            <br>Expected Charge: $7.00
+            <!-- Cancel subscription links to the cancel subscription page -->
+            <br><a href="#">Cancel Subscription</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <div class="card-title">
+            <u>View Access</u>
+          </div>
+          <div class="card-text">
+            Subscription ends on: 2017/11/15
+            <!-- Renew subscription links to the renew subscription page -->
+            <br><a href="#">Renew Subscription</a>
+          </div>
+        </div>
+      </div>
+      <p><a href="#">Deactivate Account</a></p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT AREA-->
+  <div class="content-area">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            My Properties
+          </div>
+          <div class="card-block">
+            <div class="row">
+              <div class="card" *ngFor="let num of dummyNum">
+                <div class="card-block">
+                  <div class="card-media-block">
+                    <img src="../assets/images/bedroom.jpg" class="card-media-image">
+                    <div class="card-media-description">
+                        <span class="card-media-title">
+                            Property Title
+                        </span>
+                      <span class="card-media-text">
+                            Area
+                        </span>
+                    </div>
+                  </div>
+                  <div class="card-text">
+                    <a href="#">Remove</a>
+                    <br>
+                    <a href="#">Edit</a>
+
+                  </div>
+                </div>
+                <div class="card-footer row">
+                  <div class="col-lg-6"><span>Price: $900.00</span></div>
+                  <div class="col-lg-6"><span>2017/10/25 - 2018/01/31</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            My Favourites
+          </div>
+          <div class="card-block">
+            <div class="row">
+              <div class="card" *ngFor="let num of dummyNum">
+                <div class="card-block">
+                  <div class="card-media-block">
+                    <img src="../assets/images/bedroom.jpg" class="card-media-image">
+                    <div class="card-media-description">
+                        <span class="card-media-title">
+                            Property Title
+                        </span>
+                      <span class="card-media-text">
+                            Area
+                        </span>
+                    </div>
+                  </div>
+                  <div class="card-text">
+                    <a href="#">Remove</a>
+                    <br>
+                    <a href="#">Edit</a>
+
+                  </div>
+                </div>
+                <div class="card-footer row">
+                  <div class="col-lg-6"><span>Price: $900.00</span></div>
+                  <div class="col-lg-6"><span>2017/10/25 - 2018/01/31</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
