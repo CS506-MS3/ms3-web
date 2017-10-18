@@ -13,6 +13,7 @@ import {RequestError} from '../_domains/request-error';
 import {HttpStatus} from '../core/http-status.enum';
 import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
+import 'rxjs/add/observable/of';
 
 export namespace ActivateEffects {
   export const REQUEST = 'ActivateEffects.REQUEST';

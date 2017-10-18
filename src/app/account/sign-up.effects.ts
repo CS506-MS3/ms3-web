@@ -13,6 +13,7 @@ import {RequestError} from '../_domains/request-error';
 import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
 import {SignUpForm} from '../_domains/sign-up-form';
+import 'rxjs/add/observable/of';
 
 export namespace SignUpEffects {
   export const REQUEST = 'SignUpEffects.REQUEST';
