@@ -12,6 +12,7 @@ import {EmailForm} from '../_domains/email-form';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
+import 'rxjs/add/observable/of';
 
 export namespace ActivationLinkEffects {
   export const REQUEST = 'ActivationLinkEffects.REQUEST';

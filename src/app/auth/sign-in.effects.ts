@@ -14,6 +14,7 @@ import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
 import * as AuthActions from '../_actions/auth.actions';
 import {HttpStatus} from '../core/http-status.enum';
+import 'rxjs/add/observable/of';
 
 export namespace SignInEffects {
   export const REQUEST = 'SignInEffects.REQUEST';

@@ -10,6 +10,7 @@ import {RestApiService} from '../core/rest-api.service';
 import {AlertActions} from '../_actions/alert.actions';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
 
 export namespace SignOutEffects {
   export const REQUEST = 'SignOutEffects.REQUEST';
