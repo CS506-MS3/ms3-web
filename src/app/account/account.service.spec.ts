@@ -5,7 +5,7 @@ import {SignUpForm} from '../_domains/sign-up-form';
 import {Store, StoreModule} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/Observable/of';
+import 'rxjs/add/observable/of';
 import {SignUpEffects} from './sign-up.effects';
 import {ActivateEffects} from './activate.effects';
 import {ActivationLinkEffects} from './activation-link.effects';

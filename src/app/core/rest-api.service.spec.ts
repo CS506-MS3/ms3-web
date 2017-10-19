@@ -9,7 +9,7 @@ import {HttpStatus} from './http-status.enum';
 import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs/Observable';
 import {Auth} from '../_domains/auth';
-import 'rxjs/add/Observable/of';
+import 'rxjs/add/observable/of';
 
 describe('RestApiService', () => {
   let testRequest: RestApiRequest;
