@@ -120,7 +120,6 @@ describe('RestApiService', () => {
         });
       }));
     });
-    
     it('should throw response error if request returns an error', inject([XHRBackend, RestApiService], (mockBackend, service) => {
       const expectedHeaders = new Headers({
         'Content-Type': 'application/json'

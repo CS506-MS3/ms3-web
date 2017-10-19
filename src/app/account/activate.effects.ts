@@ -47,7 +47,7 @@ export namespace ActivateEffects {
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
-        let request = new RestApiRequest(API.ACTIVATE);
+        const request = new RestApiRequest(API.ACTIVATE);
         request.setBody({activationToken: payload});
 
         return this._api.request(request)
@@ -59,7 +59,7 @@ export namespace ActivateEffects {
       .ofType(SUCCESS)
       .do(() => this._router.navigate(['activationSuccess']))
       .map((action: Success) => {
-        return new AuthActions.Set(action.payload)
+        return new AuthActions.Set(action.payload);
       });
 
     @Effect() onError$: Observable<Action> = this.actions$

@@ -3,7 +3,7 @@ import {RequestError} from '../_domains/request-error';
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 import {Observable} from 'rxjs/Observable';
-import {RestApiRequest} from "../core/rest-api-request";
+import {RestApiRequest} from '../core/rest-api-request';
 import {API} from '../core/api-endpoints.constant';
 import * as AuthActions from '../_actions/auth.actions';
 import {RestApiService} from '../core/rest-api.service';
@@ -37,7 +37,7 @@ export namespace SignOutEffects {
     @Effect() onRequest$: Observable<Action> = this.actions$
       .ofType(REQUEST)
       .switchMap(() => {
-        let request = new RestApiRequest(API.AUTH.SIGN_OUT);
+        const request = new RestApiRequest(API.AUTH.SIGN_OUT);
 
         return this._api.request(request)
           .map(response => new Success())

@@ -33,7 +33,7 @@ export namespace DeactivateEffects {
     readonly type = ERROR;
 
     constructor(public payload: RequestError) {
-      //TODO: define request error object
+      // TODO: define request error object
     }
   }
 
@@ -47,12 +47,12 @@ export namespace DeactivateEffects {
         request.setBody(payload);
 
         return this._api.request(request)
-          .switchMap(response => {
-            let request = new RestApiRequest(API.DEACTIVATE);
+          .switchMap((response) => {
+            request = new RestApiRequest(API.DEACTIVATE);
             request.setHeader('DeactivateToken', response);
 
             return this._api.request(request)
-              .map((response) => new Success())
+              .map(() => new Success())
               .catch(error => Observable.of(new Error(error)));
           })
           .catch(error => Observable.of(new Error(error)));

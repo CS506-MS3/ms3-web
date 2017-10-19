@@ -7,7 +7,7 @@ describe('ActivatePageComponent', () => {
   let component: ActivatePageComponent;
   let fixture: ComponentFixture<ActivatePageComponent>;
 
-  let mockAccount = {
+  const mockAccount = {
     activate: jasmine.createSpy('activate')
   };
   beforeEach(async(() => {
