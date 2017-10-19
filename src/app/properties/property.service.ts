@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Property} from '../_domains/property';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
+import * as PropertyCreateActions from '../_effect-actions/property-create.actions';
 
 @Injectable()
 export class PropertyService {
@@ -12,18 +13,15 @@ export class PropertyService {
   }
 
   get(id) {
-
   }
 
   create(form) {
-
+    this._store.dispatch(new PropertyCreateActions.Request(form));
   }
 
   update(form) {
-
   }
 
   remove(id) {
-
   }
 }
