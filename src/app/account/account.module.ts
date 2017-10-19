@@ -13,6 +13,7 @@ import {ActivationSuccessPageComponent} from './activation-success-page/activati
 import {ActivationLinkRequestPageComponent} from './activation-link-request-page/activation-link-request-page.component';
 import {SignUpSuccessPageComponent} from './sign-up-success-page/sign-up-success-page.component';
 import {AccountInfoPageComponent} from './account-info-page/account-info-page.component';
+import {ClarityModule} from 'clarity-angular';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {AccountInfoPageComponent} from './account-info-page/account-info-page.co
     EffectsModule.forFeature([
       SignUpEffects.Effects,
       ActivateEffects.Effects
-    ])
+    ]),
+    ClarityModule.forChild()
   ],
   declarations: [
     SignUpFormComponent,
