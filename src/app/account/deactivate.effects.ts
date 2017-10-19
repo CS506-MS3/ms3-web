@@ -12,6 +12,7 @@ import {PasswordForm} from '../_domains/password-form';
 import * as AuthActions from '../_actions/auth.actions';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/mergeMap';
 
 export namespace DeactivateEffects {
   export const REQUEST = 'DeactivateEffects.REQUEST';

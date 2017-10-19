@@ -1,6 +1,4 @@
 import {Action} from '@ngrx/store';
-import {Credentials} from '../_domains/credentials';
-import {Auth} from '../_domains/auth';
 import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
 import {RestApiService} from '../core/rest-api.service';
@@ -15,71 +13,45 @@ import {Injectable} from '@angular/core';
 import * as AuthActions from '../_actions/auth.actions';
 import {HttpStatus} from '../core/http-status.enum';
 import 'rxjs/add/observable/of';
+import * as SignInActions from '../_effect-actions/sign-in.actions';
 
-export namespace SignInEffects {
-  export const REQUEST = 'SignInEffects.REQUEST';
-  export const SUCCESS = 'SignInEffects.SUCCESS';
-  export const ERROR = 'SignInEffects.ERROR';
+@Injectable()
+export class SignInEffects {
+  @Effect() onRequest$: Observable<Action> = this.actions$
+    .ofType(SignInActions.REQUEST)
+    .map((action: SignInActions.Request) => action.payload)
+    .switchMap((payload) => {
+      const request = new RestApiRequest(API.AUTH.SIGN_IN);
+      request.setBody(payload);
 
-  export class Request implements Action {
-    readonly type = REQUEST;
+      return this._api.request(request)
+        .map(response => new SignInActions.Success(response))
+        .catch(error => Observable.of(new SignInActions.Error(error)));
+    });
 
-    constructor(public payload: Credentials) {
-    }
-  }
+  @Effect() onSuccess$: Observable<Action> = this.actions$
+    .ofType(SignInActions.SUCCESS)
+    .map((action: SignInActions.Success) => action.payload)
+    .map((response) => new AuthActions.Set(response));
 
-  export class Success implements Action {
-    readonly type = SUCCESS;
+  @Effect() onError$: Observable<Action> = this.actions$
+    .ofType(SignInActions.ERROR)
+    .map((action: SignInActions.Error) => action.payload)
+    .map((error: RequestError) => {
+      switch (error.status) {
+        case HttpStatus.UNAUTHORIZED: // Invalid Credentials
+          return new AlertActions.SetError('Invalid Credentials');
 
-    constructor(public payload: Auth) {
-    }
-  }
+        case HttpStatus.FORBIDDEN:
+          this._router.navigate(['activationLinkRequest']);
+          return new AlertActions.SetError('Activation Required');
 
-  export class Error implements Action {
-    readonly type = ERROR;
+        default:
+          return new AlertActions.SetError('Unknown Error');
+      }
+    });
 
-    constructor(public payload: RequestError) {
-      // TODO: define request error object
-    }
-  }
-
-  @Injectable()
-  export class Effects {
-    @Effect() onRequest$: Observable<Action> = this.actions$
-      .ofType(REQUEST)
-      .map((action: Request) => action.payload)
-      .switchMap((payload) => {
-        const request = new RestApiRequest(API.AUTH.SIGN_IN);
-        request.setBody(payload);
-
-        return this._api.request(request)
-          .map(response => new Success(response))
-          .catch(error => Observable.of(new Error(error)));
-      });
-
-    @Effect() onSuccess$: Observable<Action> = this.actions$
-      .ofType(SUCCESS)
-      .map((action: Success) => action.payload)
-      .map((response) => new AuthActions.Set(response));
-
-    @Effect() onError$: Observable<Action> = this.actions$
-      .ofType(ERROR)
-      .map((action: Error) => action.payload)
-      .map((error: RequestError) => {
-        switch (error.status) {
-          case HttpStatus.UNAUTHORIZED: // Invalid Credentials
-            return new AlertActions.SetError('Invalid Credentials');
-
-          case HttpStatus.FORBIDDEN:
-            this._router.navigate(['activationLinkRequest']);
-            return new AlertActions.SetError('Activation Required');
-
-          default:
-            return new AlertActions.SetError('Unknown Error');
-        }
-      });
-
-    constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
-    }
+  constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
   }
 }
+
