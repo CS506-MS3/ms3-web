@@ -4,7 +4,6 @@ import {Actions, Effect} from '@ngrx/effects';
 import {RestApiService} from '../core/rest-api.service';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
-import {Router} from '@angular/router';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
 import {Injectable} from '@angular/core';
@@ -44,18 +43,11 @@ export namespace DeactivateEffects {
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
-        let request = new RestApiRequest(API.AUTH.SIGN_IN);
+        const request = new RestApiRequest(API.DEACTIVATE);
         request.setBody(payload);
 
         return this._api.request(request)
-          .switchMap((response) => {
-            request = new RestApiRequest(API.DEACTIVATE);
-            request.setHeader('DeactivateToken', response);
-
-            return this._api.request(request)
-              .map(() => new Success())
-              .catch(error => Observable.of(new Error(error)));
-          })
+          .map(() => new Success())
           .catch(error => Observable.of(new Error(error)));
       });
 
@@ -74,7 +66,7 @@ export namespace DeactivateEffects {
         ];
       });
 
-    constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
+    constructor(private _api: RestApiService, private actions$: Actions) {
     }
   }
 }
