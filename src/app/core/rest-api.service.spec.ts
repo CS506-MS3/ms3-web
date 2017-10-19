@@ -9,7 +9,7 @@ import {HttpStatus} from './http-status.enum';
 import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs/Observable';
 import {Auth} from '../_domains/auth';
-import 'rxjs/add/Observable/of';
+import 'rxjs/add/observable/of';
 
 describe('RestApiService', () => {
   let testRequest: RestApiRequest;
@@ -120,7 +120,6 @@ describe('RestApiService', () => {
         });
       }));
     });
-    
     it('should throw response error if request returns an error', inject([XHRBackend, RestApiService], (mockBackend, service) => {
       const expectedHeaders = new Headers({
         'Content-Type': 'application/json'

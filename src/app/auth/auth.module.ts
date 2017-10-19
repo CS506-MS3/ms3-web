@@ -11,8 +11,8 @@ import {SignOutEffects} from './sign-out.effects';
   imports: [
     CommonModule,
     EffectsModule.forFeature([
-      SignInEffects.Effects,
-      SignOutEffects.Effects
+      SignInEffects,
+      SignOutEffects
     ])
   ],
   declarations: [],

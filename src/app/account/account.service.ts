@@ -4,9 +4,9 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {SignUpForm} from '../_domains/sign-up-form';
 import {SignUpEffects} from './sign-up.effects';
 import {ActivateEffects} from './activate.effects';
-import {EmailForm} from "../_domains/email-form";
+import {EmailForm} from '../_domains/email-form';
 import {ActivationLinkEffects} from './activation-link.effects';
-import {PasswordForm} from "../_domains/password-form";
+import {PasswordForm} from '../_domains/password-form';
 import {DeactivateEffects} from './deactivate.effects';
 
 @Injectable()

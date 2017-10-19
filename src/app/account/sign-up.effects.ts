@@ -35,7 +35,7 @@ export namespace SignUpEffects {
     readonly type = ERROR;
 
     constructor(public payload: RequestError) {
-      //TODO: define request error object
+      // TODO: define request error object
     }
   }
 
@@ -45,7 +45,7 @@ export namespace SignUpEffects {
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
-        let request = new RestApiRequest(API.USER.CREATE);
+        const request = new RestApiRequest(API.USER.CREATE);
         request.setBody(payload);
 
         return this._api.request(request)
