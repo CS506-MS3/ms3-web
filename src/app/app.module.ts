@@ -20,13 +20,11 @@ import * as Wishlist from './_actions/wishlist.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
-import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    ProfileComponent,
   ],
   imports: [
     BrowserModule,
