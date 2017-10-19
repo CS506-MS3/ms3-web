@@ -34,7 +34,7 @@ describe('AuthGuard', () => {
 
   it('should check permission of isLoggedIn', inject([AuthGuard], (guard: AuthGuard) => {
     expect(guard).toBeTruthy();
-    guard.canActivate(new ActivatedRouteSnapshot(), mockSnapshot)
+    guard.canActivate(new ActivatedRouteSnapshot(), mockSnapshot);
 
     expect(mockAuthPermissions.isLoggedIn).toHaveBeenCalled();
   }));

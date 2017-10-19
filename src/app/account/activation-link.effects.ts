@@ -46,7 +46,7 @@ export namespace ActivationLinkEffects {
       .ofType(REQUEST)
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
-        let request = new RestApiRequest(API.ACTIVATION_LINK);
+        const request = new RestApiRequest(API.ACTIVATION_LINK);
         request.setBody(payload);
 
         return this._api.request(request)

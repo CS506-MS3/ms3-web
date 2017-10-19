@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Credentials} from '../_domains/credentials';
-import {SignInEffects} from './sign-in.effects';
 import {Observable} from 'rxjs/Observable';
 import {Auth} from '../_domains/auth';
-import {SignOutEffects} from './sign-out.effects';
+import * as SignInActions from '../_effect-actions/sign-in.actions';
+import * as SignOutActions from '../_effect-actions/sign-out.actions';
 
 @Injectable()
 export class AuthService {
@@ -16,16 +16,11 @@ export class AuthService {
 
   authenticate(credentials: Credentials) {
 
-    this._store.dispatch({
-      type: 'SignInEffects.REQUEST',
-      payload: credentials
-    });
+    this._store.dispatch(new SignInActions.Request(credentials));
   }
 
   unauthenticate() {
 
-    this._store.dispatch({
-      type: 'SignOutEffects.REQUEST'
-    });
+    this._store.dispatch(new SignOutActions.Request());
   }
 }
