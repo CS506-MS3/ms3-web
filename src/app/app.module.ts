@@ -25,7 +25,7 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
