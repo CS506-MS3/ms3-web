@@ -20,6 +20,7 @@ import * as Wishlist from './_actions/wishlist.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
+import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {PropertiesModule} from './properties/properties.module';
     AccountModule,
     UserModule,
     PropertiesModule,
+    AccessPurchaseModule,
     ClarityModule.forRoot(),
   ],
   providers: [],
