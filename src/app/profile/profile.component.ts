@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  dummyNum = [1,2,3,4];
+  dummyNum = [1, 2, 3, 4];
 
   constructor() {
 
