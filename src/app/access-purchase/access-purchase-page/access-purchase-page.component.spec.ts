@@ -1,13 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AccessPurchasePageComponent } from './access-purchase-page.component';
+import {AccessPurchasePageComponent} from './access-purchase-page.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import * as AccessAddActions from '../../_effect-actions/access-add.actions';
 
 describe('AccessPurchasePageComponent', () => {
   let component: AccessPurchasePageComponent;
   let fixture: ComponentFixture<AccessPurchasePageComponent>;
   const mockStore = {
+    select: (store) => Observable.of(null),
     dispatch: jasmine.createSpy('dispatch')
   };
 
@@ -16,12 +20,15 @@ describe('AccessPurchasePageComponent', () => {
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ],
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         {provide: Store, useValue: mockStore}
       ],
-      declarations: [ AccessPurchasePageComponent ]
+      declarations: [AccessPurchasePageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -107,10 +114,7 @@ describe('AccessPurchasePageComponent', () => {
 
       component.onSubmit();
 
-      expect(mockStore.dispatch).toHaveBeenCalledWith({
-        type: 'AccessPurchaseEffects.REQUEST',
-        payload: component.purchaseForm
-      });
+      expect(mockStore.dispatch).toHaveBeenCalledWith(new AccessAddActions.Request(component.purchaseForm));
     });
   });
 });
