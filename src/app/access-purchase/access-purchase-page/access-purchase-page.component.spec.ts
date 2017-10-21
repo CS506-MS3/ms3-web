@@ -23,7 +23,13 @@ describe('AccessPurchasePageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and have appropriate default config', () => {
     expect(component).toBeTruthy();
+    expect(component.hasToken).toBeFalsy();
+  });
+
+  describe('onStripeTokenReceived', () => {
+    it('should do something', () => {
+    });
   });
 });

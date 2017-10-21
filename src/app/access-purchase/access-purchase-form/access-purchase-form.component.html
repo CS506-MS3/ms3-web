@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">
+    {{item.title}}
+  </div>
+  <div class="card-block">
+    <div class="card-text row">
+      <div class="col-xs-9">
+        <div class="count-display">count: {{count}}</div>
+        <div class="btn-group" *ngIf="item.canHaveMultiple">
+          <button class="btn btn-sm btn-icon" (click)="incrementCount()"><clr-icon shape="plus"></clr-icon></button>
+          <button class="btn btn-sm btn-icon" (click)="decrementCount()"><clr-icon shape="minus"></clr-icon></button>
+        </div>
+      </div>
+      <div class="col-xs-3 row">
+        <div class="col-xs-6">Price:</div>
+        <div class="col-xs-6 price">${{item.pricePerItem * count | number:'1.2-2'}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-primary-outline">Enter Credit Card Info</button>
+  </div>
+</div>
