@@ -3,10 +3,10 @@
     <h1>Access Purchase</h1>
     <div class="row">
       <div class="col-lg-6">
-        <app-access-purchase-form></app-access-purchase-form>
+        <app-access-purchase-form [item]="item"></app-access-purchase-form>
       </div>
       <div class="col-lg-6"></div>
     </div>
-    <button class="btn btn-primary purchase">Make Purchase</button>
+    <button class="btn btn-primary purchase" [disabled]="!hasToken">Make Purchase</button>
   </div>
 </div>
