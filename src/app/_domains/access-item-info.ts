@@ -1,3 +1,6 @@
 export interface AccessItemInfo {
-  type: string;
+  id: number;
+  title: string;
+  pricePerItem: number;
+  canHaveMultiple: boolean;
 }
