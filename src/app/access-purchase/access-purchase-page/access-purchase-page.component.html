@@ -3,7 +3,7 @@
     <h1>Access Purchase</h1>
     <div class="row">
       <div class="col-lg-6">
-        <app-access-purchase-form [item]="item"></app-access-purchase-form>
+        <app-access-purchase-form [item]="item" (onTokenReceived)="onStripeTokenReceived($event)"></app-access-purchase-form>
       </div>
       <div class="col-lg-6"></div>
     </div>
