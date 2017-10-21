@@ -110,7 +110,7 @@ describe('AccessPurchasePageComponent', () => {
       expect(mockStore.dispatch).toHaveBeenCalledWith({
         type: 'AccessPurchaseEffects.REQUEST',
         payload: component.purchaseForm
-      })
+      });
     });
   });
 });
