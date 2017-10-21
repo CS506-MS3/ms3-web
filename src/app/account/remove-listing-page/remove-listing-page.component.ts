@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-remove-listing-page',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemoveListingPageComponent implements OnInit {
 
-  constructor() { }
+  removeListingForm: FormGroup;
+
+
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.removeListingForm = this._formBuilder.group({
+      password: ['', Validators.required],
+    });
+  }
+
+  onSubmit(removeListingForm: FormGroup) {
+
   }
 
 }
