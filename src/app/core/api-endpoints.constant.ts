@@ -92,5 +92,15 @@ export const API = {
         url: '/users/${userId}/properties/${propertyId}'
       }
     }
+  },
+  ACCESSES: {
+    GET_PRICE_INFO: {
+      method: 'GET',
+      url: '/accesses/pricing/byType/${type}'
+    },
+    ADD: {
+      method: 'POST',
+      url: '/accesses'
+    }
   }
 };

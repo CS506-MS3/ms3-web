@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {AccessItemInfo} from '../../_domains/access-item-info';
+import * as AccessItemActions from '../../_effect-actions/access-item.actions';
+import * as AccessAddActions from '../../_effect-actions/access-add.actions';
+import {ActivatedRoute} from '@angular/router';
+import {AccessItemType} from '../../_domains/access-item-type';
 
 @Component({
   selector: 'app-access-purchase-page',
@@ -7,20 +12,30 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./access-purchase-page.component.scss']
 })
 export class AccessPurchasePageComponent implements OnInit {
-  item: any;
+  item = {
+    id: null,
+    title: null,
+    pricePerItem: null,
+    canHaveMultiple: null
+  };
   hasToken = false;
   purchaseForm: any;
+  type: AccessItemType;
 
-  constructor(private _store: Store<any>) {
+  constructor(private _store: Store<any>, private _route: ActivatedRoute) {
+    this._store.select('accessItem').subscribe((item: AccessItemInfo) => {
+      if (item != null) {
+        this.item = item;
+      }
+    });
+    this.type = {
+      type: this._route.snapshot.params.type
+    };
   }
 
   ngOnInit() {
-    this.item = {
-      id: 1,
-      title: 'Subleaser Access Subscription',
-      pricePerItem: 10.99,
-      canHaveMultiple: false
-    };
+    console.log(this.type);
+    this._store.dispatch(new AccessItemActions.Request(this.type));
   }
 
   onStripeTokenReceived(purchaseData) {
@@ -39,9 +54,6 @@ export class AccessPurchasePageComponent implements OnInit {
 
   onSubmit() {
 
-    this._store.dispatch({
-      type: 'AccessPurchaseEffects.REQUEST',
-      payload: this.purchaseForm
-    });
+    this._store.dispatch(new AccessAddActions.Request(this.purchaseForm));
   }
 }
