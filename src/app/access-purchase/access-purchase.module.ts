@@ -4,7 +4,7 @@ import {AccessPurchasePageComponent} from './access-purchase-page/access-purchas
 import {ClarityModule} from 'clarity-angular';
 import { AccessPurchaseFormComponent } from './access-purchase-form/access-purchase-form.component';
 import {EffectsModule} from '@ngrx/effects';
-import {AccessItemEffects} from './access-item.effects';
+import {AccessItemEffects} from './pricings-get.effects';
 import {AccessAddEffects} from './access-add.effects';
 
 @NgModule({

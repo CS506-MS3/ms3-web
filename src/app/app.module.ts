@@ -17,7 +17,7 @@ import * as Accesses from './_actions/accesses.reducer';
 import * as MyProperties from './_actions/my-properties.reducer';
 import * as UserInfo from './_actions/user-info.reducer';
 import * as Wishlist from './_actions/wishlist.reducer';
-import * as AccessItem from './_actions/access-item.reducer';
+import * as Pricings from './_actions/pricings.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
@@ -38,7 +38,7 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
       userInfo: UserInfo.reducer,
       wishlist: Wishlist.reducer,
       routerReducer: routerReducer,
-      accessItems: AccessItem.reducer
+      pricings: Pricings.reducer
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

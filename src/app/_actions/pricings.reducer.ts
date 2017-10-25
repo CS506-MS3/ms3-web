@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import * as AccessItemActions from './access-item.actions';
+import * as AccessItemActions from './pricings.actions';
 import * as Crud from './crud.reducer';
 import {Accesses} from '../_domains/accesses';
 import {AccessItemInfo} from '../_domains/access-item-info';

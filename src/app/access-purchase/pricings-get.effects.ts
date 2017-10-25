@@ -7,34 +7,32 @@ import {RestApiRequest} from '../core/rest-api-request';
 import {AlertActions} from '../_actions/alert.actions';
 import {RequestError} from '../_domains/request-error';
 import {Injectable} from '@angular/core';
-import * as AccessItemEffectsActions from '../_effect-actions/access-item.actions';
-import * as AccessItemActions from '../_actions/access-item.actions';
+import * as PricingsGetEffectsActions from '../_effect-actions/pricings.actions';
+import * as PricingsActions from '../_actions/pricings.actions';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
 @Injectable()
-export class AccessItemEffects {
+export class PricingsGetEffects {
   @Effect() onRequest$: Observable<Action> = this.actions$
-    .ofType(AccessItemEffectsActions.REQUEST)
-    .map((action: AccessItemEffectsActions.Request) => action.payload)
-    .switchMap((payload) => {
+    .ofType(PricingsGetEffectsActions.REQUEST)
+    .switchMap(() => {
       const request = new RestApiRequest(API.ACCESSES.GET_PRICE_INFO);
-      request.setPathParams(payload);
 
       return this._api.request(request)
-        .map(response => new AccessItemEffectsActions.Success(response))
-        .catch(error => Observable.of(new AccessItemEffectsActions.Error(error)));
+        .map(response => new PricingsGetEffectsActions.Success(response))
+        .catch(error => Observable.of(new PricingsGetEffectsActions.Error(error)));
     });
 
   @Effect() onSuccess$: Observable<Action> = this.actions$
-    .ofType(AccessItemEffectsActions.SUCCESS)
-    .map((action: AccessItemEffectsActions.Success) => action.payload)
-    .map((response) => new AccessItemActions.Set(response));
+    .ofType(PricingsGetEffectsActions.SUCCESS)
+    .map((action: PricingsGetEffectsActions.Success) => action.payload)
+    .map((response) => new PricingsActions.Set({list: response}));
 
   @Effect() onError$: Observable<Action> = this.actions$
-    .ofType(AccessItemEffectsActions.ERROR)
-    .map((action: AccessItemEffectsActions.Error) => action.payload)
+    .ofType(PricingsGetEffectsActions.ERROR)
+    .map((action: PricingsGetEffectsActions.Error) => action.payload)
     .map((error: RequestError) => {
       switch (error.status) {
 

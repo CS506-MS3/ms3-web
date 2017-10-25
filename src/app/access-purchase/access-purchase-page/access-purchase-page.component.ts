@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AccessItemInfo} from '../../_domains/access-item-info';
-import * as AccessItemActions from '../../_effect-actions/access-item.actions';
+import * as PricingsGetActions from '../../_effect-actions/pricings.actions';
 import * as AccessAddActions from '../../_effect-actions/access-add.actions';
 import {ActivatedRoute} from '@angular/router';
-import {AccessItemType} from '../../_domains/access-item-type';
+import {Pricings} from '../../_domains/pricings';
+import {Pricing} from "../../_domains/pricing";
 
 @Component({
   selector: 'app-access-purchase-page',
@@ -12,29 +12,27 @@ import {AccessItemType} from '../../_domains/access-item-type';
   styleUrls: ['./access-purchase-page.component.scss']
 })
 export class AccessPurchasePageComponent implements OnInit {
-  item = {
+  item: Pricing = {
     id: null,
-    title: null,
+    type: null,
+    alias: null,
     pricePerItem: null,
     canHaveMultiple: null
   };
   hasToken = false;
   purchaseForm: any;
-  type: AccessItemType;
+  type: string;
 
   constructor(private _store: Store<any>, private _route: ActivatedRoute) {
-    this._store.select('accessItem').subscribe((item: AccessItemInfo) => {
-      if (item != null) {
-        this.item = item;
-      }
+    this.type = this._route.snapshot.params.type;
+
+    this._store.select('pricings').subscribe((pricings: Pricings) => {
+      this.item = pricings.list.find((item: Pricing) => item.type === this.type) || this.item;
     });
-    this.type = {
-      type: this._route.snapshot.params.type
-    };
   }
 
   ngOnInit() {
-    this._store.dispatch(new AccessItemActions.Request(this.type));
+    this._store.dispatch(new PricingsGetActions.Request());
   }
 
   onStripeTokenReceived(purchaseData) {
