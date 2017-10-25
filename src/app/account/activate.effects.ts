@@ -77,13 +77,9 @@ export namespace ActivateEffects {
       .map((action: Error) => action.payload)
       .map((error: RequestError) => {
         switch (error.status) {
-          case HttpStatus.UNAUTHORIZED: // TODO: In case token invalid. confirm with server
+          case HttpStatus.UNAUTHORIZED:
             this._router.navigate(['activationLinkRequest']);
-            return new AlertActions.SetError('Invalid Link: ' + error.error);
-
-          case HttpStatus.BAD_REQUEST: // TODO: In case account has been activated. confirm with server
-            this._router.navigate(['landingPage']);
-            return new AlertActions.SetError('Account has already been activated');
+            return new AlertActions.SetError('Activation link invalid');
 
           default:
             return new AlertActions.SetError('Unknown Error: ' + error.error);
