@@ -1,19 +1,27 @@
-import {Action} from '@ngrx/store';
-import {Auth} from '../_domains/auth';
-import {Observable} from 'rxjs/Observable';
-import {Actions, Effect} from '@ngrx/effects';
-import {RestApiService} from '../core/rest-api.service';
-import {API} from '../core/api-endpoints.constant';
-import {RestApiRequest} from '../core/rest-api-request';
-import 'rxjs/add/operator/switchMap';
-import * as AuthActions from '../_actions/auth.actions';
-import {Router} from '@angular/router';
-import {AlertActions} from '../_actions/alert.actions';
-import {RequestError} from '../_domains/request-error';
-import {HttpStatus} from '../core/http-status.enum';
-import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Action} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+
+import {HttpStatus} from '../core/http-status.enum';
+import {RestApiService} from '../core/rest-api.service';
+import {RestApiRequest} from '../core/rest-api-request';
+import {RequestError} from '../_domains/request-error';
+import {API} from '../core/api-endpoints.constant';
+
+import {AlertActions} from '../_actions/alert.actions';
+import * as AuthActions from '../_actions/auth.actions';
+import * as WishlistActions from '../_actions/wishlist.actions';
+
+import {Auth} from '../_domains/auth';
+import {Wishlist} from '../_domains/wishlist';
+import {AuthResponse} from '../_domains/auth-response';
+
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
 
 export namespace ActivateEffects {
   export const REQUEST = 'ActivateEffects.REQUEST';
@@ -30,7 +38,7 @@ export namespace ActivateEffects {
   export class Success implements Action {
     readonly type = SUCCESS;
 
-    constructor(public payload: Auth) {
+    constructor(public payload: AuthResponse) {
     }
   }
 
@@ -48,7 +56,7 @@ export namespace ActivateEffects {
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
         const request = new RestApiRequest(API.ACTIVATE);
-        request.setBody({activationToken: payload});
+        request.setUrlParams({token: payload});
 
         return this._api.request(request)
           .map(response => new Success(response))
@@ -58,9 +66,11 @@ export namespace ActivateEffects {
     @Effect() onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
       .do(() => this._router.navigate(['activationSuccess']))
-      .map((action: Success) => {
-        return new AuthActions.Set(action.payload);
-      });
+      .map((action: Success) => action.payload)
+      .mergeMap((payload: AuthResponse) => [
+        new AuthActions.Set(new Auth(payload.token, payload.user.email, payload.user.id)),
+        new WishlistActions.Set(new Wishlist(payload.user.wishlist))
+      ]);
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
