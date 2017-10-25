@@ -1,19 +1,26 @@
-import {Action} from '@ngrx/store';
-import {Observable} from 'rxjs/Observable';
-import {Actions, Effect} from '@ngrx/effects';
-import {RestApiService} from '../core/rest-api.service';
-import {API} from '../core/api-endpoints.constant';
-import {RestApiRequest} from '../core/rest-api-request';
-import 'rxjs/add/operator/switchMap';
-import {Router} from '@angular/router';
-import {AlertActions} from '../_actions/alert.actions';
-import {RequestError} from '../_domains/request-error';
-import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
-import * as AuthActions from '../_actions/auth.actions';
+import {Router} from '@angular/router';
+import {Action} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+
 import {HttpStatus} from '../core/http-status.enum';
-import 'rxjs/add/observable/of';
+import {RestApiService} from '../core/rest-api.service';
+import {RestApiRequest} from '../core/rest-api-request';
+import {RequestError} from '../_domains/request-error';
+import {API} from '../core/api-endpoints.constant';
+
+import {AlertActions} from '../_actions/alert.actions';
+import * as AuthActions from '../_actions/auth.actions';
+import * as WishlistActions from '../_actions/wishlist.actions';
 import * as SignInActions from '../_effect-actions/sign-in.actions';
+
+import {Auth} from '../_domains/auth';
+import {Wishlist} from '../_domains/wishlist';
+
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class SignInEffects {
@@ -32,7 +39,10 @@ export class SignInEffects {
   @Effect() onSuccess$: Observable<Action> = this.actions$
     .ofType(SignInActions.SUCCESS)
     .map((action: SignInActions.Success) => action.payload)
-    .map((response) => new AuthActions.Set(response));
+    .mergeMap((response) => [
+      new AuthActions.Set(new Auth(response.token, response.user.email, response.user.id)),
+      new WishlistActions.Set(new Wishlist(response.user.wishlist))
+    ]);
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(SignInActions.ERROR)
