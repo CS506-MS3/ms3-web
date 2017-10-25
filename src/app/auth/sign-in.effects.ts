@@ -40,14 +40,14 @@ export class SignInEffects {
     .map((error: RequestError) => {
       switch (error.status) {
         case HttpStatus.UNAUTHORIZED: // Invalid Credentials
-          return new AlertActions.SetError('Invalid Credentials');
+          return new AlertActions.SetError('E-mail/Password Pair Does Not Exist');
 
         case HttpStatus.FORBIDDEN:
           this._router.navigate(['activationLinkRequest']);
           return new AlertActions.SetError('Activation Required');
 
         default:
-          return new AlertActions.SetError('Unknown Error');
+          return new AlertActions.SetError(error.error);
       }
     });
 
