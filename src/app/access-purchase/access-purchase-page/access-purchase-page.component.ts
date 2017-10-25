@@ -34,7 +34,6 @@ export class AccessPurchasePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.type);
     this._store.dispatch(new AccessItemActions.Request(this.type));
   }
 
