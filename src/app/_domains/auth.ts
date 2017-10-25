@@ -1,5 +1,7 @@
 export class Auth {
 
-  constructor(public token: string = null, public email: string, public id: number) {
+  constructor(public token: string = null,
+              public email: string = null,
+              public id: number = null) {
   }
 }
