@@ -4,7 +4,7 @@ import * as PricingsGetActions from '../../_effect-actions/pricings.actions';
 import * as AccessAddActions from '../../_effect-actions/access-add.actions';
 import {ActivatedRoute} from '@angular/router';
 import {Pricings} from '../../_domains/pricings';
-import {Pricing} from "../../_domains/pricing";
+import {Pricing} from '../../_domains/pricing';
 
 @Component({
   selector: 'app-access-purchase-page',

@@ -36,7 +36,6 @@ export class AccessAddEffects {
     .map((action: AccessAddActions.Error) => action.payload)
     .map((error: RequestError) => {
       switch (error.status) {
-
         default:
           return new AlertActions.SetError('Unknown Error');
       }
