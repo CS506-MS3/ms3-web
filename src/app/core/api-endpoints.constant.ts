@@ -96,11 +96,11 @@ export const API = {
   ACCESSES: {
     GET_PRICE_INFO: {
       method: 'GET',
-      url: '/accesses/pricing/byType/${type}'
+      url: '/pricing'
     },
     ADD: {
       method: 'POST',
-      url: '/accesses'
+      url: '/access'
     }
   }
 };

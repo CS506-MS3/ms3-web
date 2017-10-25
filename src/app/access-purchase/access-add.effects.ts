@@ -12,6 +12,8 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 import {Router} from '@angular/router';
+import {HttpStatus} from '../core/http-status.enum';
+import * as SignOutEffectsActions from '../_effect-actions/sign-out.actions';
 
 @Injectable()
 export class AccessAddEffects {
@@ -36,9 +38,20 @@ export class AccessAddEffects {
     .map((action: AccessAddActions.Error) => action.payload)
     .map((error: RequestError) => {
       switch (error.status) {
+        case HttpStatus.BAD_REQUEST:
+          return new AlertActions.SetError('Form Invalid');
+
+        case HttpStatus.UNAUTHORIZED:
+          return new SignOutEffectsActions.Error(error);
+
+        case HttpStatus.FORBIDDEN:
+          return new AlertActions.SetError('Stripe Payment cannot be confirmed');
+
+        case HttpStatus.CONFLICT:
+          return new AlertActions.SetError('You already have that access');
 
         default:
-          return new AlertActions.SetError('Unknown Error');
+          return new AlertActions.SetError('Server Error');
       }
     });
 

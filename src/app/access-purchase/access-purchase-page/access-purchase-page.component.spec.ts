@@ -11,7 +11,7 @@ describe('AccessPurchasePageComponent', () => {
   let component: AccessPurchasePageComponent;
   let fixture: ComponentFixture<AccessPurchasePageComponent>;
   const mockStore = {
-    select: (store) => Observable.of(null),
+    select: (store) => Observable.of({list: []}),
     dispatch: jasmine.createSpy('dispatch')
   };
 
@@ -43,11 +43,12 @@ describe('AccessPurchasePageComponent', () => {
   });
 
   describe('onStripeTokenReceived', () => {
-    it('should set purchase form to the data input if data has token', () => {
+    it('should set purchase form to the data input if data has stripeToken', () => {
       const testPurchaseData = {
         item: {
           id: 1,
-          title: 'Subleaser Access Subscription',
+          alias: 'Subleaser Access Subscription',
+          type: 'VENDOR_SUBSCRIPTION',
           pricePerItem: 10.99,
           canHaveMultiple: false
         },
@@ -62,17 +63,18 @@ describe('AccessPurchasePageComponent', () => {
 
       expect(component.hasToken).toBeTruthy();
       expect(component.purchaseForm).toEqual({
-        id: testPurchaseData.item.id,
+        type: testPurchaseData.item.type,
         count: testPurchaseData.count,
-        token: testPurchaseData.token
+        stripeToken: testPurchaseData.token
       });
     });
 
-    it('should reset token status & form if data input has no token', () => {
+    it('should reset stripeToken status & form if data input has no stripeToken', () => {
       const testPurchaseData = {
         item: {
           id: 1,
-          title: 'Subleaser Access Subscription',
+          alias: 'Subleaser Access Subscription',
+          type: 'VENDOR_SUBSCRIPTION',
           pricePerItem: 10.99,
           canHaveMultiple: false
         },
@@ -87,7 +89,8 @@ describe('AccessPurchasePageComponent', () => {
       const updatedTestPurchaseData = {
         item: {
           id: 1,
-          title: 'Subleaser Access Subscription',
+          alias: 'Subleaser Access Subscription',
+          type: 'VENDOR_SUBSCRIPTION',
           pricePerItem: 10.99,
           canHaveMultiple: false
         },
@@ -104,9 +107,9 @@ describe('AccessPurchasePageComponent', () => {
   describe('onSubmit', () => {
     it('should dispatch a AccessPurchaseEffects.Request', () => {
       component.purchaseForm = {
-        id: 1,
+        type: 'VENDOR_SUBSCRIPTION',
         count: 1,
-        token: {
+        stripeToken: {
           id: 'someToken',
           email: 'test@wisc.edu'
         }
