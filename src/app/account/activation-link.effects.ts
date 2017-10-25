@@ -13,6 +13,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/observable/of';
+import {HttpStatus} from '../core/http-status.enum';
 
 export namespace ActivationLinkEffects {
   export const REQUEST = 'ActivationLinkEffects.REQUEST';
@@ -28,9 +29,6 @@ export namespace ActivationLinkEffects {
 
   export class Success implements Action {
     readonly type = SUCCESS;
-
-    constructor(public payload: Auth) {
-    }
   }
 
   export class Error implements Action {
@@ -50,7 +48,7 @@ export namespace ActivationLinkEffects {
         request.setBody(payload);
 
         return this._api.request(request)
-          .map(response => new Success(response))
+          .map(response => new Success())
           .catch(error => Observable.of(new Error(error)));
       });
 
@@ -61,7 +59,21 @@ export namespace ActivationLinkEffects {
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
       .map((action: Error) => action.payload)
-      .map((error: RequestError) => new AlertActions.SetError('Unknown Error: ' + error.error));
+      .map((error: RequestError) => {
+        switch (error.status) {
+          case HttpStatus.BAD_REQUEST:
+            return new AlertActions.SetError('Form Invalid');
+
+          case HttpStatus.NOT_FOUND:
+            return new AlertActions.SetError('Account with such e-mail does not exist.');
+
+          case HttpStatus.CONFLICT:
+            return new AlertActions.SetInfo('Account Active');
+
+          default:
+            return new AlertActions.SetError('Unknown Error');
+        }
+      });
 
     constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
     }
