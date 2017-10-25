@@ -22,11 +22,11 @@ export const API = {
   AUTH: {
     SIGN_IN: {
       method: 'POST',
-      url: '/authenticate'
+      url: '/auth'
     },
     SIGN_OUT: {
       method: 'DELETE',
-      url: '/authenticate'
+      url: '/auth'
     }
   },
   PROPERTIES: {

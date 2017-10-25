@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {RestApiRequest} from '../core/rest-api-request';
 import {API} from '../core/api-endpoints.constant';
 import * as AuthActions from '../_actions/auth.actions';
+import * as WishlistActions from '../_actions/wishlist.actions';
 import * as SignOutActions from '../_effect-actions/sign-out.actions';
 import {RestApiService} from '../core/rest-api.service';
 import {AlertActions} from '../_actions/alert.actions';
@@ -26,7 +27,10 @@ export class SignOutEffects {
 
   @Effect() onSuccess$: Observable<Action> = this.actions$
     .ofType(SignOutActions.SUCCESS)
-    .map(() => new AuthActions.Clear());
+    .mergeMap(() => [
+      new AuthActions.Clear(),
+      new WishlistActions.Clear()
+    ]);
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(SignOutActions.ERROR)
@@ -35,6 +39,7 @@ export class SignOutEffects {
 
       return [
         new AuthActions.Clear(),
+        new WishlistActions.Clear(),
         new AlertActions.SetError('Server Error')
       ];
     });
