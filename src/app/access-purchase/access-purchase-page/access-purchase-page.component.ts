@@ -39,9 +39,9 @@ export class AccessPurchasePageComponent implements OnInit {
     if (purchaseData.token !== null) {
       this.hasToken = true;
       this.purchaseForm = {
-        id: purchaseData.item.id,
-        count: purchaseData.count,
-        token: purchaseData.token
+        stripeToken: purchaseData.token,
+        type: purchaseData.item.type,
+        count: purchaseData.count
       };
     } else {
       this.hasToken = false;
