@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -15,11 +15,25 @@ export class SignUpFormComponent implements OnInit {
   ngOnInit() {
     this.signUpForm = this._formBuilder.group({
       email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required],
-      passwordVerify: ['', Validators.required],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      passwordVerify: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       phoneNumber: ['', Validators.required],
       notification: ['', Validators.required],
     });
-  }
 
+    function emailDomainValidator(control: FormControl) {
+      let email = control.value;
+      if (email && email.indexOf("@") != -1) {
+        let [_, domain] = email.split('@');
+        if (domain !== 'wisc.edu') {
+          return {
+            emailDomain: {
+              parsedDomain: domain
+            }
+          }
+        }
+      }
+      return null;
+    }
+  }
 }

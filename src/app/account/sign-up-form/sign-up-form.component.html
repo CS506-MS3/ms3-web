@@ -3,57 +3,63 @@
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
-      <form novalidate (ngSubmit)="onSubmit(signUpForm)" [formGroup]="signUpForm">
-        <section class="form-block">
-          <h2>Sign Up</h2>
-          <p>Use your Wisc email ID to sign up for MS3!</p>
-          <br>
-          <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-              <label for="gForm_1">E-mail</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <input class="form-control" type="email" id="gForm_1" placeholder="Enter your Wisc email" size="45"
-                     formControlName="email">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-              <label for="gForm_1">Password</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <input class="form-control" type="password" id="gForm_2" placeholder="Enter your password" size="45"
-                     formControlName="password">
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <input class="form-control" type="password" id="gForm_3" placeholder="Re-enter your password" size="45"
-                     formControlName="passwordVerify">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-              <label for="gForm_1">Contact</label>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <input class="form-control" type="text" id="gForm_4" placeholder="Enter your phone number" size="45"
-                     formControlName="phoneNumber">
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-              <label for="gForm_3">Notifications</label>
-            </div>
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-              <div class="checkbox-inline">
-                <input type="checkbox" id="othercheckbox" checked
-                       formControlName="notification">
-                <label for="othercheckbox">I would like to receive e-mail updates on properties</label>
+        <form novalidate (ngSubmit)="onSubmit(signUpForm)" [formGroup]="signUpForm">
+          <section class="form-block">
+            <h2>Sign Up</h2>
+            <p>Use your Wisc email ID to sign up for MS3!</p>
+            <br>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="gForm_1">E-mail</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="email" id="gForm_1" placeholder="Enter your Wisc email" size="45"
+                       formControlName="email">
               </div>
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Sign Up</button>
-        </section>
-      </form>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="gForm_1">Password</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="password" id="gForm_2" placeholder="Enter your password" size="45"
+                       formControlName="password">
+                <div class="alert alert-danger" *ngIf="!signUpForm.controls['password'].valid && signUpForm.controls['password'].touched">
+                  Your password should be more than 6 characters
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="password" id="gForm_3" placeholder="Re-enter your password" size="45"
+                       formControlName="passwordVerify">
+              </div>
+              <div class="alert alert-danger" *ngIf="!signUpForm.controls['passwordVerify'].valid && signUpForm.controls['passwordVerify'].touched && signUpForm.controls['password'].value==signUpForm.controls['passwordVerify'].value">
+                Your password do not match
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="gForm_1">Contact</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" id="gForm_4" placeholder="Enter your phone number" size="45"
+                       formControlName="phoneNumber">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="gForm_3">Notifications</label>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="checkbox-inline">
+                  <input type="checkbox" id="othercheckbox" checked
+                         formControlName="notification">
+                  <label for="othercheckbox">I would like to receive e-mail updates on properties</label>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+          </section>
+        </form>
       </div>
     </div>
   </div>
