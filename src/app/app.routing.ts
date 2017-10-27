@@ -8,6 +8,7 @@ import {ActivationLinkRequestPageComponent} from './account/activation-link-requ
 import {SignUpSuccessPageComponent} from './account/sign-up-success-page/sign-up-success-page.component';
 import {AccountInfoPageComponent} from './account/account-info-page/account-info-page.component';
 import {AccessPurchasePageComponent} from './access-purchase/access-purchase-page/access-purchase-page.component';
+import {CreateListingPageComponent} from './properties/create-listing-page/create-listing-page.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'activationSuccess', component: ActivationSuccessPageComponent},
   {path: 'activationLinkRequest', component: ActivationLinkRequestPageComponent},
   {path: 'accountInfo', component: AccountInfoPageComponent},
-  {path: 'access/:type', component: AccessPurchasePageComponent}
+  {path: 'access/:type', component: AccessPurchasePageComponent},
+  {path: 'createListing', component: CreateListingPageComponent}
 ];
 
 @NgModule({
