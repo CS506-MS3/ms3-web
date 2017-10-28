@@ -17,11 +17,13 @@ import * as Accesses from './_actions/accesses.reducer';
 import * as MyProperties from './_actions/my-properties.reducer';
 import * as UserInfo from './_actions/user-info.reducer';
 import * as Wishlist from './_actions/wishlist.reducer';
+import * as Pricings from './_actions/pricings.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
-import { TestComponent } from './test/test.component';
+import {TestComponent} from './test/test.component';
 import {GeoService} from './geo.service';
+import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {GeoService} from './geo.service';
       myProperties: MyProperties.reducer,
       userInfo: UserInfo.reducer,
       wishlist: Wishlist.reducer,
-      routerReducer: routerReducer
+      routerReducer: routerReducer,
+      pricings: Pricings.reducer
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
@@ -50,6 +53,7 @@ import {GeoService} from './geo.service';
     AccountModule,
     UserModule,
     PropertiesModule,
+    AccessPurchaseModule,
     ClarityModule.forRoot(),
   ],
   providers: [GeoService],

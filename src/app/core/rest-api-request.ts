@@ -41,9 +41,9 @@ export class RestApiRequest {
   private replacePathParams(path: string, pathParams): string {
     let url = '';
 
-    const matchedPathParams = path.match(/(${[a-zA-Z]*})/g);
+    const matchedPathParams = path.match(/(\${[a-zA-Z]*})/g);
     matchedPathParams.forEach((match: string) => {
-      const key = match.substr(2, match.length - 2);
+      const key = match.substr(2, match.length - 3);
       const value = pathParams[key];
 
       if (!value) {

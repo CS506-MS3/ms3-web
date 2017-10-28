@@ -22,11 +22,11 @@ export const API = {
   AUTH: {
     SIGN_IN: {
       method: 'POST',
-      url: '/authenticate'
+      url: '/auth'
     },
     SIGN_OUT: {
       method: 'DELETE',
-      url: '/authenticate'
+      url: '/auth'
     }
   },
   PROPERTIES: {
@@ -95,6 +95,16 @@ export const API = {
         method: 'DELETE',
         url: '/properties/${propertyId}'
       }
+    }
+  },
+  ACCESSES: {
+    GET_PRICE_INFO: {
+      method: 'GET',
+      url: '/pricing'
+    },
+    ADD: {
+      method: 'POST',
+      url: '/access'
     }
   }
 };
