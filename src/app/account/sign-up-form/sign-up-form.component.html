@@ -15,6 +15,12 @@
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <input class="form-control" type="email" id="gForm_1" placeholder="Enter your Wisc email" size="45"
                        formControlName="email">
+                <div class="form-control-feedback alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
+                  <p *ngIf="email.errors.required">Email is required</p>
+                  <p *ngIf="email.errors.pattern">The email address must contain at least the @ character</p>
+                  <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p>
+                </div>
+
               </div>
             </div>
             <div class="form-group row">
