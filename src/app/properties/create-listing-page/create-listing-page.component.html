@@ -55,20 +55,19 @@
                 <label for="gForm_1">Room type</label>
               </div>
               <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
-                <div class="dropdown bottom-right open">
-                  <button type="button" class="dropdown-toggle btn btn-primary">
+                <clr-dropdown>
+                  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
                     Dropdown
                     <clr-icon shape="caret down"></clr-icon>
                   </button>
-                  <div class="dropdown-menu">
-                    <h4 class="dropdown-header">Dropdown header</h4>
-                    <button type="button" class="dropdown-item active">First Action</button>
-                    <button type="button" class="dropdown-item disabled">Disabled Action</button>
-                    <div class="dropdown-divider"></div>
-                    <button type="button" class="dropdown-item">Link 1</button>
-                    <button type="button" class="dropdown-item">Link 2</button>
-                  </div>
-                </div>
+                  <clr-dropdown-menu clrPosition="default" *clrIfOpen>
+                    <label class="dropdown-header">Dropdown header</label>
+                    <button type="button" clrDropdownItem value="1bedroom">1 BR</button>
+                    <button type="button" clrDropdownItem value="1bedroom">2 BR</button>
+                    <button type="button" clrDropdownItem value="1bedroom">3 BR</button>
+                    <button type="button" clrDropdownItem value="1bedroom">4 BR</button>
+                  </clr-dropdown-menu>
+                </clr-dropdown>
               </div>
             </div>
             <div class="form-group row">
