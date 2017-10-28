@@ -22,7 +22,6 @@ import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
 import {TestComponent} from './test/test.component';
-import {GeoService} from './geo.service';
 import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 
 @NgModule({
@@ -56,7 +55,6 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
     AccessPurchaseModule,
     ClarityModule.forRoot(),
   ],
-  providers: [GeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestComponent } from './test.component';
-import {GeoService} from '../geo.service';
+import {GeoService} from '../core/geo.service';
 import {Observable} from 'rxjs/Observable';
 
 describe('TestComponent', () => {

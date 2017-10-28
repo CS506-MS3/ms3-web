@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GeoService} from '../geo.service';
+import {GeoService} from '../core/geo.service';
 
 @Component({
   selector: 'app-test',
