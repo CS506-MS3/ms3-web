@@ -17,7 +17,7 @@ export class TestComponent {
 
   test() {
     this.geoService.getLocation(this.address).subscribe(response => {
-      let result = response.json();
+      const result = response.json();
 
       this.exist = result.status === 'OK';
       this.location_lat = result.results[0].geometry.location.lat;
