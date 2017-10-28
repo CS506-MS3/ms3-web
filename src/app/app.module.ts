@@ -20,11 +20,14 @@ import * as Wishlist from './_actions/wishlist.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
+import { TestComponent } from './test/test.component';
+import {GeoService} from './geo.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import {PropertiesModule} from './properties/properties.module';
     PropertiesModule,
     ClarityModule.forRoot(),
   ],
-  providers: [],
+  providers: [GeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -4,7 +4,7 @@ import {PropertyService} from './property.service';
 import {PropertyForm} from '../_domains/property-form';
 import {StoreModule} from '@ngrx/store';
 import * as PropertyCreateActions from '../_effect-actions/property-create.actions';
-
+import * as PropertyRemoveActions from '../_effect-actions/property-remove.actions';
 describe('PropertyService', () => {
   const mockAuthReducer = jasmine.createSpy('reducer');
 

@@ -1,15 +1,15 @@
 import {Action} from '@ngrx/store';
-import {PropertyForm} from '../_domains/property-form';
+import {ItemId} from '../_domains/item-id';
 import {RequestError} from '../_domains/request-error';
 
-export const REQUEST = 'PropertyCreate.REQUEST';
-export const SUCCESS = 'PropertyCreate.SUCCESS';
-export const ERROR = 'PropertyCreate.ERROR';
+export const REQUEST = 'PropertyRemove.REQUEST';
+export const SUCCESS = 'PropertyRemove.SUCCESS';
+export const ERROR = 'PropertyRemove.ERROR';
 
 export class Request implements Action {
   readonly type = REQUEST;
 
-  constructor(public payload: PropertyForm) {
+  constructor(public payload: ItemId) {
   }
 }
 

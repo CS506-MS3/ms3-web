@@ -34,6 +34,10 @@ export const API = {
       method: 'GET',
       url: '/properties'
     },
+    CREATE: {
+      method: 'POST',
+      url: '/properties'
+    },
     GET_SINGLE: {
       method: 'GET',
       url: '/properties/${propertyId}'
@@ -89,7 +93,7 @@ export const API = {
       },
       DELETE: {
         method: 'DELETE',
-        url: '/users/${userId}/properties/${propertyId}'
+        url: '/properties/${propertyId}'
       }
     }
   }
