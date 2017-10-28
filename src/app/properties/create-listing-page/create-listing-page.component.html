@@ -86,7 +86,34 @@
                 <input class="form-control" type="date" id="gForm_1" placeholder="" size="45">
               </div>
             </div>
-
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <label for="gForm_1">Duration</label>
+              </div>
+              <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+                <clr-dropdown>
+                  <button type="button" class="btn btn-outline-primary" clrDropdownTrigger>
+                    Dropdown
+                    <clr-icon shape="caret down"></clr-icon>
+                  </button>
+                  <clr-dropdown-menu clrPosition="default" *clrIfOpen>
+                    <label class="dropdown-header">Dropdown header</label>
+                    <button type="button" clrDropdownItem value="1month">1 month</button>
+                    <button type="button" clrDropdownItem value="2months">2 months</button>
+                    <button type="button" clrDropdownItem value="3months">3 months</button>
+                    <button type="button" clrDropdownItem value="4months">4 months</button>
+                    <button type="button" clrDropdownItem value="5months">5 months</button>
+                    <button type="button" clrDropdownItem value="6months">6 months</button>
+                    <button type="button" clrDropdownItem value="7months">7 months</button>
+                    <button type="button" clrDropdownItem value="8months">8 months</button>
+                    <button type="button" clrDropdownItem value="9months">9 months</button>
+                    <button type="button" clrDropdownItem value="10months">10 months</button>
+                    <button type="button" clrDropdownItem value="11months">11 months</button>
+                    <button type="button" clrDropdownItem value="12months">12 months</button>
+                  </clr-dropdown-menu>
+                </clr-dropdown>
+              </div>
+            </div>
             <div class="form-group row">
               <div class="col-lg-4">
                 <label>Amenities</label>
