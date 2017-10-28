@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Property} from '../_domains/property';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
-//import * as PropertyGetActions from '../_effect-actions/property-get.actions';
-//import * as PropertyUpdateActions from '../_effect-actions/property-update.actions';
+// import * as PropertyGetActions from '../_effect-actions/property-get.actions';
+// import * as PropertyUpdateActions from '../_effect-actions/property-update.actions';
 import * as PropertyCreateActions from '../_effect-actions/property-create.actions';
 import * as PropertyRemoveActions from '../_effect-actions/property-remove.actions';
 import {RestApiRequest} from '../core/rest-api-request';
@@ -16,7 +16,7 @@ export class PropertyService {
   }
 
   get(id) {
-    //this._store.dispatch(new PropertyGetActions.Request(id));
+    // this._store.dispatch(new PropertyGetActions.Request(id));
   }
 
   create(form) {
@@ -24,7 +24,7 @@ export class PropertyService {
   }
 
   update(form) {
-    //this._store.dispatch(new PropertyUpdateActions.Request(form));
+    // this._store.dispatch(new PropertyUpdateActions.Request(form));
   }
 
   remove(id) {
