@@ -9,9 +9,11 @@ import {RequestError} from '../_domains/request-error';
 import {Injectable} from '@angular/core';
 import {PasswordForm} from '../_domains/password-form';
 import * as AuthActions from '../_actions/auth.actions';
+import * as WishlistActions from '../_actions/wishlist.actions';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
+import {HttpStatus} from '../core/http-status.enum';
 
 export namespace DeactivateEffects {
   export const REQUEST = 'DeactivateEffects.REQUEST';
@@ -33,7 +35,6 @@ export namespace DeactivateEffects {
     readonly type = ERROR;
 
     constructor(public payload: RequestError) {
-      // TODO: define request error object
     }
   }
 
@@ -53,17 +54,47 @@ export namespace DeactivateEffects {
 
     @Effect() onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .map(() => new AuthActions.Clear());
+      .mergeMap(() => [
+        new AuthActions.Clear(),
+        new WishlistActions.Clear()
+      ]);
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
       .map((action: Error) => action.payload)
       .mergeMap((error: RequestError) => {
+        switch (error.status) {
+          case HttpStatus.BAD_REQUEST:
+            return [
+              new AlertActions.SetError('Deactivation Failed: Invalid Password Form')
+            ];
 
-        return [
-          new AuthActions.Clear(),
-          new AlertActions.SetError(error.error)
-        ];
+          case HttpStatus.UNAUTHORIZED:
+            return [
+              new AuthActions.Clear(),
+              new WishlistActions.Clear(),
+              new AlertActions.SetError('Deactivation Failed: Authentication Expired')
+            ];
+
+          case HttpStatus.NOT_FOUND:
+            return [
+              new AuthActions.Clear(),
+              new WishlistActions.Clear(),
+              new AlertActions.SetError('Deactivation Failed: Account does not exist')
+            ];
+
+          case HttpStatus.CONFLICT:
+            return [
+              new AuthActions.Clear(),
+              new WishlistActions.Clear(),
+              new AlertActions.SetError('Deactivation Failed: Account Already Inactive')
+            ];
+
+          default:
+            return [
+              new AlertActions.SetError('Deactivation Failed: Server Error')
+            ];
+        }
       });
 
     constructor(private _api: RestApiService, private actions$: Actions) {

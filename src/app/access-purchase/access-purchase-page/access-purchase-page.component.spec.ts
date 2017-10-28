@@ -1,13 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AccessPurchasePageComponent } from './access-purchase-page.component';
+import {AccessPurchasePageComponent} from './access-purchase-page.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Observable} from 'rxjs/Observable';
+import * as AccessAddActions from '../../_effect-actions/access-add.actions';
 
 describe('AccessPurchasePageComponent', () => {
   let component: AccessPurchasePageComponent;
   let fixture: ComponentFixture<AccessPurchasePageComponent>;
   const mockStore = {
+    select: (store) => Observable.of({list: []}),
     dispatch: jasmine.createSpy('dispatch')
   };
 
@@ -16,12 +20,15 @@ describe('AccessPurchasePageComponent', () => {
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ],
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         {provide: Store, useValue: mockStore}
       ],
-      declarations: [ AccessPurchasePageComponent ]
+      declarations: [AccessPurchasePageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -36,11 +43,12 @@ describe('AccessPurchasePageComponent', () => {
   });
 
   describe('onStripeTokenReceived', () => {
-    it('should set purchase form to the data input if data has token', () => {
+    it('should set purchase form to the data input if data has stripeToken', () => {
       const testPurchaseData = {
         item: {
           id: 1,
-          title: 'Subleaser Access Subscription',
+          alias: 'Subleaser Access Subscription',
+          type: 'VENDOR_SUBSCRIPTION',
           pricePerItem: 10.99,
           canHaveMultiple: false
         },
@@ -55,17 +63,18 @@ describe('AccessPurchasePageComponent', () => {
 
       expect(component.hasToken).toBeTruthy();
       expect(component.purchaseForm).toEqual({
-        id: testPurchaseData.item.id,
+        type: testPurchaseData.item.type,
         count: testPurchaseData.count,
-        token: testPurchaseData.token
+        stripeToken: testPurchaseData.token
       });
     });
 
-    it('should reset token status & form if data input has no token', () => {
+    it('should reset stripeToken status & form if data input has no stripeToken', () => {
       const testPurchaseData = {
         item: {
           id: 1,
-          title: 'Subleaser Access Subscription',
+          alias: 'Subleaser Access Subscription',
+          type: 'VENDOR_SUBSCRIPTION',
           pricePerItem: 10.99,
           canHaveMultiple: false
         },
@@ -80,7 +89,8 @@ describe('AccessPurchasePageComponent', () => {
       const updatedTestPurchaseData = {
         item: {
           id: 1,
-          title: 'Subleaser Access Subscription',
+          alias: 'Subleaser Access Subscription',
+          type: 'VENDOR_SUBSCRIPTION',
           pricePerItem: 10.99,
           canHaveMultiple: false
         },
@@ -97,9 +107,9 @@ describe('AccessPurchasePageComponent', () => {
   describe('onSubmit', () => {
     it('should dispatch a AccessPurchaseEffects.Request', () => {
       component.purchaseForm = {
-        id: 1,
+        type: 'VENDOR_SUBSCRIPTION',
         count: 1,
-        token: {
+        stripeToken: {
           id: 'someToken',
           email: 'test@wisc.edu'
         }
@@ -107,10 +117,7 @@ describe('AccessPurchasePageComponent', () => {
 
       component.onSubmit();
 
-      expect(mockStore.dispatch).toHaveBeenCalledWith({
-        type: 'AccessPurchaseEffects.REQUEST',
-        payload: component.purchaseForm
-      });
+      expect(mockStore.dispatch).toHaveBeenCalledWith(new AccessAddActions.Request(component.purchaseForm));
     });
   });
 });

@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
+import * as PricingsGetActions from '../../_effect-actions/pricings.actions';
+import * as AccessAddActions from '../../_effect-actions/access-add.actions';
+import {ActivatedRoute} from '@angular/router';
+import {Pricings} from '../../_domains/pricings';
+import {Pricing} from '../../_domains/pricing';
 
 @Component({
   selector: 'app-access-purchase-page',
@@ -7,29 +12,36 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./access-purchase-page.component.scss']
 })
 export class AccessPurchasePageComponent implements OnInit {
-  item: any;
+  item: Pricing = {
+    id: null,
+    type: null,
+    alias: null,
+    pricePerItem: null,
+    canHaveMultiple: null
+  };
   hasToken = false;
   purchaseForm: any;
+  type: string;
 
-  constructor(private _store: Store<any>) {
+  constructor(private _store: Store<any>, private _route: ActivatedRoute) {
+    this.type = this._route.snapshot.params.type;
+
+    this._store.select('pricings').subscribe((pricings: Pricings) => {
+      this.item = pricings.list.find((item: Pricing) => item.type === this.type) || this.item;
+    });
   }
 
   ngOnInit() {
-    this.item = {
-      id: 1,
-      title: 'Subleaser Access Subscription',
-      pricePerItem: 10.99,
-      canHaveMultiple: false
-    };
+    this._store.dispatch(new PricingsGetActions.Request());
   }
 
   onStripeTokenReceived(purchaseData) {
     if (purchaseData.token !== null) {
       this.hasToken = true;
       this.purchaseForm = {
-        id: purchaseData.item.id,
-        count: purchaseData.count,
-        token: purchaseData.token
+        stripeToken: purchaseData.token,
+        type: purchaseData.item.type,
+        count: purchaseData.count
       };
     } else {
       this.hasToken = false;
@@ -39,9 +51,6 @@ export class AccessPurchasePageComponent implements OnInit {
 
   onSubmit() {
 
-    this._store.dispatch({
-      type: 'AccessPurchaseEffects.REQUEST',
-      payload: this.purchaseForm
-    });
+    this._store.dispatch(new AccessAddActions.Request(this.purchaseForm));
   }
 }

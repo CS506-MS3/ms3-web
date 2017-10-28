@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'activationSuccess', component: ActivationSuccessPageComponent},
   {path: 'activationLinkRequest', component: ActivationLinkRequestPageComponent},
   {path: 'accountInfo', component: AccountInfoPageComponent},
-  {path: 'access', component: AccessPurchasePageComponent}
+  {path: 'access/:type', component: AccessPurchasePageComponent}
 ];
 
 @NgModule({
