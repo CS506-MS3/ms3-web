@@ -7,27 +7,52 @@ import {StoreModule} from '@ngrx/store';
 import {routerReducer} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {LandingPageComponent} from './landing-page/landing-page.component';
-import {SignUpComponent} from './sign-up/sign-up.component';
 import {AppRoutingModule} from './app.routing';
 import {SharedModule} from './shared/shared.module';
+import {AccountModule} from './account/account.module';
+import {CoreModule} from './core/core.module';
+import * as Auth from './_actions/auth.reducer';
+import {AlertActions} from './_actions/alert.actions';
+import * as Accesses from './_actions/accesses.reducer';
+import * as MyProperties from './_actions/my-properties.reducer';
+import * as UserInfo from './_actions/user-info.reducer';
+import * as Wishlist from './_actions/wishlist.reducer';
+import {EffectsModule} from '@ngrx/effects';
+import {UserModule} from './user/user.module';
+import {PropertiesModule} from './properties/properties.module';
+import { TestComponent } from './test/test.component';
+import {GeoService} from './geo.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    SignUpComponent
+    TestComponent,
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({routerReducer: routerReducer}),
+    StoreModule.forRoot({
+      alert: AlertActions.reducer,
+      auth: Auth.reducer,
+      accesses: Accesses.reducer,
+      myProperties: MyProperties.reducer,
+      userInfo: UserInfo.reducer,
+      wishlist: Wishlist.reducer,
+      routerReducer: routerReducer
+    }),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
     AppRoutingModule,
+    CoreModule,
     SharedModule,
+    AccountModule,
+    UserModule,
+    PropertiesModule,
     ClarityModule.forRoot(),
   ],
-  providers: [],
+  providers: [GeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
