@@ -4,6 +4,7 @@ import { RestApiService } from './rest-api.service';
 import {AlertBarComponent} from './alert-bar/alert-bar.component';
 import {AuthModule} from '../auth/auth.module';
 import {HttpModule} from '@angular/http';
+import {GeoService} from './geo.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import {HttpModule} from '@angular/http';
   exports: [
     AlertBarComponent
   ],
-  providers: [RestApiService]
+  providers: [RestApiService, GeoService]
 })
 export class CoreModule { }
