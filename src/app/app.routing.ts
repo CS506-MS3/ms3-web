@@ -6,6 +6,7 @@ import {ActivatePageComponent} from './account/activate-page/activate-page.compo
 import {ActivationSuccessPageComponent} from './account/activation-success-page/activation-success-page.component';
 import {ActivationLinkRequestPageComponent} from './account/activation-link-request-page/activation-link-request-page.component';
 import {SignUpSuccessPageComponent} from './account/sign-up-success-page/sign-up-success-page.component';
+import {DeactivateAccountComponent} from './account/deactivate-account/deactivate-account.component';
 import {AccountInfoPageComponent} from './account/account-info-page/account-info-page.component';
 import {AccessPurchasePageComponent} from './access-purchase/access-purchase-page/access-purchase-page.component';
 import {RemoveListingPageComponent} from "./account/remove-listing-page/remove-listing-page.component";
@@ -18,9 +19,11 @@ const routes: Routes = [
   {path: 'activate', component: ActivatePageComponent},
   {path: 'activationSuccess', component: ActivationSuccessPageComponent},
   {path: 'activationLinkRequest', component: ActivationLinkRequestPageComponent},
+  {path: 'deactivate', component: DeactivateAccountComponent},
   {path: 'accountInfo', component: AccountInfoPageComponent},
   {path: 'access', component: AccessPurchasePageComponent},
-  {path: 'removeListing', component: RemoveListingPageComponent}
+  {path: 'removeListing', component: RemoveListingPageComponent},
+  {path: 'access/:type', component: AccessPurchasePageComponent}
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
@@ -12,7 +12,8 @@ export class RemoveListingPageComponent implements OnInit {
   removeListingForm: FormGroup;
 
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
     this.removeListingForm = this._formBuilder.group({
