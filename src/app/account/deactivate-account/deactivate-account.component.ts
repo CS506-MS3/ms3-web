@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-deactivate-account',
@@ -7,10 +8,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./deactivate-account.component.scss']
 })
 export class DeactivateAccountComponent implements OnInit {
-
   deactivateForm: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private _account: AccountService) {
   }
 
   ngOnInit() {
@@ -19,9 +19,10 @@ export class DeactivateAccountComponent implements OnInit {
     });
   }
 
-  onSubmit(deactivateForm: FormGroup) {
+  onSubmit({value, valid}) {
+    if (valid) {
 
+      this._account.deactivate(value);
+    }
   }
-
-
 }
