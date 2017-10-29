@@ -1,72 +1,80 @@
-<div class="content-container">
-  <div class="content-area">
-    <div class="row">
-      <div class="col-lg-2"></div>
-      <div class="col-lg-8">
-        <form novalidate (ngSubmit)="onSubmit(signUpForm)" [formGroup]="signUpForm">
-          <section class="form-block">
-            <h2>Sign Up</h2>
-            <p>Use your Wisc email ID to sign up for MS3!</p>
-            <br>
-            <div class="form-group row">
-              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1">E-mail</label>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="email" id="gForm_1" placeholder="Enter your Wisc email" size="45"
-                       formControlName="email">
-                <div class="form-control-feedback alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
-                  <p *ngIf="email.errors.required">Email is required</p>
-                  <p *ngIf="email.errors.pattern">The email address must contain at least the @ character</p>
-                  <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p>
-                </div>
-
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1">Password</label>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="password" id="gForm_2" placeholder="Enter your password" size="45"
-                       formControlName="password">
-                <div class="alert alert-danger" *ngIf="!signUpForm.controls['password'].valid && signUpForm.controls['password'].touched">
-                  Your password should be more than 6 characters
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="password" id="gForm_3" placeholder="Re-enter your password" size="45"
-                       formControlName="passwordVerify">
-              </div>
-              <div class="alert alert-danger" *ngIf="!signUpForm.controls['passwordVerify'].valid && signUpForm.controls['passwordVerify'].touched && signUpForm.controls['password'].value==signUpForm.controls['passwordVerify'].value">
-                Your password do not match
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_1">Contact</label>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" id="gForm_4" placeholder="Enter your phone number" size="45"
-                       formControlName="phoneNumber">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                <label for="gForm_3">Notifications</label>
-              </div>
-              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                <div class="checkbox-inline">
-                  <input type="checkbox" id="othercheckbox" checked
-                         formControlName="notification">
-                  <label for="othercheckbox">I would like to receive e-mail updates on properties</label>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-          </section>
-        </form>
+<form novalidate (ngSubmit)="onSubmit(signUpForm)" [formGroup]="signUpForm">
+  <section class="form-block">
+    <h2>Sign Up</h2>
+    <p>Use your Wisc email ID to sign up for MS3!</p>
+    <br>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="email-input">E-mail</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <label for="email-input"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-sm"
+               [class.invalid]="email.invalid && email.touched">
+          <input class="form-control" type="email" id="email-input" placeholder="Enter your Wisc email"
+                 size="45"
+                 formControlName="email">
+          <span class="tooltip-content">
+            You must input a valid @wisc.edu email
+          </span>
+        </label>
       </div>
     </div>
-  </div>
-</div>
+    <div class="form-group row" formGroupName="passwords">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="password-input">Password</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <label for="password-input"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-sm"
+               [class.invalid]="password.invalid && password.touched">
+          <input class="form-control" type="password" id="password-input" placeholder="Enter your password"
+                 size="45"
+                 formControlName="password">
+          <span class="tooltip-content">
+            Password must be of length > 8 and include at least one alphabet and at least one digit
+          </span>
+        </label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <label for="password-confirm-input"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-sm"
+               [class.invalid]="passwordFields.invalid && passwordConfirm.touched">
+          <input class="form-control" type="password" id="password-confirm-input" placeholder="Re-enter your password" size="45"
+                 formControlName="passwordConfirm">
+          <span class="tooltip-content">
+            Your password & confirmation do not match
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="phone-input">Contact</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <input class="form-control" type="text" id="phone-input" placeholder="Enter your phone number" size="45"
+               formControlName="phoneNumber">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="notification-input">Notifications</label>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="checkbox-inline">
+          <input type="checkbox" id="notification-input" formControlName="notification">
+          <label for="notification-input">I would like to receive e-mail updates on properties</label>
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary">Sign Up</button>
+  </section>
+</form>
+

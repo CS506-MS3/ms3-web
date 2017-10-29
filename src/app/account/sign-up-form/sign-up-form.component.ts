@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -9,31 +10,62 @@ import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 export class SignUpFormComponent implements OnInit {
   signUpForm: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private _account: AccountService) {
   }
 
   ngOnInit() {
     this.signUpForm = this._formBuilder.group({
-      email: ['', Validators.required, Validators.pattern("[^ @]*@[^ @]*"), emailDomainValidator],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      passwordVerify: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      phoneNumber: ['', Validators.required],
-      notification: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(/[0-9a-zA-Z\-_.]*@wisc\.edu/)])],
+      passwords: this._formBuilder.group({
+        password: ['', Validators.compose([
+          Validators.required,
+          Validators.pattern(/[a-zA-Z0-9!@#\$%\^&.]{8,32}/),
+          Validators.pattern(/.*[A-Za-z]+.*/),
+          Validators.pattern(/.*[0-9]+.*/)
+        ])],
+        passwordConfirm: ['']
+      }, {validator: this.checkPasswords}),
+      phoneNumber: [''],
+      notification: [false, Validators.required],
     });
+  }
 
-    function emailDomainValidator(control: FormControl) {
-      let email = control.value;
-      if (email && email.indexOf("@") != -1) {
-        let [_, domain] = email.split('@');
-        if (domain !== 'wisc.edu') {
-          return {
-            emailDomain: {
-              parsedDomain: domain
-            }
-          }
-        }
-      }
-      return null;
+  onSubmit({value, valid}: { value: any, valid: boolean }) {
+    if (valid) {
+
+      this._account.create({
+        email: value.email,
+        password: value.passwords.password,
+        phone: value.phoneNumber,
+        notification: value.notification
+      });
     }
+  }
+
+  private checkPasswords = (group: FormGroup) => {
+    const password = group.controls.password.value;
+    const confirm = group.controls.passwordConfirm.value;
+
+    return password === confirm ? null : {passwordConfirmError: true};
+  }
+
+  get email() {
+    return this.signUpForm.get('email');
+  }
+
+  get passwordFields() {
+    return this.signUpForm.get('passwords');
+  }
+
+  get password() {
+    return this.signUpForm.get('passwords').get('password');
+  }
+
+  get passwordConfirm() {
+    return this.signUpForm.get('passwords').get('passwordConfirm');
+  }
+
+  get phoneNumber() {
+    return this.signUpForm.get('phoneNumber');
   }
 }
