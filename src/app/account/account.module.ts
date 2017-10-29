@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
-import { AccountService } from './account.service';
-import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
-import { EffectsModule } from '@ngrx/effects';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SignUpEffects } from './sign-up.effects';
-import { ActivateEffects } from './activate.effects';
-import { ActivatePageComponent } from './activate-page/activate-page.component';
-import { ActivationSuccessPageComponent } from './activation-success-page/activation-success-page.component';
-import { ActivationLinkRequestPageComponent } from './activation-link-request-page/activation-link-request-page.component';
-import { SignUpSuccessPageComponent } from './sign-up-success-page/sign-up-success-page.component';
-import { DeactivateAccountComponent } from './deactivate-account/deactivate-account.component';
-=======
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SignUpFormComponent} from './sign-up-form/sign-up-form.component';
@@ -31,7 +14,8 @@ import {ActivationLinkRequestPageComponent} from './activation-link-request-page
 import {SignUpSuccessPageComponent} from './sign-up-success-page/sign-up-success-page.component';
 import {AccountInfoPageComponent} from './account-info-page/account-info-page.component';
 import {ClarityModule} from 'clarity-angular';
->>>>>>> milestone/set-up
+import {DeactivateAccountComponent} from './deactivate-account/deactivate-account.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
@@ -41,7 +25,8 @@ import {ClarityModule} from 'clarity-angular';
       SignUpEffects.Effects,
       ActivateEffects.Effects
     ]),
-    ClarityModule.forChild()
+    ClarityModule.forChild(),
+    RouterModule
   ],
   declarations: [
     SignUpFormComponent,
@@ -51,11 +36,8 @@ import {ClarityModule} from 'clarity-angular';
     ActivationSuccessPageComponent,
     ActivationLinkRequestPageComponent,
     SignUpSuccessPageComponent,
-<<<<<<< HEAD
-    DeactivateAccountComponent
-=======
+    DeactivateAccountComponent,
     AccountInfoPageComponent
->>>>>>> milestone/set-up
   ],
   providers: [AccountService]
 })
