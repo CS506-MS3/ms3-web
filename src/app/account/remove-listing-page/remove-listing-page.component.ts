@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-
 @Component({
   selector: 'app-remove-listing-page',
   templateUrl: './remove-listing-page.component.html',
@@ -22,7 +21,6 @@ export class RemoveListingPageComponent implements OnInit {
   }
 
   onSubmit(removeListingForm: FormGroup) {
-
+    // TODO: Need to pass in property Id as well as the password to the action call
   }
-
 }

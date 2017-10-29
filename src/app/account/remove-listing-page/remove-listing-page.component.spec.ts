@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RemoveListingPageComponent } from './remove-listing-page.component';
+import {RemoveListingPageComponent} from './remove-listing-page.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('RemoveListingPageComponent', () => {
   let component: RemoveListingPageComponent;
@@ -8,9 +9,12 @@ describe('RemoveListingPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemoveListingPageComponent ]
+      imports: [
+        ReactiveFormsModule
+      ],
+      declarations: [RemoveListingPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
