@@ -13,9 +13,12 @@ import {ActivationSuccessPageComponent} from './activation-success-page/activati
 import {ActivationLinkRequestPageComponent} from './activation-link-request-page/activation-link-request-page.component';
 import {SignUpSuccessPageComponent} from './sign-up-success-page/sign-up-success-page.component';
 import {AccountInfoPageComponent} from './account-info-page/account-info-page.component';
+import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-page.component';
+
 import {ClarityModule} from 'clarity-angular';
 import {DeactivateAccountComponent} from './deactivate-account/deactivate-account.component';
 import {RouterModule} from '@angular/router';
+
 
 @NgModule({
   imports: [
@@ -37,6 +40,8 @@ import {RouterModule} from '@angular/router';
     ActivationLinkRequestPageComponent,
     SignUpSuccessPageComponent,
     DeactivateAccountComponent,
+    AccountInfoPageComponent,
+    RemoveListingPageComponent,
     AccountInfoPageComponent
   ],
   providers: [AccountService]

@@ -9,6 +9,7 @@ import {SignUpSuccessPageComponent} from './account/sign-up-success-page/sign-up
 import {DeactivateAccountComponent} from './account/deactivate-account/deactivate-account.component';
 import {AccountInfoPageComponent} from './account/account-info-page/account-info-page.component';
 import {AccessPurchasePageComponent} from './access-purchase/access-purchase-page/access-purchase-page.component';
+import {RemoveListingPageComponent} from './account/remove-listing-page/remove-listing-page.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path: 'activationLinkRequest', component: ActivationLinkRequestPageComponent},
   {path: 'deactivate', component: DeactivateAccountComponent},
   {path: 'accountInfo', component: AccountInfoPageComponent},
+  {path: 'access', component: AccessPurchasePageComponent},
+  {path: 'removeListing', component: RemoveListingPageComponent},
   {path: 'access/:type', component: AccessPurchasePageComponent}
 ];
 
