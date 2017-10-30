@@ -2,3 +2,29 @@
   margin-right: 12px;
   object-fit: cover;
 }
+
+.personal-info {
+  margin-top: 1rem;
+
+  clr-checkbox {
+    margin-top: 0.5rem;
+  }
+}
+
+div.sidenav {
+  > div, > h3 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+div.property-summary {
+  div.card-block {
+    position: relative;
+    .property-summary-controls {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+    }
+  }
+}
