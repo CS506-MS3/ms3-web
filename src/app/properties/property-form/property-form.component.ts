@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import * as PropertyCreateActions from '../../_effect-actions/property-create.actions';
 
 @Component({
   selector: 'app-property-form',
@@ -232,7 +233,23 @@ export class PropertyFormComponent implements OnInit {
 
   onSubmit({value, valid}) {
 
-    return true;
+    return new PropertyCreateActions.Request({
+      title: value.title,
+      address: this.addressVerification.address,
+      description: value.description,
+      propertyType: value.propertyType,
+      roomType: value.roomType,
+      price: value.price,
+      startDate: value.startDate,
+      duration: value.duration,
+      amenities: this.amenityOptions.filter((option) => value.amenities[option.alias])
+        .map((option) => option.id),
+      pets: this.petOptions.filter((option) => value.pets[option.alias])
+        .map((option) => option.id),
+      houseRules: this.houseRulesOptions.filter((option) => value.houseRules[option.alias])
+        .map((option) => option.id),
+      imageUrls: []
+    });
   }
 
   updateAddressVerification(addressVerification) {
