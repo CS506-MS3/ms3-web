@@ -1,0 +1,27 @@
+$height: 140px;
+footer {
+  position: relative;
+  height: $height;
+  background: rgb(63, 76, 107);
+  background: -moz-linear-gradient(
+      rgba(63, 76, 107, 0),
+      rgba(63, 76, 107, 1)
+  );
+  background: -webkit-linear-gradient(
+      rgba(63, 76, 107, 0),
+      rgba(63, 76, 107, 1)
+  );
+  background: linear-gradient(
+      rgba(63, 76, 107, 0),
+      rgba(63, 76, 107, 1)
+  );
+  p {
+    float: right;
+    margin-right: 1rem;
+    display: inline-block;
+    font-size: 12px;
+    color: lightgray;
+    margin-top: 100px;
+    text-align: right;
+  }
+}
