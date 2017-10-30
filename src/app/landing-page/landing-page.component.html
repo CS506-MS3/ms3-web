@@ -1,3 +1,22 @@
-<p>
-  landing-page works!
-</p>
+<div class="content-area hero">
+  <div class="landing-img">
+    <img src="assets/images/apartmentimg.jpg" alt="">
+    <div class="upperlayer">
+      <button class="btn btn-outline">Explore</button>
+    </div>
+    <i class="glyphicon glyphicon-menu-down"></i>
+  </div>
+  <div class="properties">
+    <div class="title">Recent Properties</div>
+    <div *ngFor="let item of data.properties" ngClass="eachProperty">
+      <div class="items">
+        <img src="{{item.Image}}" alt="">
+        <span>{{item.Address}}</span>
+        <span>{{item.Price}}</span>
+        <span>{{item.PropertyType}}</span>
+        <span>{{item.LeaseType}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>
