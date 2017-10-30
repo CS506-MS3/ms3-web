@@ -54,7 +54,7 @@ export class AccessPurchaseFormComponent implements OnInit {
 
     handler.open({
       name: 'Madison Sublease',
-      description: this.item.title,
+      description: this.item.alias,
       amount: this.count * this.item.pricePerItem * 100
     });
   }

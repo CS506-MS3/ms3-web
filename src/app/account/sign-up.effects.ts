@@ -1,18 +1,21 @@
-import {Action} from '@ngrx/store';
-import {Credentials} from '../_domains/credentials';
-import {Auth} from '../_domains/auth';
-import {Observable} from 'rxjs/Observable';
-import {Actions, Effect} from '@ngrx/effects';
-import {RestApiService} from '../core/rest-api.service';
-import {API} from '../core/api-endpoints.constant';
-import {RestApiRequest} from '../core/rest-api-request';
-import 'rxjs/add/operator/switchMap';
-import {Router} from '@angular/router';
-import {AlertActions} from '../_actions/alert.actions';
-import {RequestError} from '../_domains/request-error';
-import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Action} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+
+import {API} from '../core/api-endpoints.constant';
+import {RestApiService} from '../core/rest-api.service';
+import {RestApiRequest} from '../core/rest-api-request';
+import {HttpStatus} from '../core/http-status.enum';
+import {RequestError} from '../_domains/request-error';
+
 import {SignUpForm} from '../_domains/sign-up-form';
+
+import {AlertActions} from '../_actions/alert.actions';
+
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 
 export namespace SignUpEffects {
@@ -35,7 +38,6 @@ export namespace SignUpEffects {
     readonly type = ERROR;
 
     constructor(public payload: RequestError) {
-      // TODO: define request error object
     }
   }
 
@@ -60,7 +62,18 @@ export namespace SignUpEffects {
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
       .map((action: Error) => action.payload)
-      .map((error: RequestError) => new AlertActions.SetError('Sign Up Error: ' + error.error));
+      .map((error: RequestError) => {
+        switch (error.status) {
+          case HttpStatus.BAD_REQUEST:
+            return new AlertActions.SetError('Please check your sign-up form again.');
+
+          case HttpStatus.CONFLICT:
+            return new AlertActions.SetError('An account with the submitted e-mail already exists.');
+
+          default:
+            return new AlertActions.SetError('Unknown Error');
+        }
+      });
 
     constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
     }

@@ -1,0 +1,40 @@
+<div class="content-container">
+  <!-- SIDENAV STEP DETAILS -->
+  <div class="sidenav" style="margin-left:20px">
+    <p><strong>Step 1:</strong> Confirm deactivation</p>
+  </div>
+
+  <!-- MAIN CONTENT AREA-->
+  <div class="content-area">
+    <form novalidate (ngSubmit)="onSubmit(deactivateForm)" [formGroup]="deactivateForm">
+      <section class="form-block">
+        <h2>Are you sure you want to deactivate your account?</h2>
+        <p>Deactivating your account will delete all properties uploaded by you and remove all your data from the MS3
+          servers.
+          <br>To deactivate your account, please enter your password in the text field below:</p>
+        <br>
+        <div class="form-group row">
+          <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <label for="password-input">Password</label>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <input class="form-control" type="password" id="password-input" placeholder="Enter your password" size="45"
+                   formControlName="password">
+          </div>
+        </div>
+        <br> <br>
+        <div class="row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-4">
+            <button type="submit" class="btn btn-danger">Deactivate my account</button>
+            <br><br><a routerLink="../accountInfo">Take me back to my account</a>
+          </div>
+          <div class="col-lg-6">
+          </div>
+        </div>
+      </section>
+    </form>
+
+  </div>
+</div>

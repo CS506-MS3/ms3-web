@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store';
 import {Credentials} from '../_domains/credentials';
-import {Auth} from '../_domains/auth';
 import {RequestError} from '../_domains/request-error';
+import {AuthResponse} from '../_domains/auth-response';
 
 export const REQUEST = 'SignInEffects.REQUEST';
 export const SUCCESS = 'SignInEffects.SUCCESS';
@@ -17,7 +17,7 @@ export class Request implements Action {
 export class Success implements Action {
   readonly type = SUCCESS;
 
-  constructor(public payload: Auth) {
+  constructor(public payload: AuthResponse) {
   }
 }
 
