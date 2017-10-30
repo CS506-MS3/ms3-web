@@ -1,5 +1,9 @@
 export interface PropertySummary {
   id: number;
   title: string;
-  // TODO: need to fill up here
+  address: string;
+  price: number;
+  startDate: string;
+  duration: number;
+  thumbnailUrl: string;
 }
