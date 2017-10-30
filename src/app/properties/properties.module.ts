@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {PropertiesService} from './properties.service';
 import {PropertyService} from './property.service';
 import {CreateListingPageComponent} from './create-listing-page/create-listing-page.component';
-import {ClarityModule} from "clarity-angular";
+import {ClarityModule} from 'clarity-angular';
 import {PropertyFormComponent} from './property-form/property-form.component';
 import {AddressVerificationFormComponent} from './address-verification-form/address-verification-form.component';
 import {ImageFormComponent} from './image-form/image-form.component';

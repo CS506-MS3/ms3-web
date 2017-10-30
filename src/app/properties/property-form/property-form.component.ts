@@ -254,6 +254,6 @@ export class PropertyFormComponent implements OnInit {
   }
 
   updateAddressVerification(addressVerification) {
-    this.addressVerification = addressVerification
+    this.addressVerification = addressVerification;
   }
 }
