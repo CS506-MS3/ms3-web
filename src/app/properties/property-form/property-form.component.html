@@ -1,0 +1,120 @@
+<form novalidate (ngSubmit)="onSubmit(propertyForm)" [formGroup]="propertyForm">
+  <section class="form-block">
+    <label>Create a new listing</label>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="title-input">Title</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <input class="form-control" type="text" id="title-input" placeholder="Enter title here" size="45"
+               formControlName="title">
+      </div>
+    </div>
+    <app-address-verification-form (verify)="updateAddressVerification($event)"></app-address-verification-form>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="description-input">Description</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <textarea id="description-input" rows="5" formControlName="description"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Apartment/House</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <div class="radio">
+          <input type="radio" id="property-type-input-1" formControlName="propertyType" value="APT">
+          <label for="property-type-input-1">Apartment</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="property-type-input-2" formControlName="propertyType" value="HOUSE">
+          <label for="property-type-input-2">House</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="room-type-select">Room type</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <div class="select">
+          <select name="room-type-select" id="room-type-select" formControlName="roomType">
+            <option *ngFor="let roomType of roomTypeOptions" value="{{roomType.value}}">{{roomType.alias}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="price-input">Monthly Price</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <input class="form-control" type="number" id="price-input" placeholder="Enter price here" size="45" min="0"
+               formControlName="price">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="start-date-input">Start Date</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <input class="form-control" type="date" id="start-date-input" placeholder="" size="45"
+               formControlName="startDate">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="duration-select">Duration</label>
+      </div>
+      <div class="col-lg-10 col-md-4 col-sm-12 col-xs-12">
+        <div class="select">
+          <select name="room-type-select" id="duration-select" formControlName="duration">
+            <option *ngFor="let months of durationOptions" value="{{months.value}}">{{months.alias}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-4">
+        <label>Amenities</label>
+      </div>
+      <div class="col-lg-8 row" [formGroup]="propertyForm.get('amenities')">
+        <div class="checkbox col-lg-6" *ngFor="let amenity of amenityOptions;">
+          <input type="checkbox" id="{{'amenities_rad_' + amenity.id}}" formControlName="{{amenity.alias}}">
+          <label for="{{'amenities_rad_' + amenity.id}}">{{amenity.alias}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-4">
+        <label>Pets</label>
+      </div>
+      <div class="col-lg-8 row" [formGroup]="propertyForm.get('pets')">
+        <div class="checkbox col-lg-6" *ngFor="let pet of petOptions;">
+          <input type="checkbox" id="{{'pet_rad_' + pet.id}}" formControlName="{{pet.alias}}">
+          <label for="{{'pet_rad_' + pet.id}}">{{pet.alias}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-4">
+        <label>House Rules</label>
+      </div>
+      <div class="col-lg-8 row" [formGroup]="propertyForm.get('houseRules')">
+        <div class="checkbox col-lg-6" *ngFor="let houseRule of houseRulesOptions;">
+          <input type="checkbox" id="{{'houserule_rad_' + houseRule.id}}" formControlName="{{houseRule.alias}}">
+          <label for="{{'houserule_rad_' + houseRule.id}}">{{houseRule.alias}}</label>
+        </div>
+      </div>
+    </div>
+    <!--<app-image-form></app-image-form>-->
+
+    <br>
+    <button type="submit"
+            [disabled]="propertyForm.invalid || !addressVerification.verified"
+            class="btn btn-primary">Proceed</button>
+  </section>
+</form>

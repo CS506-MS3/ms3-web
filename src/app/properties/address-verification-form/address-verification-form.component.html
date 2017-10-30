@@ -1,0 +1,27 @@
+<form novalidate class="form-group row" (ngSubmit)="onSubmit(addressForm)" [formGroup]="addressForm">
+  <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+    <label for="address-input">Address</label>
+  </div>
+  <div class="col-lg-8 col-md-4 col-sm-12 col-xs-12">
+    <input class="form-control" type="text" id="address-input" placeholder="Enter address here" size="45"
+           formControlName="address">
+  </div>
+  <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+    <button type="submit" [disabled]="addressForm.invalid || verified" class="btn btn-default">Verify</button>
+    <clr-icon class="text-primary" shape="check" *ngIf="verified"></clr-icon>
+  </div>
+</form>
+<clr-modal [(clrModalOpen)]="openModal" [clrModalClosable]="false">
+  <h3 class="modal-title">Is this the correct address?</h3>
+  <div class="modal-body">
+    <p>{{ this.addressCandidateString }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onConfirm()">
+      Yes
+    </button>
+    <button type="button" class="btn btn-warning-outline" (click)="onReject()">
+      No
+    </button>
+  </div>
+</clr-modal>

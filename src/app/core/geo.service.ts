@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class GeoService {
   private API_KEY = 'AIzaSyBX8CpFibBUfvhFkHQoBYVSeL2wEbRz6y8';
-  private GEO_CODE_API = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+  private GEO_CODE_API = 'https://maps.googleapis.com/maps/api/geocode/json';
 
   constructor(private _http: Http) {
   }
@@ -19,10 +19,11 @@ export class GeoService {
    console.log(this.result);
    });*/
   getLocation(address: string) {
+    console.log('requesting');
 
     return this._http.get(this.GEO_CODE_API, {
       params: {
-        address: address.replace(' ', '+'),
+        address: address.replace(' ', '+').replace(',', ''),
         key: this.API_KEY
       }
     });
