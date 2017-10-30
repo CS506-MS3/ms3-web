@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {PropertyService} from '../property.service';
 
 @Component({
   selector: 'app-create-listing-page',
@@ -10,12 +11,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CreateListingPageComponent implements OnInit {
 
-  constructor() {
+  constructor(private _propertyService: PropertyService) {
   }
 
   ngOnInit() {
   }
 
-  onSumbit(form) {
+  onSubmit(form) {
+
+    return this._propertyService.create(form);
   }
 }

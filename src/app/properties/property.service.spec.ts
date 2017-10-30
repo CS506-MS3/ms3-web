@@ -27,7 +27,18 @@ describe('PropertyService', () => {
     it('should dispatch a PropertyCreateActions.Request with input form as payload',
       inject([PropertyService], (service: PropertyService) => {
         const testForm: PropertyForm = {
-          title: 'testTitle'
+          title: 'testTitle',
+          address: {},
+          description: '',
+          propertyType: '',
+          roomType: '',
+          price: 0,
+          startDate: '',
+          duration: 0,
+          amenities: [],
+          pets: [],
+          houseRules: [],
+          imageUrls: [],
         };
 
         service.create(testForm);

@@ -10,6 +10,7 @@ import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs/Observable';
 import {Auth} from '../_domains/auth';
 import 'rxjs/add/observable/of';
+import {environment} from '../../environments/environment';
 
 describe('RestApiService', () => {
   let testRequest: RestApiRequest;
@@ -98,7 +99,7 @@ describe('RestApiService', () => {
         });
         const expectedRequest = new Request({
           method: 'POST',
-          url: API.AUTH.SIGN_IN.url,
+          url: environment.API_ENDPOINT.SERVER + API.AUTH.SIGN_IN.url,
           headers: expectedHeaders,
           body: JSON.stringify(testCredentials)
         });

@@ -1,4 +1,3 @@
-import {API} from './api-endpoints.constant';
 import {Headers, RequestOptionsArgs} from '@angular/http';
 import {environment} from '../../environments/environment';
 
@@ -6,7 +5,7 @@ export class RestApiRequest {
   private _request: RequestOptionsArgs;
 
   constructor(private _requestTemplate: RequestOptionsArgs) {
-    this._request = _requestTemplate;
+    this._request = Object.assign({}, _requestTemplate);
     this._request.url = environment.API_ENDPOINT.SERVER + this._request.url;
     this._request.headers = new Headers();
   }

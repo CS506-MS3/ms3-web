@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as PropertyCreateActions from '../../_effect-actions/property-create.actions';
+import {PropertyForm} from '../../_domains/property-form';
 
 @Component({
   selector: 'app-property-form',
@@ -9,6 +9,7 @@ import * as PropertyCreateActions from '../../_effect-actions/property-create.ac
 })
 export class PropertyFormComponent implements OnInit {
   @Input() type: string;
+  @Output() submit = new EventEmitter<PropertyForm>();
 
   propertyForm: FormGroup;
 
@@ -233,7 +234,7 @@ export class PropertyFormComponent implements OnInit {
 
   onSubmit({value, valid}) {
 
-    return new PropertyCreateActions.Request({
+    this.submit.emit({
       title: value.title,
       address: this.addressVerification.address,
       description: value.description,
