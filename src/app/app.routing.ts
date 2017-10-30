@@ -15,16 +15,16 @@ import {RemoveListingPageComponent} from './account/remove-listing-page/remove-l
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
   {path: 'welcome', component: LandingPageComponent},
-  {path: 'register', component: SignUpPageComponent},
-  {path: 'signUpSuccess', component: SignUpSuccessPageComponent},
-  {path: 'activate', component: ActivatePageComponent},
-  {path: 'activationSuccess', component: ActivationSuccessPageComponent},
-  {path: 'activationLinkRequest', component: ActivationLinkRequestPageComponent},
-  {path: 'deactivate', component: DeactivateAccountComponent},
-  {path: 'accountInfo', component: AccountInfoPageComponent},
+  {path: 'account/register', component: SignUpPageComponent},
+  {path: 'account/activation_link_sent', component: SignUpSuccessPageComponent},
+  {path: 'account/activate', component: ActivatePageComponent},
+  {path: 'account/activation_success', component: ActivationSuccessPageComponent},
+  {path: 'account/reactivate', component: ActivationLinkRequestPageComponent},
+  {path: 'account/deactivate', component: DeactivateAccountComponent},
+  {path: 'account/info', component: AccountInfoPageComponent},
   {path: 'access/:type', component: AccessPurchasePageComponent},
-  {path: 'createListing', component: CreateListingPageComponent},
-  {path: 'removeListing', component: RemoveListingPageComponent}
+  {path: 'property/create', component: CreateListingPageComponent},
+  {path: 'property/remove', component: RemoveListingPageComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  authenticated = false;
   loginModalOpen = false;
+  email: string;
 
-  constructor(private router: Router) {
+  constructor(private _router: Router, private _auth: AuthService) {
+    this._auth.auth$.subscribe((auth) => {
+      this.authenticated = auth.token !== null;
+      this.email = auth.email;
+    });
   }
 
   ngOnInit() {
@@ -21,6 +28,11 @@ export class HeaderComponent implements OnInit {
 
   onSignUpRequest() {
     this.loginModalOpen = false;
-    this.router.navigate(['/register']);
+    this._router.navigate(['/account/register']);
+  }
+
+  signOut() {
+
+    this._auth.unauthenticate();
   }
 }
