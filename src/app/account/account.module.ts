@@ -17,6 +17,8 @@ import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-p
 import {ClarityModule} from 'clarity-angular';
 import {DeactivateAccountComponent} from './deactivate-account/deactivate-account.component';
 import {RouterModule} from '@angular/router';
+import {DeactivateEffects} from './deactivate.effects';
+import {ActivationLinkEffects} from './activation-link.effects';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     EffectsModule.forFeature([
       SignUpEffects.Effects,
-      ActivateEffects.Effects
+      ActivateEffects.Effects,
+      DeactivateEffects.Effects,
+      ActivationLinkEffects.Effects
     ]),
     ClarityModule.forChild(),
     RouterModule
