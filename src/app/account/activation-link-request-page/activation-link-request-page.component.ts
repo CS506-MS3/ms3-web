@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
+import {AccountService} from '../account.service';
 
 @Component({
   selector: 'app-activation-link-request-page',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activation-link-request-page.component.scss']
 })
 export class ActivationLinkRequestPageComponent implements OnInit {
+  @HostBinding('class') cssClass = 'content-container';
 
-  constructor() { }
+  constructor(private _accountService: AccountService) {
+  }
 
   ngOnInit() {
   }
 
+  onSubmit(form) {
+
+    this._accountService.requestActivationLink(form);
+  }
 }
