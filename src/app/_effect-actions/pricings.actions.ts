@@ -2,9 +2,9 @@ import {Action} from '@ngrx/store';
 import {RequestError} from '../_domains/request-error';
 import {Pricing} from '../_domains/pricing';
 
-export const REQUEST = 'SignInEffects.REQUEST';
-export const SUCCESS = 'SignInEffects.SUCCESS';
-export const ERROR = 'SignInEffects.ERROR';
+export const REQUEST = 'PricingGetEffects.REQUEST';
+export const SUCCESS = 'PricingGetEffects.SUCCESS';
+export const ERROR = 'PricingGetEffects.ERROR';
 
 export class Request implements Action {
   readonly type = REQUEST;

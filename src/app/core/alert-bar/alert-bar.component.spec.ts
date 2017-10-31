@@ -21,7 +21,7 @@ describe('AlertBarComponent', () => {
     mockAppAlertReducer = jasmine.createSpy('appAlertReducer').and.returnValue(testAlert);
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({appAlert: mockAppAlertReducer})
+        StoreModule.forRoot({alert: mockAppAlertReducer})
       ],
       declarations: [AlertBarComponent]
     })

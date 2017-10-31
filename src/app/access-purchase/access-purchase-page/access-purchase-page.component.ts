@@ -22,9 +22,14 @@ export class AccessPurchasePageComponent implements OnInit {
   hasToken = false;
   purchaseForm: any;
   type: string;
+  typeDict = {
+    'vendor': 'VENDOR_SUBSCRIPTION',
+    'customer': 'CUSTOMER_SUBSCRIPTION',
+    'vendor-add': 'VENDOR_ADDITIONAL'
+  };
 
   constructor(private _store: Store<any>, private _route: ActivatedRoute) {
-    this.type = this._route.snapshot.params.type;
+    this.type = this.typeDict[this._route.snapshot.params.type];
 
     this._store.select('pricings').subscribe((pricings: Pricings) => {
       this.item = pricings.list.find((item: Pricing) => item.type === this.type) || this.item;

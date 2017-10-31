@@ -8,16 +8,21 @@ import {EmailForm} from '../_domains/email-form';
 import {ActivationLinkEffects} from './activation-link.effects';
 import {PasswordForm} from '../_domains/password-form';
 import {DeactivateEffects} from './deactivate.effects';
+import {Auth} from '../_domains/auth';
 
 @Injectable()
 export class AccountService {
   private readonly ACTIVATE_URL_PARAM_KEY = 'activate';
   private _activationToken: string;
+  private _auth: Auth;
 
   constructor(private _store: Store<any>,
               private _currentRoute: ActivatedRoute) {
     this._currentRoute.params.subscribe((params: Params) => {
       this._activationToken = params[this.ACTIVATE_URL_PARAM_KEY]; // TODO: confirm
+    });
+    this._store.select('auth').subscribe((auth) => {
+      this._auth = auth;
     });
   }
 
@@ -38,6 +43,9 @@ export class AccountService {
 
   deactivate(form: PasswordForm) {
 
-    return this._store.dispatch(new DeactivateEffects.Request(form));
+    return this._store.dispatch(new DeactivateEffects.Request({
+      form: form,
+      id: this._auth.id
+    }));
   }
 }

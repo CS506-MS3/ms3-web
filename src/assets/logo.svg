@@ -1,0 +1,16 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 36 36"
+     preserveAspectRatio="xMidYMid meet">
+    <rect class="clr-i-path-1 clr-i-background" fill-opacity="0.25" fill="#DDDDDD" opacity="0.6" x="0" y="0" width="36" height="36" rx="3"></rect>
+  <g transform="translate(0.000000,4167.000000) scale(0.100000,-0.100000)"
+     fill="#ffffff" stroke="none">
+    <path class="clr-i-path-2 clr-i-innerShape" d="M10750 21066 l0 -9326 5253 0 5254 0 2922 2942 c1608 1617 2925 2947
+2928 2955 3 7 -824 1447 -1838 3198 l-1844 3186 -1577 -1583 -1576 -1583 -141
+140 c-77 77 -2210 2221 -4740 4765 -2531 2544 -4610 4626 -4621 4628 -20 3
+-20 2 -20 -9322z" fill="#FFFFFF"/>
+    <path class="clr-i-path-2 clr-i-innerShape" d="M31490 29810 c-311 -313 -1739 -1747 -3173 -3186 -1434 -1440 -2606
+-2623 -2605 -2629 2 -6 832 -1441 1846 -3189 l1843 -3177 -2098 -2107 c-1153
+-1159 -2473 -2484 -2932 -2944 l-835 -838 681 0 682 0 2926 2941 2926 2941
+-20 31 c-132 219 -3665 6327 -3665 6338 -1 10 1099 1123 2497 2528 l2497 2510
+0 676 c0 371 -1 675 -2 675 -2 -1 -257 -257 -568 -570z" fill="#FFFFFF"/></g>
+</svg>

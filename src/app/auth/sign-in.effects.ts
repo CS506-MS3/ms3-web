@@ -54,7 +54,7 @@ export class SignInEffects {
           return new AlertActions.SetError('E-mail/Password Pair Does Not Exist');
 
         case HttpStatus.FORBIDDEN:
-          this._router.navigate(['activationLinkRequest']);
+          this._router.navigate(['account/reactivate']);
           return new AlertActions.SetError('Activation Required');
 
         default:

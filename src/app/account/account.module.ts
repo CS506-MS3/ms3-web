@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {SignUpFormComponent} from './sign-up-form/sign-up-form.component';
 import {SignUpPageComponent} from './sign-up-page/sign-up-page.component';
 import {AccountService} from './account.service';
-import {SignInFormComponent} from './sign-in-form/sign-in-form.component';
 import {EffectsModule} from '@ngrx/effects';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SignUpEffects} from './sign-up.effects';
@@ -18,6 +17,8 @@ import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-p
 import {ClarityModule} from 'clarity-angular';
 import {DeactivateAccountComponent} from './deactivate-account/deactivate-account.component';
 import {RouterModule} from '@angular/router';
+import {DeactivateEffects} from './deactivate.effects';
+import {ActivationLinkEffects} from './activation-link.effects';
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     EffectsModule.forFeature([
       SignUpEffects.Effects,
-      ActivateEffects.Effects
+      ActivateEffects.Effects,
+      DeactivateEffects.Effects,
+      ActivationLinkEffects.Effects
     ]),
     ClarityModule.forChild(),
     RouterModule
@@ -34,7 +37,6 @@ import {RouterModule} from '@angular/router';
   declarations: [
     SignUpFormComponent,
     SignUpPageComponent,
-    SignInFormComponent,
     ActivatePageComponent,
     ActivationSuccessPageComponent,
     ActivationLinkRequestPageComponent,

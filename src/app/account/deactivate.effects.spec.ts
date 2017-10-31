@@ -21,6 +21,12 @@ describe('Deactivate Effects', () => {
     }
   }
   let api: MockApiService;
+  const testInput = {
+    form: {
+      password: 'password'
+    },
+    id: 1
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,7 +44,7 @@ describe('Deactivate Effects', () => {
   describe('onRequest$', () => {
     it('should dispatch Success if request is successful', () => {
       spyOn(api, 'request').and.returnValue(Observable.of({}));
-      actions = hot('--a-', {a: new DeactivateEffects.Request({password: 'password'})});
+      actions = hot('--a-', {a: new DeactivateEffects.Request(testInput)});
 
       const expected = cold('--b', {b: new DeactivateEffects.Success()});
 
@@ -51,7 +57,7 @@ describe('Deactivate Effects', () => {
         error: 'test error'
       };
       spyOn(api, 'request').and.returnValue(Observable.throw(error));
-      actions = hot('--a-', {a: new DeactivateEffects.Request({password: 'password'})});
+      actions = hot('--a-', {a: new DeactivateEffects.Request(testInput)});
 
       const expected = cold('--b', {b: new DeactivateEffects.Error(error)});
 

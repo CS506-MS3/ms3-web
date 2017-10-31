@@ -94,7 +94,7 @@ describe('RestApiService', () => {
 
       it('should add token if available', inject([XHRBackend, RestApiService], (mockBackend, service) => {
         const expectedHeaders = new Headers({
-          'Authorization': token,
+          'token': token,
           'Content-Type': 'application/json'
         });
         const expectedRequest = new Request({

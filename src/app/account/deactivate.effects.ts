@@ -23,7 +23,7 @@ export namespace DeactivateEffects {
   export class Request implements Action {
     readonly type = REQUEST;
 
-    constructor(public payload: PasswordForm) {
+    constructor(public payload: any) {
     }
   }
 
@@ -45,7 +45,8 @@ export namespace DeactivateEffects {
       .map((action: Request) => action.payload)
       .switchMap((payload) => {
         const request = new RestApiRequest(API.DEACTIVATE);
-        request.setBody(payload);
+        request.setPathParams({userId: payload.id});
+        request.setBody(payload.form);
 
         return this._api.request(request)
           .map(() => new Success())

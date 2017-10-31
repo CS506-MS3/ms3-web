@@ -17,9 +17,15 @@ describe('AccountService', () => {
   const routerMock = {
     navigate: jasmine.createSpy('navigate')
   };
-  const storeMock = {
-    dispatch: jasmine.createSpy('dispatch')
-  };
+  let mockStore;
+  class MockStore {
+    dispatch = jasmine.createSpy('dispatch');
+    select(params: any) {
+      return Observable.of({
+        id: 1
+      });
+    }
+  }
 
   beforeEach(() => {
     mockAccountReducer = jasmine.createSpy('account');
@@ -34,9 +40,11 @@ describe('AccountService', () => {
         AccountService,
         {provide: ActivatedRoute, useValue: {params: Observable.of({activate: testToken})}},
         {provide: Router, useValue: routerMock},
-        {provide: Store, useValue: storeMock}
+        {provide: Store, useClass: MockStore}
       ]
     });
+
+    mockStore = TestBed.get(Store);
   });
 
   it('should be created', inject([AccountService], (service: AccountService) => {
@@ -49,7 +57,7 @@ describe('AccountService', () => {
 
       service.create(inputSignUpForm);
 
-      expect(storeMock.dispatch).toHaveBeenCalledWith(new SignUpEffects.Request(inputSignUpForm));
+      expect(mockStore.dispatch).toHaveBeenCalledWith(new SignUpEffects.Request(inputSignUpForm));
     }));
   });
 
@@ -58,7 +66,7 @@ describe('AccountService', () => {
       inject([AccountService], (service: AccountService) => {
         service.activate();
 
-        expect(storeMock.dispatch).toHaveBeenCalledWith(new ActivateEffects.Request(testToken));
+        expect(mockStore.dispatch).toHaveBeenCalledWith(new ActivateEffects.Request(testToken));
       })
     );
   });
@@ -71,7 +79,7 @@ describe('AccountService', () => {
         };
         service.requestActivationLink(testForm);
 
-        expect(storeMock.dispatch).toHaveBeenCalledWith(new ActivationLinkEffects.Request(testForm));
+        expect(mockStore.dispatch).toHaveBeenCalledWith(new ActivationLinkEffects.Request(testForm));
       })
     );
   });
@@ -84,7 +92,10 @@ describe('AccountService', () => {
         };
         service.deactivate(testForm);
 
-        expect(storeMock.dispatch).toHaveBeenCalledWith(new DeactivateEffects.Request(testForm));
+        expect(mockStore.dispatch).toHaveBeenCalledWith(new DeactivateEffects.Request({
+          form: testForm,
+          id: 1
+        }));
       })
     );
   });
