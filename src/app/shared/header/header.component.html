@@ -1,38 +1,32 @@
 <header class="header-6">
   <div class="branding">
     <a routerLink="/welcome" routerLinkActive="active" class="nav-link">
-      <clr-icon shape="vm-bug"></clr-icon>
-      <span class="title">Home</span>
+      <clr-icon shape="home" class="is-inverse"></clr-icon>
+      <span class="title">UW Sublease</span>
     </a>
-  </div>
-  <div class="header-nav">
-    <a routerLink="properties" routerLinkActive="active" class="nav-link"><span class="nav-text">View Properties</span></a>
-    <a routerLink="pricing" routerLinkActive="active" class="nav-link"><span class="nav-text">Pricing</span></a>
   </div>
   <div class="header-actions">
-    <a (click)="onClick()" class="nav-link nav-text">
+    <a (click)="onClick()" class="nav-link nav-text" *ngIf="!authenticated">
       Sign-in/Sign-up
     </a>
+    <clr-dropdown *ngIf="authenticated">
+      <button class="nav-text" clrDropdownTrigger>
+        {{email}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a routerLink="account/info" clrDropdownItem>Account Management</a>
+        <a clrDropdownItem (click)="signOut()">Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
   </div>
 </header>
 
 <clr-modal [(clrModalOpen)]="loginModalOpen">
   <h3 class="modal-title">Sign In</h3>
   <div class="modal-body">
-    <form>
-      <section class="form-block">
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="" size="45">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="" size="45">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-        <button type="button" class="btn btn-secondary btn-block" (click)="onSignUpRequest()">Sign Up</button>
-      </section>
-    </form>
+    <app-sign-in-form></app-sign-in-form>
+    <button type="button" class="btn btn-secondary btn-block" (click)="onSignUpRequest()">Sign Up</button>
   </div>
   <div class="modal-footer">
     <a href="">Reset Password</a>
