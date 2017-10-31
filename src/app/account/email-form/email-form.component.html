@@ -1,0 +1,24 @@
+<form novalidate (ngSubmit)="onSubmit(emailForm)" [formGroup]="emailForm">
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label for="email-input">E-mail</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <label for="email-input"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-sm"
+               [class.invalid]="email.invalid && email.touched">
+          <input class="form-control" type="email" id="email-input" placeholder="Enter your Wisc email"
+                 size="45"
+                 formControlName="email">
+          <span class="tooltip-content">
+            You must input a valid @wisc.edu email
+          </span>
+        </label>
+      </div>
+    </div>
+    <button type="submit" [disabled]="emailForm.invalid" class="btn btn-primary">Request</button>
+  </section>
+</form>
