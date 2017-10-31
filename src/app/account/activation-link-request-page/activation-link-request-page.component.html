@@ -1,3 +1,6 @@
-<p>
-  activation-link-request-page works!
-</p>
+<app-sign-up-progress [stage]="'ACTIVATE'"></app-sign-up-progress>
+<div class="content-area">
+  <h2>(Re)activate Your Account</h2>
+  <p>Please enter your e-mail and submit to receive a new activation link</p>
+  <app-email-form (submit)="onSubmit($event)"></app-email-form>
+</div>

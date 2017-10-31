@@ -20,6 +20,7 @@ import {RouterModule} from '@angular/router';
 import {DeactivateEffects} from './deactivate.effects';
 import {ActivationLinkEffects} from './activation-link.effects';
 import { SignUpProgressComponent } from './sign-up-progress/sign-up-progress.component';
+import { EmailFormComponent } from './email-form/email-form.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { SignUpProgressComponent } from './sign-up-progress/sign-up-progress.com
     AccountInfoPageComponent,
     RemoveListingPageComponent,
     AccountInfoPageComponent,
-    SignUpProgressComponent
+    SignUpProgressComponent,
+    EmailFormComponent
   ],
   providers: [AccountService]
 })

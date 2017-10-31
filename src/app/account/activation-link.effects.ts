@@ -54,7 +54,7 @@ export namespace ActivationLinkEffects {
 
     @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .do(() => this._router.navigate(['signUpSuccess']));
+      .do(() => this._router.navigate(['account/activation_link_sent']));
 
     @Effect() onError$: Observable<Action> = this.actions$
       .ofType(ERROR)
