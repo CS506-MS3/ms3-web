@@ -19,6 +19,7 @@ import {DeactivateAccountComponent} from './deactivate-account/deactivate-accoun
 import {RouterModule} from '@angular/router';
 import {DeactivateEffects} from './deactivate.effects';
 import {ActivationLinkEffects} from './activation-link.effects';
+import { SignUpProgressComponent } from './sign-up-progress/sign-up-progress.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {ActivationLinkEffects} from './activation-link.effects';
     DeactivateAccountComponent,
     AccountInfoPageComponent,
     RemoveListingPageComponent,
-    AccountInfoPageComponent
+    AccountInfoPageComponent,
+    SignUpProgressComponent
   ],
   providers: [AccountService]
 })
