@@ -5,7 +5,7 @@ export const API = {
   },
   DEACTIVATE: {
     method: 'PUT',
-    url: '/deactivate'
+    url: '/users/${userId}/deactivate'
   },
   ACTIVATION_LINK: {
     method: 'POST',
