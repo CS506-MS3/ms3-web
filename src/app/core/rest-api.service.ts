@@ -3,6 +3,7 @@ import {Http, Request, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import {HttpStatus} from './http-status.enum';
 import {RequestArgs} from '@angular/http/src/interfaces';
 import {Auth} from '../_domains/auth';
@@ -14,15 +15,12 @@ export class RestApiService {
   private _token: string;
 
   constructor(private http: Http, private _authService: AuthService) {
-    this._authService.auth$.subscribe((auth: Auth) => {
-
-      this._token = auth.token;
-    });
+    this._authService.auth$.subscribe((auth: Auth) => this._token = auth.token);
   }
 
   request(request: RestApiRequest): Observable<any> {
     if (this._token) {
-      request.setHeader('Authorization', this._token);
+      request.setHeader('token', this._token);
     }
 
     const options = request.toRequestOptions();
