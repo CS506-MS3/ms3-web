@@ -11,7 +11,6 @@ import {AppAlert} from '../../_domains/app-alert';
 export class AlertBarComponent implements OnInit {
   private alertSubscription;
 
-
   alert: AppAlert = {
     show: false,
     type: null,
@@ -19,7 +18,7 @@ export class AlertBarComponent implements OnInit {
   };
 
   constructor(private _store: Store<any>) {
-    const store$ = _store.select('appAlert');
+    const store$ = this._store.select('alert');
     this.alertSubscription = store$
       .subscribe((payload: AppAlert) => this.alert = payload);
   }
