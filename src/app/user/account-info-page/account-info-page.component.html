@@ -3,16 +3,14 @@
   <!--Profile picture goes here-->
   <h3>Personal Information</h3>
   <!--Email and Phone comes from the backend-->
-  <div class="personal-info">
+  <div class="account-sidebar-section">
     <div>E-mail: example@wisc.edu</div>
     <div>Phone: 608-594-1234</div>
     <clr-checkbox>Receive E-mail Notifications</clr-checkbox>
   </div>
 
   <h3>Your Subscription</h3>
-  <div>
-    <button class="btn btn-success">Get POST Access</button>
-    <button class="btn btn-success">Get VIEW Access</button>
+  <div class="account-sidebar-section">
     <div class="card">
       <div class="card-block">
         <div class="card-title">
@@ -38,7 +36,11 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-link" routerLink="../deactivate">Deactivate Account</button>
+    <button class="btn btn-success btn-block">Get POST Access</button>
+    <button class="btn btn-success btn-block">Get VIEW Access</button>
+  </div>
+  <div class="account-sidebar-section">
+    <button class="btn btn-link btn-block" routerLink="../deactivate">Deactivate Account</button>
   </div>
 </div>
 

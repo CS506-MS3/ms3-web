@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DeactivateAccountComponent} from './deactivate-account.component';
-import {AccountService} from '../account.service';
+import {AccountService} from '../../account/account.service';
 import {ReactiveFormsModule} from '@angular/forms';
 
 describe('DeactivateAccountComponent', () => {

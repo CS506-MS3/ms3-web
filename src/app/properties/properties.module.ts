@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {PropertyCreateEffects} from './property-create.effects';
 import {PropertyRemoveEffects} from './property-remove.effects';
+import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-page.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {PropertyRemoveEffects} from './property-remove.effects';
     CreateListingPageComponent,
     PropertyFormComponent,
     AddressVerificationFormComponent,
-    ImageFormComponent
+    ImageFormComponent,
+    RemoveListingPageComponent
   ],
   providers: [PropertiesService, PropertyService]
 })

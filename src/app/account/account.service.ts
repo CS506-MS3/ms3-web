@@ -7,7 +7,7 @@ import {ActivateEffects} from './activate.effects';
 import {EmailForm} from '../_domains/email-form';
 import {ActivationLinkEffects} from './activation-link.effects';
 import {PasswordForm} from '../_domains/password-form';
-import {DeactivateEffects} from './deactivate.effects';
+import {DeactivateEffects} from '../user/deactivate.effects';
 import {Auth} from '../_domains/auth';
 
 @Injectable()
