@@ -16,6 +16,9 @@ export class HeaderComponent implements OnInit {
     this._auth.auth$.subscribe((auth) => {
       this.authenticated = auth.token !== null;
       this.email = auth.email;
+      if (this.authenticated) {
+        this.loginModalOpen = false;
+      }
     });
   }
 
