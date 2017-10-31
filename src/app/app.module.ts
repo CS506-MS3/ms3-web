@@ -21,14 +21,12 @@ import * as Pricings from './_actions/pricings.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
-import {TestComponent} from './test/test.component';
 import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent,
-    TestComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

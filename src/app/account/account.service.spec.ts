@@ -9,7 +9,7 @@ import 'rxjs/add/observable/of';
 import {SignUpEffects} from './sign-up.effects';
 import {ActivateEffects} from './activate.effects';
 import {ActivationLinkEffects} from './activation-link.effects';
-import {DeactivateEffects} from './deactivate.effects';
+import {DeactivateEffects} from '../user/deactivate.effects';
 
 describe('AccountService', () => {
   let mockAccountReducer;
