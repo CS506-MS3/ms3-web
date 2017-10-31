@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   API_ENDPOINT: {
-    SERVER: 'http://random'
+    SERVER: 'https://www.madisons3.com/api'
   }
 };
