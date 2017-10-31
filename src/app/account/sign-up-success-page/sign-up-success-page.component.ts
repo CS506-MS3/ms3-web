@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sign-up-success-page',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-up-success-page.component.scss']
 })
 export class SignUpSuccessPageComponent implements OnInit {
+  @HostBinding('class') cssClass = 'content-container';
 
   constructor() { }
 
