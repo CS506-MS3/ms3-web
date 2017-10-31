@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivatePageComponent } from './activate-page.component';
 import {AccountService} from '../account.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('ActivatePageComponent', () => {
   let component: ActivatePageComponent;
@@ -12,6 +13,9 @@ describe('ActivatePageComponent', () => {
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
       declarations: [ ActivatePageComponent ],
       providers: [
         {provide: AccountService, useValue: mockAccount}
