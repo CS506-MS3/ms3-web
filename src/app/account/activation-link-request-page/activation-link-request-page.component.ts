@@ -16,7 +16,6 @@ export class ActivationLinkRequestPageComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(form);
 
     this._accountService.requestActivationLink(form);
   }
