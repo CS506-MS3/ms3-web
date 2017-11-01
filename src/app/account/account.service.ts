@@ -18,7 +18,7 @@ export class AccountService {
 
   constructor(private _store: Store<any>,
               private _currentRoute: ActivatedRoute) {
-    this._currentRoute.params.subscribe((params: Params) => {
+    this._currentRoute.queryParams.subscribe((params: Params) => {
       this._activationToken = params[this.ACTIVATE_URL_PARAM_KEY]; // TODO: confirm
     });
     this._store.select('auth').subscribe((auth) => {
