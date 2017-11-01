@@ -1,4 +1,4 @@
 export interface UserInfo {
-  phoneNumber: string;
+  phone: string;
   notification: boolean;
 }

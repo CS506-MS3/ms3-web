@@ -48,6 +48,10 @@ export const API = {
       method: 'POST',
       url: '/users'
     },
+    GET_INFO: {
+      method: 'GET',
+      url: '/users/${userId}/info'
+    },
     BID: {
       method: 'POST',
       url: '/users/${userId}/bid'
