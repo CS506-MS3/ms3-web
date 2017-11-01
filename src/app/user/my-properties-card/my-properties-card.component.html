@@ -1,6 +1,6 @@
 <div class="property-summary-controls">
-  <button type="button" class="close" aria-label="Close">
+  <button type="button" class="close" aria-label="Close" (click)="onRemove()">
     <clr-icon aria-hidden="true" shape="close"></clr-icon>
   </button>
 </div>
-<app-property-summary-card></app-property-summary-card>
+<app-property-summary-card [data]="data"></app-property-summary-card>
