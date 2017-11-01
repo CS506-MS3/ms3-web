@@ -51,7 +51,7 @@ export class SignOutEffects {
     .do(() => {
       const currentRouteConfig: Route = this._router.config.find(route => route.path === this._router.url.substr(1));
 
-      if (currentRouteConfig != null && currentRouteConfig.canActivate !== null) {
+      if (currentRouteConfig != null && currentRouteConfig.canActivate != null) {
         if (currentRouteConfig.canActivate[0].name === 'AuthGuard') {
           this._router.navigate(['/welcome']);
         }

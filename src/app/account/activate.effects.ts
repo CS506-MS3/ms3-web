@@ -65,7 +65,7 @@ export namespace ActivateEffects {
 
     @Effect() onSuccess$: Observable<Action> = this.actions$
       .ofType(SUCCESS)
-      .do(() => this._router.navigate(['activationSuccess']))
+      .do(() => this._router.navigate(['account/activation_success']))
       .map((action: Success) => action.payload)
       .mergeMap((payload: AuthResponse) => [
         new AuthActions.Set(new Auth(payload.token, payload.user.email, payload.user.id)),
@@ -78,7 +78,7 @@ export namespace ActivateEffects {
       .map((error: RequestError) => {
         switch (error.status) {
           case HttpStatus.UNAUTHORIZED:
-            this._router.navigate(['activationLinkRequest']);
+            this._router.navigate(['account/reactivate']);
             return new AlertActions.SetError('Activation link invalid');
 
           default:

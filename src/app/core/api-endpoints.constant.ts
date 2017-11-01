@@ -1,6 +1,6 @@
 export const API = {
   ACTIVATE: {
-    method: 'POST',
+    method: 'GET',
     url: '/activate'
   },
   DEACTIVATE: {

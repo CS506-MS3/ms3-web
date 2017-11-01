@@ -38,7 +38,7 @@ describe('AccountService', () => {
       ],
       providers: [
         AccountService,
-        {provide: ActivatedRoute, useValue: {params: Observable.of({activate: testToken})}},
+        {provide: ActivatedRoute, useValue: {queryParams: Observable.of({token: testToken})}},
         {provide: Router, useValue: routerMock},
         {provide: Store, useClass: MockStore}
       ]
