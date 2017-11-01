@@ -67,7 +67,7 @@ export class SignInEffects {
     .do(() => {
       const currentRouteConfig: Route = this._router.config.find(route => route.path === this._router.url.substr(1));
 
-      if (currentRouteConfig != null && currentRouteConfig.canActivate !== null) {
+      if (currentRouteConfig != null && currentRouteConfig.canActivate != null) {
         if (currentRouteConfig.canActivate[0].name === 'VisitorGuard') {
           this._router.navigate(['/account/info']);
         }
