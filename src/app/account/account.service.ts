@@ -12,7 +12,7 @@ import {Auth} from '../_domains/auth';
 
 @Injectable()
 export class AccountService {
-  private readonly ACTIVATE_URL_PARAM_KEY = 'activate';
+  private readonly ACTIVATE_URL_PARAM_KEY = 'token';
   private _activationToken: string;
   private _auth: Auth;
 
