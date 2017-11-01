@@ -8,7 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./email-form.component.scss']
 })
 export class EmailFormComponent implements OnInit {
-  @Output() submit = new EventEmitter<EmailForm>();
+  @Output() onRequest = new EventEmitter<EmailForm>();
 
   emailForm: FormGroup;
 
@@ -28,7 +28,7 @@ export class EmailFormComponent implements OnInit {
   onSubmit({value, valid}) {
     if (valid) {
 
-      this.submit.emit(value);
+      this.onRequest.emit(value);
     }
   }
 }
