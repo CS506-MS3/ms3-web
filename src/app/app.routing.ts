@@ -11,20 +11,22 @@ import {AccountInfoPageComponent} from './user/account-info-page/account-info-pa
 import {AccessPurchasePageComponent} from './access-purchase/access-purchase-page/access-purchase-page.component';
 import {CreateListingPageComponent} from './properties/create-listing-page/create-listing-page.component';
 import {RemoveListingPageComponent} from './properties/remove-listing-page/remove-listing-page.component';
+import {AuthGuard} from './auth/auth.guard';
+import {VisitorGuard} from './auth/visitor.guard';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
   {path: 'welcome', component: LandingPageComponent},
-  {path: 'account/register', component: SignUpPageComponent},
-  {path: 'account/activation_link_sent', component: SignUpSuccessPageComponent},
-  {path: 'account/activate', component: ActivatePageComponent},
+  {path: 'account/register', component: SignUpPageComponent, canActivate: [VisitorGuard]},
+  {path: 'account/activation_link_sent', component: SignUpSuccessPageComponent, canActivate: [VisitorGuard]},
+  {path: 'account/activate', component: ActivatePageComponent, canActivate: [VisitorGuard]},
   {path: 'account/activation_success', component: ActivationSuccessPageComponent},
-  {path: 'account/reactivate', component: ActivationLinkRequestPageComponent},
-  {path: 'account/deactivate', component: DeactivateAccountComponent},
-  {path: 'account/info', component: AccountInfoPageComponent},
-  {path: 'access/:type', component: AccessPurchasePageComponent},
-  {path: 'property/create', component: CreateListingPageComponent},
-  {path: 'property/:id/remove', component: RemoveListingPageComponent}
+  {path: 'account/reactivate', component: ActivationLinkRequestPageComponent, canActivate: [VisitorGuard]},
+  {path: 'account/deactivate', component: DeactivateAccountComponent, canActivate: [AuthGuard]},
+  {path: 'account/info', component: AccountInfoPageComponent, canActivate: [AuthGuard]},
+  {path: 'access/:type', component: AccessPurchasePageComponent, canActivate: [AuthGuard]},
+  {path: 'property/create', component: CreateListingPageComponent, canActivate: [AuthGuard]},
+  {path: 'property/:id/remove', component: RemoveListingPageComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

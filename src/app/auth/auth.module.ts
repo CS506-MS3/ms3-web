@@ -6,6 +6,7 @@ import {SignInEffects} from './sign-in.effects';
 import {AuthGuard} from './auth.guard';
 import {AuthPermissions} from './auth.permission';
 import {SignOutEffects} from './sign-out.effects';
+import {VisitorGuard} from './visitor.guard';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import {SignOutEffects} from './sign-out.effects';
     ])
   ],
   declarations: [],
-  providers: [AuthService, AuthGuard, AuthPermissions]
+  providers: [AuthService, AuthGuard, VisitorGuard, AuthPermissions]
 })
 export class AuthModule {
 }
