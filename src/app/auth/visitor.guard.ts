@@ -19,9 +19,9 @@ export class VisitorGuard implements CanActivate {
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this._permissions.isLoggedIn(this._auth)) {
       this._router.navigate(['account/info']);
-      return false
+      return false;
     } else {
-      return true
+      return true;
     }
   }
 }

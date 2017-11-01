@@ -16,7 +16,6 @@ describe('VisitorGuard', () => {
   const mockAuthPermissions = {
     isLoggedIn: jasmine.createSpy('isLoggedIn')
   };
-  let mockSnapshot;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,7 +32,7 @@ describe('VisitorGuard', () => {
 
   it('should check permission of isLoggedIn', inject([VisitorGuard], (guard: VisitorGuard) => {
     expect(guard).toBeTruthy();
-    guard.canActivate(new ActivatedRouteSnapshot(), mockSnapshot);
+    guard.canActivate(new ActivatedRouteSnapshot(), undefined);
 
     expect(mockAuthPermissions.isLoggedIn).toHaveBeenCalled();
   }));

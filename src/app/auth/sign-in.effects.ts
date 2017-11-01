@@ -65,9 +65,9 @@ export class SignInEffects {
   @Effect({dispatch: false}) onAuthSet$: Observable<Action> = this.actions$
     .ofType(AuthActions.SET)
     .do(() => {
-      const currentRouteConfig: Route = this._router.config.find(route => route.path == this._router.url.substr(1));
+      const currentRouteConfig: Route = this._router.config.find(route => route.path === this._router.url.substr(1));
 
-      if(currentRouteConfig != null && currentRouteConfig.canActivate != null) {
+      if (currentRouteConfig != null && currentRouteConfig.canActivate !== null) {
         if (currentRouteConfig.canActivate[0].name === 'VisitorGuard') {
           this._router.navigate(['/account/info']);
         }
