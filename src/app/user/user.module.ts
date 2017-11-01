@@ -12,6 +12,11 @@ import {ClarityModule} from 'clarity-angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserInfoGetEffects} from './user-info-get.effects';
 import {RouterModule} from '@angular/router';
+import {PersonalInfoComponent} from './personal-info/personal-info.component';
+import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
+import {PropertySummaryCardComponent} from './property-summary-card/property-summary-card.component';
+import {MyPropertiesListComponent} from './my-properties-list/my-properties-list.component';
+import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card.component';
 
 @NgModule({
   imports: [
@@ -26,7 +31,12 @@ import {RouterModule} from '@angular/router';
   ],
   declarations: [
     AccountInfoPageComponent,
-    DeactivateAccountComponent
+    DeactivateAccountComponent,
+    PersonalInfoComponent,
+    SubscriptionListComponent,
+    PropertySummaryCardComponent,
+    MyPropertiesCardComponent,
+    MyPropertiesListComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService

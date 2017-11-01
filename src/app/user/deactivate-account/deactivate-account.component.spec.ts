@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DeactivateAccountComponent} from './deactivate-account.component';
 import {AccountService} from '../../account/account.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('DeactivateAccountComponent', () => {
   const mockAccountService = {
@@ -14,7 +15,8 @@ describe('DeactivateAccountComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule
       ],
       providers: [
         {provide: AccountService, useValue: mockAccountService}

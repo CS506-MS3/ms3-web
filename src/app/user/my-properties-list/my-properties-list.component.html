@@ -1,0 +1,7 @@
+<div class="property-summary col-lg-12" *ngFor="let property of properties">
+  <app-my-properties-card [data]="property" (remove)="onRemove($event)"></app-my-properties-card>
+</div>
+<div class="col-lg-12" style="padding-top: 24px;">
+  <button type="button" class="btn btn-block btn-outline-primary"
+          routerLink="../../property/create">Add a property</button>
+</div>

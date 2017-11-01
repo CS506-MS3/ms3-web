@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'account/info', component: AccountInfoPageComponent},
   {path: 'access/:type', component: AccessPurchasePageComponent},
   {path: 'property/create', component: CreateListingPageComponent},
-  {path: 'property/remove', component: RemoveListingPageComponent}
+  {path: 'property/:id/remove', component: RemoveListingPageComponent}
 ];
 
 @NgModule({

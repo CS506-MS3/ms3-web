@@ -27,7 +27,7 @@ export class PropertyService {
     // this._store.dispatch(new PropertyUpdateActions.Request(form));
   }
 
-  remove(id) {
-    this._store.dispatch(new PropertyRemoveActions.Request(id));
+  remove(id, form) {
+    this._store.dispatch(new PropertyRemoveActions.Request({id: id, form: form}));
   }
 }

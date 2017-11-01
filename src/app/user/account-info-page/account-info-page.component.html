@@ -4,24 +4,12 @@
   <h3>Personal Information</h3>
   <!--Email and Phone comes from the backend-->
   <div class="account-sidebar-section">
-    <div>E-mail: example@wisc.edu</div>
-    <div>Phone: 608-594-1234</div>
-    <clr-checkbox [clrDisabled]="true" [clrChecked]="true">Receive E-mail Notifications</clr-checkbox>
+    <app-personal-info></app-personal-info>
   </div>
 
   <h3>Your Subscription</h3>
   <div class="account-sidebar-section">
-    <div class="subscription-info">
-      <h6>Subleaser Access</h6>
-      <button class="btn btn-success btn-block">Get Subleaser Access</button>
-    </div>
-    <div class="subscription-info">
-      <h6>View Access</h6>
-      <div class="subscription-details">
-        <div><span>Next Payment: </span>2017.11.15</div>
-        <div><span>Expected Charges: </span>$7.00</div>
-      </div>
-    </div>
+    <app-subscription-list></app-subscription-list>
   </div>
   <div class="account-sidebar-section deactivate-link">
     <a routerLink="../deactivate">Deactivate Account</a>
@@ -33,34 +21,7 @@
   <div class="row">
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 property-summary-list">
       <h3>My Properties</h3>
-      <div class="row">
-        <div class="property-summary col-lg-12" *ngFor="let num of dummyNum">
-          <div class="card">
-            <div class="card-block">
-              <div class="card-media-block">
-                <img src="assets/images/bedroom.jpg" class="card-media-image">
-                <div class="card-media-description">
-                  <span class="card-media-title">Property Title</span>
-                  <span class="card-media-text">Area</span>
-                </div>
-              </div>
-              <div class="property-summary-controls">
-                <button type="button" class="close" aria-label="Close">
-                  <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                </button>
-              </div>
-              <div class="row">
-                <div class="col-lg-6"><span>$900.00 / month</span></div>
-                <div class="col-lg-6"><span>2017/10/25 - 2018/01/31</span></div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <div class="col-lg-12" style="padding-top: 24px;">
-          <button type="button" class="btn btn-block btn-outline-primary">Add a property</button>
-        </div>
-      </div>
+      <app-my-properties-list class="row"></app-my-properties-list>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 property-summary-list">
       <h3>Wishlist</h3>

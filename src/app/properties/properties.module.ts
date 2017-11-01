@@ -12,11 +12,13 @@ import {EffectsModule} from '@ngrx/effects';
 import {PropertyCreateEffects} from './property-create.effects';
 import {PropertyRemoveEffects} from './property-remove.effects';
 import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-page.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     ClarityModule.forChild(),
     EffectsModule.forFeature([
       PropertyCreateEffects,

@@ -19,6 +19,7 @@ export class PropertyRemoveEffects {
     .switchMap((payload) => {
       const request = new RestApiRequest(API.USER.PROPERTIES.DELETE);
       request.setPathParams({propertyId: payload.id});
+      request.setBody(payload.form);
       return this._api.request(request)
         .map(response => new PropertyRemoveActions.Success())
         .catch(error => Observable.of(new PropertyRemoveActions.Error(error)));
