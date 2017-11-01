@@ -10,6 +10,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {DeactivateEffects} from './deactivate.effects';
 import {ClarityModule} from 'clarity-angular';
 import {ReactiveFormsModule} from '@angular/forms';
+import {UserInfoGetEffects} from './user-info-get.effects';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     EffectsModule.forFeature([
       DeactivateEffects.Effects,
+      UserInfoGetEffects
     ]),
   ],
   declarations: [
