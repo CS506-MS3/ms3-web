@@ -50,7 +50,7 @@ export const API = {
     },
     GET_INFO: {
       method: 'GET',
-      url: '/users/${userId}'
+      url: '/users/${userId}/info'
     },
     BID: {
       method: 'POST',
