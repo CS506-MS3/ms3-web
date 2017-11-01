@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../account/account.service';
 
@@ -8,6 +8,8 @@ import {AccountService} from '../../account/account.service';
   styleUrls: ['./deactivate-account.component.scss']
 })
 export class DeactivateAccountComponent implements OnInit {
+  @HostBinding('class') cssClass = 'content-container';
+
   deactivateForm: FormGroup;
 
   constructor(private _formBuilder: FormBuilder, private _account: AccountService) {
