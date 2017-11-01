@@ -12,6 +12,7 @@ import {ClarityModule} from 'clarity-angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserInfoGetEffects} from './user-info-get.effects';
 import {RouterModule} from '@angular/router';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {RouterModule} from '@angular/router';
   ],
   declarations: [
     AccountInfoPageComponent,
-    DeactivateAccountComponent
+    DeactivateAccountComponent,
+    PersonalInfoComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService
