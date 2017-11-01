@@ -8,8 +8,6 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 export class AccountInfoPageComponent implements OnInit {
   @HostBinding('class') cssClass = 'content-container';
 
-  dummyNum = [1, 2, 3, 4];
-
   constructor() {
   }
 

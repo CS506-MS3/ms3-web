@@ -22,6 +22,9 @@ import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
 import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
+import { PropertySummaryCardComponent } from './user/property-summary-card/property-summary-card.component';
+import { MyPropertiesCardComponent } from './user/my-properties-card/my-properties-card.component';
+import { MyPropertiesListComponent } from './user/my-properties-list/my-properties-list.component';
 
 @NgModule({
   declarations: [
