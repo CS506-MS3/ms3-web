@@ -1,0 +1,38 @@
+.profilepic{
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.account-sidebar-section {
+  margin-top: 1rem;
+
+  clr-checkbox {
+    margin-top: 0.5rem;
+  }
+}
+
+.deactivate-link {
+  bottom: 11rem;
+  position: absolute;
+}
+
+div.sidenav {
+  > div, > h3 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+div.property-summary-list {
+  h3 {
+    margin-top: 0;
+  }
+}
+
+div.property-summary {
+
+  div.card-block {
+    position: relative;
+
+  }
+}

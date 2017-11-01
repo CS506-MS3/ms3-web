@@ -1,0 +1,15 @@
+<form novalidate (ngSubmit)="onSubmit(credentials)" [formGroup]="credentials">
+  <section class="form-block">
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" placeholder="" size="45"
+             formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="" size="45"
+             formControlName="password">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="credentials.invalid">Sign In</button>
+  </section>
+</form>

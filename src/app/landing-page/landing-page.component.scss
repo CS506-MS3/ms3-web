@@ -1,0 +1,77 @@
+$upperlayer: #fff;
+$fullwidth: 100%;
+body,
+html {
+  background-color: #f8f8f8;
+}
+.hero.content-area {
+  padding: 0;
+}
+.landing-img {
+  position: relative;
+  max-width: 100%;
+  height: 80%;
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+  }
+  .upperlayer {
+    position: absolute;
+    top: 45%;
+    display: block;
+    width: 100%;
+    button {
+      display: block;
+      position: relative;
+      z-index: 100;
+      width: 200%;
+      color: $upperlayer;
+      border-color: $upperlayer;
+      margin: 0 auto;
+      outline: none;
+    }
+    .btn:hover {
+      color: #007cbb;
+      border-color: #007cbb;
+    }
+    .layer {
+      width: 100%;
+      position: fixed;
+      height: 300px;
+      margin-top: 160px;
+      background-color: $upperlayer;
+      color: $upperlayer;
+      opacity: 0.7;
+      z-index: 5;
+    }
+  }
+}
+.properties {
+  width: 100%;
+  margin-top: 4rem;
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #696969;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .eachProperty {
+    display: inline-block;
+    width: 33%;
+    height: auto;
+    padding: 10px;
+    text-align: center;
+    span {
+      display: block;
+    }
+    img {
+      border-radius: 10px;
+    }
+  }
+}

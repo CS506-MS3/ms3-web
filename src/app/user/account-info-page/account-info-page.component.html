@@ -1,0 +1,31 @@
+<!-- SIDENAV PROFILE DETAILS -->
+<div class="sidenav">
+  <!--Profile picture goes here-->
+  <h3>Personal Information</h3>
+  <!--Email and Phone comes from the backend-->
+  <div class="account-sidebar-section">
+    <app-personal-info></app-personal-info>
+  </div>
+
+  <h3>Your Subscription</h3>
+  <div class="account-sidebar-section">
+    <app-subscription-list></app-subscription-list>
+  </div>
+  <div class="account-sidebar-section deactivate-link">
+    <a routerLink="../deactivate">Deactivate Account</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT AREA-->
+<div class="content-area">
+  <div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 property-summary-list">
+      <h3>My Properties</h3>
+      <app-my-properties-list class="row"></app-my-properties-list>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 property-summary-list">
+      <h3>Wishlist</h3>
+      <div class="row">
+      </div>
+    </div>
+  </div>
