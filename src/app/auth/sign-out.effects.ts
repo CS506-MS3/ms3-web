@@ -12,6 +12,8 @@ import {AlertActions} from '../_actions/alert.actions';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
+import {ActivatedRoute, Router, Route} from '@angular/router';
 
 @Injectable()
 export class SignOutEffects {
@@ -44,6 +46,18 @@ export class SignOutEffects {
       ];
     });
 
-  constructor(private _api: RestApiService, private actions$: Actions) {
+  @Effect({dispatch: false}) onAuthClear$: Observable<Action> = this.actions$
+    .ofType(AuthActions.CLEAR)
+    .do(() => {
+      const currentRouteConfig: Route = this._router.config.find(route => route.path == this._router.url.substr(1));
+
+      if(currentRouteConfig != null && currentRouteConfig.canActivate != null) {
+        if (currentRouteConfig.canActivate[0].name === 'AuthGuard') {
+          this._router.navigate(['/welcome']);
+        }
+      }
+    });
+
+  constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
   }
 }
