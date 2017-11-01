@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AccountInfoPageComponent} from './account-info-page.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {UserInfoService} from "../user-info.service";
+import {UserInfoService} from '../user-info.service';
 
 describe('AccountInfoPageComponent', () => {
   const mockService = {

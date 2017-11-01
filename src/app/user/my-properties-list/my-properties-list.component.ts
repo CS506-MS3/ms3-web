@@ -58,7 +58,7 @@ export class MyPropertiesListComponent implements OnInit {
       }
 
       this.properties = data.list;
-    })
+    });
   }
 
   ngOnInit() {
