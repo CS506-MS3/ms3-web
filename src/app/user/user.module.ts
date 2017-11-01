@@ -13,6 +13,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {UserInfoGetEffects} from './user-info-get.effects';
 import {RouterModule} from '@angular/router';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
+import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
   declarations: [
     AccountInfoPageComponent,
     DeactivateAccountComponent,
-    PersonalInfoComponent
+    PersonalInfoComponent,
+    SubscriptionListComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService
