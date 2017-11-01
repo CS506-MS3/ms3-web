@@ -6,77 +6,65 @@
   <div class="account-sidebar-section">
     <div>E-mail: example@wisc.edu</div>
     <div>Phone: 608-594-1234</div>
-    <clr-checkbox>Receive E-mail Notifications</clr-checkbox>
+    <clr-checkbox [clrDisabled]="true" [clrChecked]="true">Receive E-mail Notifications</clr-checkbox>
   </div>
 
   <h3>Your Subscription</h3>
   <div class="account-sidebar-section">
-    <div class="card">
-      <div class="card-block">
-        <div class="card-title">
-          <u>Post Access</u>
-        </div>
-        <div class="card-text">
-          Next payment: 2017/11/15
-          <br>Expected Charge: $7.00
-          <!-- Cancel subscription links to the cancel subscription page -->
-          <br><a href="#">Cancel Subscription</a>
-        </div>
+    <div class="subscription-info">
+      <h6>Subleaser Access</h6>
+      <button class="btn btn-success btn-block">Get Subleaser Access</button>
+    </div>
+    <div class="subscription-info">
+      <h6>View Access</h6>
+      <div class="subscription-details">
+        <div><span>Next Payment: </span>2017.11.15</div>
+        <div><span>Expected Charges: </span>$7.00</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-block">
-        <div class="card-title">
-          <u>View Access</u>
-        </div>
-        <div class="card-text">
-          Subscription ends on: 2017/11/15
-          <!-- Renew subscription links to the renew subscription page -->
-          <br><a href="#">Renew Subscription</a>
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-success btn-block">Get POST Access</button>
-    <button class="btn btn-success btn-block">Get VIEW Access</button>
   </div>
-  <div class="account-sidebar-section">
-    <button class="btn btn-link btn-block" routerLink="../deactivate">Deactivate Account</button>
+  <div class="account-sidebar-section deactivate-link">
+    <a routerLink="../deactivate">Deactivate Account</a>
   </div>
 </div>
 
 <!-- MAIN CONTENT AREA-->
 <div class="content-area">
   <div class="row">
-    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-      <h4>My Properties</h4>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 property-summary-list">
+      <h3>My Properties</h3>
       <div class="row">
-        <div class="card property-summary" *ngFor="let num of dummyNum">
-          <div class="card-block">
-            <div class="card-media-block">
-              <img src="../assets/images/bedroom.jpg" class="card-media-image">
-              <div class="card-media-description">
-                <span class="card-media-title">
-                  Property Title
-                </span>
-                <span class="card-media-text">
-                  Area
-                </span>
+        <div class="property-summary col-lg-12" *ngFor="let num of dummyNum">
+          <div class="card">
+            <div class="card-block">
+              <div class="card-media-block">
+                <img src="assets/images/bedroom.jpg" class="card-media-image">
+                <div class="card-media-description">
+                  <span class="card-media-title">Property Title</span>
+                  <span class="card-media-text">Area</span>
+                </div>
+              </div>
+              <div class="property-summary-controls">
+                <button type="button" class="close" aria-label="Close">
+                  <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+              </div>
+              <div class="row">
+                <div class="col-lg-6"><span>$900.00 / month</span></div>
+                <div class="col-lg-6"><span>2017/10/25 - 2018/01/31</span></div>
               </div>
             </div>
-            <div class="property-summary-controls">
-              <a href="#">Remove</a>
-              <br>
-              <a href="#">Edit</a>
-            </div>
+
           </div>
-          <div class="card-footer row">
-            <div class="col-lg-6"><span>$900.00 / month</span></div>
-            <div class="col-lg-6"><span>2017/10/25 - 2018/01/31</span></div>
-          </div>
+        </div>
+        <div class="col-lg-12" style="padding-top: 24px;">
+          <button type="button" class="btn btn-block btn-outline-primary">Add a property</button>
         </div>
       </div>
     </div>
-    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 property-summary-list">
+      <h3>Wishlist</h3>
+      <div class="row">
+      </div>
     </div>
   </div>
-</div>

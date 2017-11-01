@@ -11,12 +11,14 @@ import {DeactivateEffects} from './deactivate.effects';
 import {ClarityModule} from 'clarity-angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserInfoGetEffects} from './user-info-get.effects';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule.forChild(),
     ReactiveFormsModule,
+    RouterModule,
     EffectsModule.forFeature([
       DeactivateEffects.Effects,
       UserInfoGetEffects

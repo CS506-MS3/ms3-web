@@ -11,6 +11,17 @@
   }
 }
 
+.deactivate-link {
+  bottom: 11rem;
+  position: absolute;
+}
+
+.subscription-info {
+  margin-bottom: 1rem;
+  h6 {
+    margin-top: 0;
+  }
+}
 
 div.sidenav {
   > div, > h3 {
@@ -19,13 +30,30 @@ div.sidenav {
   }
 }
 
+div.property-summary-list {
+  h3 {
+    margin-top: 0;
+  }
+}
+
 div.property-summary {
+  .property-summary-thumbnail {
+    height: 160px;
+    width: 160px;
+    object-fit: cover;
+    display: inline-block;
+  }
+
+  .property-summary-details {
+    display: inline-block;
+  }
+  .property-summary-controls {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  }
   div.card-block {
     position: relative;
-    .property-summary-controls {
-      position: absolute;
-      top: 0.5rem;
-      right: 1rem;
-    }
+
   }
 }
