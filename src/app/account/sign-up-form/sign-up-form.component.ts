@@ -37,7 +37,9 @@ export class SignUpFormComponent implements OnInit {
         email: value.email,
         password: value.passwords.password,
         phone: value.phoneNumber,
-        notification: value.notification
+        notification: {
+          marketing: value.notification
+        }
       });
     }
   }
