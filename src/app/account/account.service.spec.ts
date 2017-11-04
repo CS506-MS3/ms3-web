@@ -53,7 +53,7 @@ describe('AccountService', () => {
 
   describe('create', () => {
     it('should dispatch an SignUpEffects.Request with input', inject([AccountService], (service: AccountService) => {
-      const inputSignUpForm = new SignUpForm('test@email.com', 'testPassword', false);
+      const inputSignUpForm = new SignUpForm('test@email.com', 'testPassword', {marketing: false});
 
       service.create(inputSignUpForm);
 

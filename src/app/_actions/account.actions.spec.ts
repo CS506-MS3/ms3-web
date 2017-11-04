@@ -2,7 +2,7 @@ import {AccountActions} from './account.actions';
 import {SignUpForm} from '../_domains/sign-up-form';
 
 describe('AccountActions', () => {
-  const testSignUpForm = new SignUpForm('test@test.com', 'testPassword', true);
+  const testSignUpForm = new SignUpForm('test@test.com', 'testPassword', {marketing: true});
 
   describe('Actions', () => {
     describe('Create', () => {
