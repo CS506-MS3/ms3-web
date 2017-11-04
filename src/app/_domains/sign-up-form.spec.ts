@@ -3,7 +3,7 @@ import {SignUpForm} from './sign-up-form';
 describe('SignUpForm Class', () => {
   const testEmail = 'test@test.com';
   const testPassword = 'testPassword';
-  const testNotificationSetting = true;
+  const testNotificationSetting = {marketing: true};
   const testNumber = '987-123-4567';
 
   it('should be able to create with just email and password & notification settings', () => {
