@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PropertyListPageComponent } from './property-list-page.component';
+import {PropertyListPageComponent} from './property-list-page.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('PropertyListPageComponent', () => {
@@ -10,9 +10,9 @@ describe('PropertyListPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ PropertyListPageComponent ]
+      declarations: [PropertyListPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
