@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PropertySummary} from '../../_domains/property-summary';
 
 @Component({
   selector: 'app-properties',
@@ -6,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./properties.component.scss']
 })
 export class PropertiesComponent implements OnInit {
-  @Input() properties;
+  @Input() properties: PropertySummary[];
   @Output() requestMore = new EventEmitter<any>();
 
   constructor() { }
@@ -15,5 +16,7 @@ export class PropertiesComponent implements OnInit {
   }
 
   getMore() {
+
+    this.requestMore.emit();
   }
 }
