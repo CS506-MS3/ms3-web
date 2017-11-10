@@ -14,6 +14,7 @@ import {PropertyRemoveEffects} from './property-remove.effects';
 import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-page.component';
 import {RouterModule} from '@angular/router';
 import { PropertyListPageComponent } from './property-list-page/property-list-page.component';
+import { PropertiesSortComponent } from './properties-sort/properties-sort.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { PropertyListPageComponent } from './property-list-page/property-list-pa
     AddressVerificationFormComponent,
     ImageFormComponent,
     RemoveListingPageComponent,
-    PropertyListPageComponent
+    PropertyListPageComponent,
+    PropertiesSortComponent
   ],
   providers: [PropertiesService, PropertyService]
 })
