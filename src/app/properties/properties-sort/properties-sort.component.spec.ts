@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PropertiesSortComponent } from './properties-sort.component';
+import {PropertiesSortComponent} from './properties-sort.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('PropertiesSortComponent', () => {
@@ -16,9 +16,9 @@ describe('PropertiesSortComponent', () => {
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ],
-      declarations: [ PropertiesSortComponent ]
+      declarations: [PropertiesSortComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
