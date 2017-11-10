@@ -1,3 +1,19 @@
-<p>
-  properties-sort works!
-</p>
+<div class="pull-right">
+  <label for="">Sort By:</label>
+  <select name="" id="" (change)="onSelect($event.target.value)">
+    <option [value]="option" [selected]="sort.sortBy === option" *ngFor="let option of SORT_OPTIONS.CATEGORIES">{{option}}</option>
+  </select>
+  /
+  <label for="">Direction:</label>
+  <div class="btn-group btn-outline-primary btn-sm">
+    <button class="btn btn-primary btn-icon"
+            [ngClass]="{'btn-primary': sort.direction === 'UP'}"
+            (click)="sortAscending()">
+      <clr-icon shape="arrow"></clr-icon>
+    </button>
+    <button class="btn btn-icon" [ngClass]="{'btn-primary': sort.direction === 'DOWN'}"
+            (click)="sortDescending()">
+      <clr-icon shape="arrow" style="transform: rotate(180deg);"></clr-icon>
+    </button>
+  </div>
+</div>
