@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-property-list-page',
@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./property-list-page.component.scss']
 })
 export class PropertyListPageComponent implements OnInit {
+  @HostBinding('class') cssClass = 'content-container';
 
-  constructor() { }
+  data: number[] = [];
+
+  constructor() {
+    for (let i = 0; i < 20; i++) {
+      this.data.push(i);
+    }
+  }
 
   ngOnInit() {
   }
