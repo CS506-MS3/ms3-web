@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-properties-sort',
@@ -6,10 +6,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./properties-sort.component.scss']
 })
 export class PropertiesSortComponent implements OnInit {
+  @Input() sortInput;
+  @Output() onSort = new EventEmitter<any>();
 
-  constructor() { }
+  public sort;
 
-  ngOnInit() {
+  public SORT_OPTIONS = {
+    CATEGORIES: [
+      'price',
+      'recent'
+    ],
+    DIRECTION_UP: 'UP',
+    DIRECTION_DOWN: 'DOWN'
+  };
+
+  constructor() {
   }
 
+  ngOnInit() {
+    this.sort = Object.assign({}, this.sortInput);
+  }
+
+  onSelect(value) {
+    this.sort.sortBy = value;
+    this.onSort.emit(this.sort);
+  }
+
+  sortAscending() {
+    if (this.sort.direction !== this.SORT_OPTIONS.DIRECTION_UP) {
+      this.sort.direction = this.SORT_OPTIONS.DIRECTION_UP;
+      this.onSort.emit(this.sort);
+    }
+  }
+
+  sortDescending() {
+    if (this.sort.direction !== this.SORT_OPTIONS.DIRECTION_DOWN) {
+      this.sort.direction = this.SORT_OPTIONS.DIRECTION_DOWN;
+      this.onSort.emit(this.sort);
+    }
+  }
 }
