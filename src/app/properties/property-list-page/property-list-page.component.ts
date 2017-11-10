@@ -81,4 +81,8 @@ export class PropertyListPageComponent implements OnInit {
   sortList(sortOptions) {
     console.log(sortOptions);
   }
+
+  requestMore() {
+    console.log('getMore');
+  }
 }
