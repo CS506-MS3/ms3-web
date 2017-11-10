@@ -10,7 +10,8 @@ export class PropertiesComponent implements OnInit {
   @Input() properties: PropertySummary[];
   @Output() requestMore = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

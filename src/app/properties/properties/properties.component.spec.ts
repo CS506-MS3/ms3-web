@@ -5,7 +5,7 @@ import {PropertiesComponent} from './properties.component';
 describe('PropertiesComponent', () => {
   let component: PropertiesComponent;
   let fixture: ComponentFixture<PropertiesComponent>;
-  let testProperties = [
+  const testProperties = [
     {
       id: 1,
       title: 'Test Title',
@@ -13,7 +13,7 @@ describe('PropertiesComponent', () => {
       price: 500,
       startDate: '2017-10-01T00:00:00',
       duration: 6,
-      thumbnailUrl: 'https://s3.teststore.com/imageUrl.png'
+      thumbnailUrl: 'assets/images/eachProperty.jpg'
     }
   ];
 
