@@ -3,37 +3,7 @@
     <app-properties-sort [sortInput]="sortOptions" (onSort)="sortList($event)"></app-properties-sort>
   </div>
   <div class="property-list">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let i of data">
-        <a href="..." class="card clickable">
-          <div class="card-img">
-            <img src="assets/images/eachProperty.jpg" alt="..." style="height: 218px; object-fit: cover;"/>
-          </div>
-          <div class="card-block">
-            <div class="card-title">
-              Lorem ipusm dolores sil amet
-            </div>
-            <div class="card-text">
-              123 Sample St., Madison, WI
-            </div>
-          </div>
-          <div class="card-block">
-            <div class="card-text">
-              Start Date: 2017/11/23
-            </div>
-            <div class="card-text">
-              Duration: 6 months
-            </div>
-          </div>
-          <div class="card-block">
-            <div class="card-text">
-              <b>Price: $500 / month</b>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <button class="btn btn-block btn-more">See More</button>
+<app-properties [properties]="data.list"></app-properties>
   </div>
 </div>
 <div class="sidenav">
