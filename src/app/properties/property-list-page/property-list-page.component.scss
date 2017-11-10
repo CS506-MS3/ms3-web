@@ -1,0 +1,14 @@
+div.property-list {
+  overflow-y: auto;
+  height: 100%;
+}
+
+div.sort-controls {
+  padding-bottom: 1rem;
+  flex: 0 0 108px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 108px;
+  position: relative;
+  border-bottom: 1px solid #CCC;
+}

@@ -13,6 +13,9 @@ import {PropertyCreateEffects} from './property-create.effects';
 import {PropertyRemoveEffects} from './property-remove.effects';
 import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-page.component';
 import {RouterModule} from '@angular/router';
+import { PropertyListPageComponent } from './property-list-page/property-list-page.component';
+import { PropertiesSortComponent } from './properties-sort/properties-sort.component';
+import { PropertiesComponent } from './properties/properties.component';
 
 @NgModule({
   imports: [
@@ -30,7 +33,10 @@ import {RouterModule} from '@angular/router';
     PropertyFormComponent,
     AddressVerificationFormComponent,
     ImageFormComponent,
-    RemoveListingPageComponent
+    RemoveListingPageComponent,
+    PropertyListPageComponent,
+    PropertiesSortComponent,
+    PropertiesComponent
   ],
   providers: [PropertiesService, PropertyService]
 })
