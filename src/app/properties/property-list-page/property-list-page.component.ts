@@ -9,6 +9,10 @@ export class PropertyListPageComponent implements OnInit {
   @HostBinding('class') cssClass = 'content-container';
 
   data: number[] = [];
+  sortOptions = {
+    sortBy: 'recent',
+    direction: 'UP'
+  };
 
   constructor() {
     for (let i = 0; i < 20; i++) {
@@ -19,4 +23,7 @@ export class PropertyListPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  sortList(sortOptions) {
+    console.log(sortOptions);
+  }
 }
