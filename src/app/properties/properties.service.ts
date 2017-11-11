@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {Properties} from '../_domains/properties';
+import * as PropertiesQueryActions from '../_effect-actions/properties-query.actions';
+import {PropertyQueryParams} from '../_domains/property-query-params';
 
 @Injectable()
 export class PropertiesService {
@@ -11,19 +13,8 @@ export class PropertiesService {
     this.properties$ = this._store.select('properties');
   }
 
-  query() {
+  query(params: PropertyQueryParams) {
 
-  }
-
-  filter(filterParams: any) {
-
-  }
-
-  search(searchParams: any) {
-
-  }
-
-  sort(category, order) {
-
+    this._store.dispatch(new PropertiesQueryActions.Request(params));
   }
 }

@@ -16,6 +16,7 @@ import {RouterModule} from '@angular/router';
 import { PropertyListPageComponent } from './property-list-page/property-list-page.component';
 import { PropertiesSortComponent } from './properties-sort/properties-sort.component';
 import { PropertiesComponent } from './properties/properties.component';
+import {PropertiesQueryEffects} from './properties-query.effects';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { PropertiesComponent } from './properties/properties.component';
     ClarityModule.forChild(),
     EffectsModule.forFeature([
       PropertyCreateEffects,
-      PropertyRemoveEffects
+      PropertyRemoveEffects,
+      PropertiesQueryEffects
     ])
   ],
   declarations: [
