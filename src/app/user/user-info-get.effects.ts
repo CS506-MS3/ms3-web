@@ -41,7 +41,7 @@ export class UserInfoGetEffects {
       new UserInfoActions.Set({phone: data.phone, notification: data.notification}),
       new WishlistActions.Set({list: data.wishlist}),
       new AccessesActions.Set({list: data.access}),
-      new MyPropertiesActions.Set({list: data.listing})
+      new MyPropertiesActions.Set({list: data.listing, cursor: null})
     ]);
 
   @Effect() onError$: Observable<Action> = this.actions$

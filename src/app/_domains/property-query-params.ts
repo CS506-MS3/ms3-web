@@ -1,6 +1,7 @@
 export interface PropertyQueryParams {
-  sortBy?: string;
-  sortOrder?: boolean;
+  sortBy: string;
+  direction: string;
+  cursor?: string;
   searchBy?: string;
   filters?: any;
 }

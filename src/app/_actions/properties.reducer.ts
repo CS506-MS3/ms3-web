@@ -6,14 +6,15 @@ import {Properties} from '../_domains/properties';
 const prefix = PropertiesActions.ACTION_NAME;
 const INIT = 'INIT';
 const initialState: Properties = {
-  list: []
+  list: [],
+  cursor: null
 };
 
 export function reducer(state = initialState, action: Action = {type: INIT}): Properties {
   switch (action.type) {
     case PropertiesActions.INCREASE_LIST:
       return {
-        ...state,
+        cursor: (<PropertiesActions.IncreaseList>action).payload.cursor,
         list: [...state.list, ...((<PropertiesActions.IncreaseList>action).payload.list)]
       };
 
