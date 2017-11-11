@@ -1,5 +1,8 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Properties} from '../../_domains/properties';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PropertiesService} from '../properties.service';
+import {PropertyQueryParams} from '../../_domains/property-query-params';
 
 @Component({
   selector: 'app-property-list-page',
@@ -9,6 +12,7 @@ import {Properties} from '../../_domains/properties';
 export class PropertyListPageComponent implements OnInit {
   @HostBinding('class') cssClass = 'content-container';
 
+  queryParams: any;
   data: Properties = {
     list: [
       {
@@ -65,24 +69,45 @@ export class PropertyListPageComponent implements OnInit {
         duration: 6,
         thumbnailUrl: 'assets/images/eachProperty.jpg'
       },
-    ]
-  };
-  sortOptions = {
-    sortBy: 'recent',
-    direction: 'UP'
+    ],
+    cursor: null
   };
 
-  constructor() {
+  constructor(private _propertiesService: PropertiesService,
+              private _activatedRoute: ActivatedRoute,
+              private _router: Router) {
+    const urlQueryParams = this._activatedRoute.snapshot.queryParams;
+    if (!urlQueryParams.sortBy || !urlQueryParams.direction) {
+      const newQueryParams = {
+        sortBy: urlQueryParams.sortBy || 'recent',
+        direction: urlQueryParams.direction || 'UP'
+      };
+      this._router.navigate(['properties'], {queryParams: newQueryParams});
+    }
   }
 
   ngOnInit() {
+    this._activatedRoute.queryParams.subscribe((params) => {
+      if (params.sortBy && params.direction) {
+        this.queryParams = params;
+        this._propertiesService.query(<PropertyQueryParams>params);
+      }
+    });
+    this._propertiesService.properties$.subscribe((properties) => {
+      this.data = properties;
+    });
   }
 
   sortList(sortOptions) {
-    console.log(sortOptions);
+    const newQueryParams = Object.assign({}, this.queryParams, sortOptions);
+    delete newQueryParams.cursor;
+
+    this._router.navigate(['properties'], {queryParams: newQueryParams});
   }
 
   requestMore() {
-    console.log('getMore');
+    const newQueryParams = Object.assign({}, this.queryParams, {cursor: this.data.cursor});
+
+    this._router.navigate(['properties'], {queryParams: newQueryParams});
   }
 }
