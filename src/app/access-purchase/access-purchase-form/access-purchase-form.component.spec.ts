@@ -22,7 +22,7 @@ describe('AccessPurchaseFormComponent', () => {
     component = fixture.componentInstance;
     component.item = {
       title: 'Subleaser Access Subscription',
-      pricePerItem: 10.99,
+      price: 10.99,
       canHaveMultiple: false
     };
     fixture.detectChanges();
