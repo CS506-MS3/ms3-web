@@ -13,7 +13,8 @@ export class AccessPurchaseFormComponent implements OnInit {
   count = 1;
   hasToken = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -42,14 +43,7 @@ export class AccessPurchaseFormComponent implements OnInit {
     const handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
       locale: 'auto',
-      token: function (token: any) {
-        this.onTokenReceived.emit({
-          item: this.item,
-          count: this.count,
-          token: token
-        });
-        this.hasToken = true;
-      }
+      token: this.emitToken.bind(this)
     });
 
     handler.open({
@@ -57,5 +51,14 @@ export class AccessPurchaseFormComponent implements OnInit {
       description: this.item.alias,
       amount: this.count * this.item.pricePerItem * 100
     });
+  }
+
+  emitToken(token: any) {
+    this.onTokenReceived.emit({
+      item: this.item,
+      count: this.count,
+      token: token
+    });
+    this.hasToken = true;
   }
 }

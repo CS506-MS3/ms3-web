@@ -104,7 +104,7 @@ export const API = {
   ACCESSES: {
     GET_PRICE_INFO: {
       method: 'GET',
-      url: '/pricing'
+      url: '/pricings'
     },
     ADD: {
       method: 'POST',
