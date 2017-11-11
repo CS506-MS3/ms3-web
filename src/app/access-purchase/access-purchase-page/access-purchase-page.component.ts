@@ -16,7 +16,7 @@ export class AccessPurchasePageComponent implements OnInit {
     id: null,
     type: null,
     alias: null,
-    pricePerItem: null,
+    price: null,
     canHaveMultiple: null
   };
   hasToken = false;
