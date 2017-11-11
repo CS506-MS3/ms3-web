@@ -19,6 +19,7 @@ import * as UserInfo from './_actions/user-info.reducer';
 import * as Wishlist from './_actions/wishlist.reducer';
 import * as Pricings from './_actions/pricings.reducer';
 import * as Properties from './_actions/properties.reducer';
+import * as PropertyOptions from './_actions/property-options.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
@@ -43,7 +44,8 @@ import { MyPropertiesListComponent } from './user/my-properties-list/my-properti
       wishlist: Wishlist.reducer,
       routerReducer: routerReducer,
       pricings: Pricings.reducer,
-      properties: Properties.reducer
+      properties: Properties.reducer,
+      propertyOptions: PropertyOptions.reducer
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

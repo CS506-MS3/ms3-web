@@ -28,16 +28,14 @@ describe('PropertyService', () => {
       inject([PropertyService], (service: PropertyService) => {
         const testForm: PropertyForm = {
           title: 'testTitle',
-          address: {},
+          address: {
+          },
           description: '',
-          propertyType: '',
           roomType: '',
           price: 0,
           startDate: '',
           duration: 0,
-          amenities: [],
-          pets: [],
-          houseRules: [],
+          options: [],
           imageUrls: [],
         };
 

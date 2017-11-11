@@ -9,30 +9,41 @@ import {PropertyForm} from '../../_domains/property-form';
 })
 export class PropertyFormComponent implements OnInit {
   @Input() type: string;
-  @Output() submit = new EventEmitter<PropertyForm>();
+  @Input() options: any;
+  @Output() formSubmit = new EventEmitter<PropertyForm>();
 
   propertyForm: FormGroup;
 
   addressVerification = {
     verified: false,
-    address: {}
+    address: {
+      components: [],
+      location: {
+        lat: null,
+        lng: null
+      }
+    }
   };
 
   roomTypeOptions = [
     {
-      value: '1_BR',
+      value: 'STUDIO',
+      alias: 'STUDIO'
+    },
+    {
+      value: '1BR',
       alias: '1BR'
     },
     {
-      value: '2_BR',
+      value: '2BR',
       alias: '2BR'
     },
     {
-      value: '3_BR',
+      value: '3BR',
       alias: '3BR'
     },
     {
-      value: '4_BR',
+      value: '4BR',
       alias: '4BR'
     }
   ];
@@ -86,124 +97,6 @@ export class PropertyFormComponent implements OnInit {
       alias: '1 year'
     }
   ];
-  amenityOptions = [
-    {
-      id: 1,
-      alias: 'Elevator'
-    },
-    {
-      id: 2,
-      alias: 'Wifi'
-    },
-    {
-      id: 3,
-      alias: 'Internet'
-    },
-    {
-      id: 4,
-      alias: 'Kitchen'
-    },
-    {
-      id: 5,
-      alias: 'TV'
-    },
-    {
-      id: 6,
-      alias: 'Washer'
-    },
-    {
-      id: 7,
-      alias: 'Dryer'
-    },
-    {
-      id: 8,
-      alias: 'Free Parking'
-    },
-    {
-      id: 9,
-      alias: 'Paid Parking'
-    },
-    {
-      id: 10,
-      alias: 'AC'
-    },
-    {
-      id: 11,
-      alias: 'Heating'
-    },
-    {
-      id: 12,
-      alias: 'Hot Tub'
-    },
-    {
-      id: 13,
-      alias: 'Pool'
-    },
-    {
-      id: 14,
-      alias: 'Gym'
-    },
-    {
-      id: 15,
-      alias: 'Indoor Fireplace'
-    },
-    {
-      id: 16,
-      alias: 'Cable TV'
-    },
-    {
-      id: 17,
-      alias: 'Doorman'
-    },
-    {
-      id: 18,
-      alias: 'Bathtub'
-    },
-    {
-      id: 19,
-      alias: 'Game Console'
-    }
-  ];
-  petOptions = [
-    {
-      id: 1,
-      alias: 'Has Dogs'
-    },
-    {
-      id: 2,
-      alias: 'Has Cats'
-    },
-    {
-      id: 3,
-      alias: 'Has Other Pets'
-    }
-  ];
-  houseRulesOptions = [
-    {
-      id: 1,
-      alias: 'Dogs OK'
-    },
-    {
-      id: 2,
-      alias: 'Cats OK'
-    },
-    {
-      id: 3,
-      alias: 'Other Pets OK'
-    },
-    {
-      id: 4,
-      alias: 'No Smoking'
-    },
-    {
-      id: 5,
-      alias: 'No Drinking'
-    },
-    {
-      id: 6,
-      alias: 'Couples OK'
-    }
-  ];
 
   constructor(private _formBuilder: FormBuilder) {
   }
@@ -212,45 +105,96 @@ export class PropertyFormComponent implements OnInit {
     this.propertyForm = this._formBuilder.group({
       title: ['', Validators.required],
       description: [''],
-      propertyType: ['APT', Validators.required],
-      roomType: ['1_BR', Validators.required],
+      propertyType: ['APARTMENT', Validators.required],
+      roomType: ['1BR', Validators.required],
       price: [0, Validators.required],
       startDate: ['', Validators.required],
       duration: [3, Validators.required],
-      amenities: this._formBuilder.group(this.amenityOptions.reduce((obj, option) => {
-        obj[option.alias] = [false];
-        return obj;
-      }, {})),
-      pets: this._formBuilder.group(this.petOptions.reduce((obj, option) => {
-        obj[option.alias] = [false];
-        return obj;
-      }, {})),
-      houseRules: this._formBuilder.group(this.houseRulesOptions.reduce((obj, option) => {
-        obj[option.alias] = [false];
-        return obj;
-      }, {}))
+      amenities: this._formBuilder.array(this.options.amenities.map((option) => this._formBuilder.control(false))),
+      pets: this._formBuilder.array(this.options.pets.map((option) => this._formBuilder.control(false))),
+      houseRules: this._formBuilder.array(this.options.houseRules.map((option) => this._formBuilder.control(false))),
     });
   }
 
   onSubmit({value, valid}) {
+    const amenities = this.options.amenities
+      .filter((option, index) => value.amenities[index])
+      .map((option) => option.id);
+    const pets = this.options.pets
+      .filter((option, index) => value.pets[index])
+      .map((option) => option.id);
+    const houseRules = this.options.houseRules
+      .filter((option, index) => value.houseRules[index])
+      .map((option) => option.id);
 
-    this.submit.emit({
+    const options = [...amenities, ...pets, ...houseRules];
+    let level1Type;
+    switch (value.propertyType) {
+      case 'APARTMENT':
+        level1Type = 'street_number';
+        break;
+      case 'HOUSE':
+        level1Type = 'street_number';
+        break;
+    }
+
+    this.formSubmit.emit({
       title: value.title,
-      address: this.addressVerification.address,
-      description: value.description,
-      propertyType: value.propertyType,
+      address: this.buildAddress(value.propertyType),
       roomType: value.roomType,
-      price: value.price,
+      description: value.description,
       startDate: value.startDate,
       duration: value.duration,
-      amenities: this.amenityOptions.filter((option) => value.amenities[option.alias])
-        .map((option) => option.id),
-      pets: this.petOptions.filter((option) => value.pets[option.alias])
-        .map((option) => option.id),
-      houseRules: this.houseRulesOptions.filter((option) => value.houseRules[option.alias])
-        .map((option) => option.id),
+      price: value.price,
+      options: options,
       imageUrls: []
     });
+  }
+
+  private buildAddress(type) {
+    const includedTypes = [
+      'subpremise',
+      'street_number',
+      'route',
+      'locality',
+      'administrative_area_level_1',
+      'postal_code'
+    ];
+
+    const address = this.addressVerification.address.components.filter((component) => {
+      return component.types.reduce((prev, curr) => {
+        return prev || includedTypes.includes(curr);
+      }, false);
+    });
+    const level1 = address
+      .shift()
+      .long_name;
+    const level2 = address
+      .filter((component) => component.types.includes('street_number') || component.types.includes('route'))
+      .map((component) => component.long_name).join(' ');
+    const city = address
+      .filter((component) => component.types.includes('locality'))
+      .map((component) => component.long_name)
+      .join(' ');
+    const state = address
+      .filter((component) => component.types.includes('administrative_area_level_1'))
+      .map((component) => component.long_name)
+      .join(' ');
+    const zipcode = address
+      .filter((component) => component.types.includes('postal_code'))
+      .map((component) => component.long_name)
+      .join(' ');
+    const geocode = this.addressVerification.address.location;
+
+    return {
+      type: type,
+      detailLevel1: level1,
+      detailLevel2: level2,
+      city: city,
+      state: state,
+      zipcode: zipcode,
+      geocode: geocode
+    };
   }
 
   updateAddressVerification(addressVerification) {

@@ -30,7 +30,7 @@ export class PropertyCreateEffects {
 
   @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
     .ofType(PropertyCreateActions.SUCCESS)
-    .do(() => this._router.navigate(['accountInfo']));
+    .do(() => this._router.navigate(['account/info']));
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(PropertyCreateActions.ERROR)

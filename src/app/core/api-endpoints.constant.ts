@@ -41,6 +41,10 @@ export const API = {
     GET_SINGLE: {
       method: 'GET',
       url: '/properties/${propertyId}'
+    },
+    GET_OPTIONS: {
+      method: 'GET',
+      url: '/properties/options'
     }
   },
   USER: {
