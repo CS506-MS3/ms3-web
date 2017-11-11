@@ -9,6 +9,7 @@ import {PropertyForm} from '../../_domains/property-form';
 })
 export class PropertyFormComponent implements OnInit {
   @Input() type: string;
+  @Input() options: any;
   @Output() submit = new EventEmitter<PropertyForm>();
 
   propertyForm: FormGroup;
@@ -86,124 +87,6 @@ export class PropertyFormComponent implements OnInit {
       alias: '1 year'
     }
   ];
-  amenityOptions = [
-    {
-      id: 1,
-      alias: 'Elevator'
-    },
-    {
-      id: 2,
-      alias: 'Wifi'
-    },
-    {
-      id: 3,
-      alias: 'Internet'
-    },
-    {
-      id: 4,
-      alias: 'Kitchen'
-    },
-    {
-      id: 5,
-      alias: 'TV'
-    },
-    {
-      id: 6,
-      alias: 'Washer'
-    },
-    {
-      id: 7,
-      alias: 'Dryer'
-    },
-    {
-      id: 8,
-      alias: 'Free Parking'
-    },
-    {
-      id: 9,
-      alias: 'Paid Parking'
-    },
-    {
-      id: 10,
-      alias: 'AC'
-    },
-    {
-      id: 11,
-      alias: 'Heating'
-    },
-    {
-      id: 12,
-      alias: 'Hot Tub'
-    },
-    {
-      id: 13,
-      alias: 'Pool'
-    },
-    {
-      id: 14,
-      alias: 'Gym'
-    },
-    {
-      id: 15,
-      alias: 'Indoor Fireplace'
-    },
-    {
-      id: 16,
-      alias: 'Cable TV'
-    },
-    {
-      id: 17,
-      alias: 'Doorman'
-    },
-    {
-      id: 18,
-      alias: 'Bathtub'
-    },
-    {
-      id: 19,
-      alias: 'Game Console'
-    }
-  ];
-  petOptions = [
-    {
-      id: 1,
-      alias: 'Has Dogs'
-    },
-    {
-      id: 2,
-      alias: 'Has Cats'
-    },
-    {
-      id: 3,
-      alias: 'Has Other Pets'
-    }
-  ];
-  houseRulesOptions = [
-    {
-      id: 1,
-      alias: 'Dogs OK'
-    },
-    {
-      id: 2,
-      alias: 'Cats OK'
-    },
-    {
-      id: 3,
-      alias: 'Other Pets OK'
-    },
-    {
-      id: 4,
-      alias: 'No Smoking'
-    },
-    {
-      id: 5,
-      alias: 'No Drinking'
-    },
-    {
-      id: 6,
-      alias: 'Couples OK'
-    }
-  ];
 
   constructor(private _formBuilder: FormBuilder) {
   }
@@ -217,18 +100,9 @@ export class PropertyFormComponent implements OnInit {
       price: [0, Validators.required],
       startDate: ['', Validators.required],
       duration: [3, Validators.required],
-      amenities: this._formBuilder.group(this.amenityOptions.reduce((obj, option) => {
-        obj[option.alias] = [false];
-        return obj;
-      }, {})),
-      pets: this._formBuilder.group(this.petOptions.reduce((obj, option) => {
-        obj[option.alias] = [false];
-        return obj;
-      }, {})),
-      houseRules: this._formBuilder.group(this.houseRulesOptions.reduce((obj, option) => {
-        obj[option.alias] = [false];
-        return obj;
-      }, {}))
+      amenities: this._formBuilder.array(this.options.amenities.map((option) => this._formBuilder.control(false))),
+      pets: this._formBuilder.array(this.options.pets.map((option) => this._formBuilder.control(false))),
+      houseRules: this._formBuilder.array(this.options.houseRules.map((option) => this._formBuilder.control(false))),
     });
   }
 
@@ -243,11 +117,11 @@ export class PropertyFormComponent implements OnInit {
       price: value.price,
       startDate: value.startDate,
       duration: value.duration,
-      amenities: this.amenityOptions.filter((option) => value.amenities[option.alias])
+      amenities: this.options.amenities.filter((option) => value.amenities[option.id])
         .map((option) => option.id),
-      pets: this.petOptions.filter((option) => value.pets[option.alias])
+      pets: this.options.pets.filter((option) => value.pets[option.id])
         .map((option) => option.id),
-      houseRules: this.houseRulesOptions.filter((option) => value.houseRules[option.alias])
+      houseRules: this.options.houseRules.filter((option) => value.houseRules[option.id])
         .map((option) => option.id),
       imageUrls: []
     });

@@ -13,10 +13,11 @@ import {PropertyCreateEffects} from './property-create.effects';
 import {PropertyRemoveEffects} from './property-remove.effects';
 import {RemoveListingPageComponent} from './remove-listing-page/remove-listing-page.component';
 import {RouterModule} from '@angular/router';
-import { PropertyListPageComponent } from './property-list-page/property-list-page.component';
-import { PropertiesSortComponent } from './properties-sort/properties-sort.component';
-import { PropertiesComponent } from './properties/properties.component';
+import {PropertyListPageComponent} from './property-list-page/property-list-page.component';
+import {PropertiesSortComponent} from './properties-sort/properties-sort.component';
+import {PropertiesComponent} from './properties/properties.component';
 import {PropertiesQueryEffects} from './properties-query.effects';
+import {PropertyOptionsEffects} from './property-options-get.effects';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {PropertiesQueryEffects} from './properties-query.effects';
     EffectsModule.forFeature([
       PropertyCreateEffects,
       PropertyRemoveEffects,
-      PropertiesQueryEffects
+      PropertiesQueryEffects,
+      PropertyOptionsEffects
     ])
   ],
   declarations: [
