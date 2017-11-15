@@ -1,4 +1,4 @@
 export interface Access {
-  id: number;
-  // TODO: Needs configuration
+  nextPaymentDate: string;
+  paymentAmount: number;
 }

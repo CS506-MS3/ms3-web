@@ -8,7 +8,7 @@
 </div>
 <div class="subscription-info">
   <h6>View Access</h6>
-  <button *ngIf="customerAccess === null;" class="btn btn-success btn-block">Get Subleaser Access</button>
+  <button *ngIf="customerAccess === null;" class="btn btn-success btn-block">Get View Access</button>
   <div class="subscription-details" *ngIf="customerAccess !== null;">
     <div><span>Next Payment: </span>{{customerAccess.nextPaymentDate | date: 'yMd'}}</div>
     <div><span>Expected Charges: </span>${{customerAccess.paymentAmount | number: '1.2-2' }}</div>
