@@ -27,10 +27,8 @@ export class UserInfoGetEffects {
     .map((action: UserInfoGetEffectsActions.Request) => action.payload)
     .switchMap((payload) => {
       const request = new RestApiRequest(API.USER.GET_INFO);
-      console.log('setting path param: ', payload);
       request.setPathParams({userId: payload});
 
-      console.log('making request');
       return this._api.request(request)
         .map(response => new UserInfoGetEffectsActions.Success(response))
         .catch(error => Observable.of(new UserInfoGetEffectsActions.Error(error)));
@@ -61,7 +59,7 @@ export class UserInfoGetEffects {
   }
 
   processAccess(response) {
-    let accesses = {
+    const accesses = {
       vendor: null,
       customer: null
     };

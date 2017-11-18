@@ -30,22 +30,5 @@ describe('AccessPurchaseFormComponent', () => {
 
   it('should create and have default count = 1', () => {
     expect(component).toBeTruthy();
-    expect(component.count).toEqual(1);
-  });
-
-  describe('increment/decrementCount', () => {
-    it('should increment & decrement count appropriately, with min value 1', () => {
-      expect(component.count).toEqual(1);
-      component.incrementCount();
-      expect(component.count).toEqual(2);
-      component.incrementCount();
-      expect(component.count).toEqual(3);
-      component.decrementCount();
-      expect(component.count).toEqual(2);
-      component.decrementCount();
-      expect(component.count).toEqual(1);
-      component.decrementCount();
-      expect(component.count).toEqual(1);
-    });
   });
 });
