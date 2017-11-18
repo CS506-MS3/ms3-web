@@ -63,9 +63,8 @@ describe('AccessPurchasePageComponent', () => {
 
       expect(component.hasToken).toBeTruthy();
       expect(component.purchaseForm).toEqual({
-        type: testPurchaseData.item.type,
-        count: testPurchaseData.count,
-        stripeToken: testPurchaseData.token
+        type: testPurchaseData.item,
+        token: testPurchaseData.token
       });
     });
 

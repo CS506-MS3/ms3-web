@@ -20,7 +20,7 @@ export class UserInfoService {
   }
 
   get() {
-
+    console.log('dispatch user info get with ', this._auth.id);
     this._store.dispatch(new UserInfoGetActions.Request(this._auth.id));
   }
 
