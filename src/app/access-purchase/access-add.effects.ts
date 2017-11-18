@@ -31,7 +31,7 @@ export class AccessAddEffects {
 
   @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
     .ofType(AccessAddActions.SUCCESS)
-    .do(() => this._router.navigate(['accountInfo']));
+    .do(() => this._router.navigate(['account/info']));
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(AccessAddActions.ERROR)
