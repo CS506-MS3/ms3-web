@@ -14,6 +14,7 @@ import {RemoveListingPageComponent} from './properties/remove-listing-page/remov
 import {AuthGuard} from './auth/auth.guard';
 import {VisitorGuard} from './auth/visitor.guard';
 import {PropertyListPageComponent} from './properties/property-list-page/property-list-page.component';
+import {PropertyPageComponent} from './properties/property-page/property-page.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'access/:type', component: AccessPurchasePageComponent, canActivate: [AuthGuard]},
   {path: 'property/create', component: CreateListingPageComponent, canActivate: [AuthGuard]},
   {path: 'property/:id/remove', component: RemoveListingPageComponent, canActivate: [AuthGuard]},
-  {path: 'properties', component: PropertyListPageComponent}
+  {path: 'properties', component: PropertyListPageComponent},
+  {path: 'properties/:id', component: PropertyPageComponent}
 ];
 
 @NgModule({
