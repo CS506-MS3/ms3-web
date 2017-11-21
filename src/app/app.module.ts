@@ -27,11 +27,13 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 import { PropertySummaryCardComponent } from './user/property-summary-card/property-summary-card.component';
 import { MyPropertiesCardComponent } from './user/my-properties-card/my-properties-card.component';
 import { MyPropertiesListComponent } from './user/my-properties-list/my-properties-list.component';
-
+import { SearchingBarComponent } from './searching-bar/searching-bar.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SearchingBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { MyPropertiesListComponent } from './user/my-properties-list/my-properti
     PropertiesModule,
     AccessPurchaseModule,
     ClarityModule.forRoot(),
+    FormsModule,
   ],
   bootstrap: [AppComponent]
 })
