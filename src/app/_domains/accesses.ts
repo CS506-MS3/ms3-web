@@ -1,5 +1,6 @@
 import {Access} from './access';
 
 export interface Accesses {
-  list: Access[];
+  vendor: Access;
+  customer: Access;
 }

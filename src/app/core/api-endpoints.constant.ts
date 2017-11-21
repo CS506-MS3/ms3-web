@@ -41,6 +41,10 @@ export const API = {
     GET_SINGLE: {
       method: 'GET',
       url: '/properties/${propertyId}'
+    },
+    GET_OPTIONS: {
+      method: 'GET',
+      url: '/properties/options'
     }
   },
   USER: {
@@ -104,7 +108,7 @@ export const API = {
   ACCESSES: {
     GET_PRICE_INFO: {
       method: 'GET',
-      url: '/pricing'
+      url: '/pricings'
     },
     ADD: {
       method: 'POST',

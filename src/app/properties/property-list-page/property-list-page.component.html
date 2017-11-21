@@ -1,0 +1,11 @@
+<div class="content-area">
+  <div class="sort-controls">
+    <app-properties-sort [sortInput]="queryParams" (onSort)="sortList($event)"></app-properties-sort>
+  </div>
+  <div class="property-list">
+<app-properties [properties]="data.list" (requestMore)="requestMore()"></app-properties>
+  </div>
+</div>
+<div class="sidenav">
+  Sidenav
+</div>
