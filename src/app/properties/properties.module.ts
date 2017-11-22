@@ -20,6 +20,7 @@ import {PropertiesQueryEffects} from './properties-query.effects';
 import {PropertyOptionsEffects} from './property-options-get.effects';
 import {PropertyPageComponent} from './property-page/property-page.component';
 import {AgmCoreModule} from '@agm/core';
+import {PropertyGetEffects} from './property-get.effects';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {AgmCoreModule} from '@agm/core';
       PropertyCreateEffects,
       PropertyRemoveEffects,
       PropertiesQueryEffects,
-      PropertyOptionsEffects
+      PropertyOptionsEffects,
+      PropertyGetEffects
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAyBEPHoazpK_80ozU_Hq1wGK8cHj9QqMQ'
