@@ -1,5 +1,9 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {PropertyService} from '../property.service';
+import {ActivatedRoute} from '@angular/router';
+import {Property} from '../../_domains/property';
+import 'rxjs/add/operator/merge';
+import {PropertyOptions} from '../../_domains/property-options';
 
 @Component({
   selector: 'app-property-page',
@@ -9,41 +13,9 @@ import {PropertyService} from '../property.service';
 export class PropertyPageComponent implements OnInit {
   @HostBinding('class') cssClass = 'content-container';
 
-  data = {
-    "id": "5636139285217280",
-    "duration": 5,
-    "price": 530.59,
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus felis est, et luctus lorem hendrerit nec. Aliquam mauris urna, euismod consequat ultricies eget, vehicula ut lacus. In hac habitasse platea dictumst. Sed at feugiat mi. Integer congue, dui id lobortis dignissim, nunc lacus feugiat lectus, ac mollis purus risus ut justo. Suspendisse ut lorem ante. Nunc at sem quis massa suscipit luctus et vitae neque. Quisque pharetra justo arcu, vitae sagittis nulla volutpat eu.\nEtiam gravida id mauris et placerat. Aliquam iaculis feugiat commodo. Praesent fermentum commodo ex at tincidunt. In bibendum lorem magna, nec pretium urna convallis vel. Pellentesque condimentum vestibulum neque vel vehicula. Morbi lobortis metus urna, id semper diam tristique nec. Phasellus interdum, nisi sed.",
-    "options": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      11,
-      13
-    ],
-    "address": {
-      "geocode": {
-        "lat": 43.0730257,
-        "lng": -89.3928802
-      },
-      "detailLevel1": "Apt. 6B",
-      "detailLevel2": "430 W Johnson St.",
-      "city": "Madison",
-      "state": "WI",
-      "zipcode": "53703",
-      "type": "APARTMENT"
-    },
-    "status": false,
-    "owner": "5702666986455040",
-    "imageUrls": [],
-    "title": "Test Object 3",
-    "roomType": "1BR",
-    "startDate": "2017-11-10T21:16:48.757Z",
-    "createTime": "2017-11-11T04:52:13.480Z",
-    "updateTime": "2017-11-11T04:52:13.480Z"
-  };
+  propertyId: string;
+  data: Property;
+  _propertySubscription;
 
   options = [];
   propertyOptions = {
@@ -52,30 +24,50 @@ export class PropertyPageComponent implements OnInit {
     houseRules: []
   };
 
-  constructor(private _propertyService: PropertyService) {
-    this._propertyService.propertyOptions$.subscribe((options) => {
-      if (options.list.length > 0) {
-        this.options = options.list;
-        const selectedOptions = this.data.options.map((id) => {
-          return this.options.find((option) => {
-            return parseInt(option.id) === id;
-          });
-        });
+  constructor(private _propertyService: PropertyService, private _activatedRoute: ActivatedRoute) {
+    this.propertyId = this._activatedRoute.snapshot.params.id;
+    this._propertySubscription = this._propertyService.propertyOptions$.merge(this._propertyService.property$)
+      .subscribe((data) => {
+        if (data && this._isPropertyOption(data)) {
+          this.options = data.list;
+        }
 
-        this.propertyOptions.amenities = selectedOptions.filter((option) => {
-          return option.type === 'AMENITIES'
-        });
-        this.propertyOptions.pets = selectedOptions.filter((option) => {
-          return option.type === 'PETS'
-        });
-        this.propertyOptions.houseRules = selectedOptions.filter((option) => {
-          return option.type === 'HOUSE_RULES'
-        });
-      }
-    });
+        if (data && this._isProperty(data)) {
+          this.data = data;
+        }
+
+        this._setOptions();
+      });
+  }
+
+  private _isPropertyOption(obj: any): obj is PropertyOptions {
+    return obj.list !== undefined
+  }
+
+  private _isProperty(obj: any): obj is Property {
+    return obj.title !== undefined
+  }
+
+  private _setOptions() {
+    if (this.options.length > 0 && this.data) {
+      const selectedOptions = this.data.options
+        .map((id) => this.options.find((option) => option.id === id));
+
+      console.log(selectedOptions);
+      this.propertyOptions.amenities = selectedOptions.filter((option) => {
+        return option.type === 'AMENITIES'
+      });
+      this.propertyOptions.pets = selectedOptions.filter((option) => {
+        return option.type === 'PETS'
+      });
+      this.propertyOptions.houseRules = selectedOptions.filter((option) => {
+        return option.type === 'HOUSE_RULES'
+      });
+    }
   }
 
   ngOnInit() {
     this._propertyService.getOptions();
+    this._propertyService.get(this.propertyId);
   }
 }

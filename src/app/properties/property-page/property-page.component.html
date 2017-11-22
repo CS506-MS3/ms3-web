@@ -1,5 +1,5 @@
 <!-- SIDENAV PROFILE DETAILS -->
-<div class="sidenav">
+<div class="sidenav" *ngIf="data">
   <!-- Map Component -->
   <agm-map [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng" [zoom]="15">
     <agm-marker [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng"></agm-marker>
@@ -13,7 +13,7 @@
 </div>
 
 <!-- MAIN CONTENT AREA-->
-<div class="content-area">
+<div class="content-area" *ngIf="data">
   <!-- Image Gallery should go here later -->
   <section></section>
   <!-- Main Title & Price etc -->
