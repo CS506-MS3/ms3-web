@@ -28,7 +28,7 @@ describe('WishlistService', () => {
       const testId = 1;
       service.add(testId);
 
-      expect(console.log).toHaveBeenCalledWith('add' + testId)
+      expect(console.log).toHaveBeenCalledWith('add' + testId);
     }));
   });
 });

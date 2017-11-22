@@ -20,7 +20,7 @@ export class WishlistButtonComponent implements OnInit {
       }
     });
     this._service.featureOn$.subscribe((featureOn) => {
-      this.hasWishlist = featureOn
+      this.hasWishlist = featureOn;
     });
   }
 

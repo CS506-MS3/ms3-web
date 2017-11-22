@@ -73,7 +73,7 @@ describe('WishlistButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
     expect(component.wishlist).toEqual(wishlistStore.list);
-    expect(component.hasWishlist).toBeTruthy()
+    expect(component.hasWishlist).toBeTruthy();
   });
 
   describe('method: isInWishlist', () => {
