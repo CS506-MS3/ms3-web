@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-searching-bar',
   templateUrl: './searching-bar.component.html',
@@ -8,7 +9,8 @@ import {Router} from '@angular/router';
 })
 export class SearchingBarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -16,9 +18,9 @@ export class SearchingBarComponent implements OnInit {
   submitSearch(event, formData: NgForm) {
     console.log(event);
     console.log(formData.value);
-    let query = formData.value['q'];
-    if (query){
-      this.router.navigate(['/properties', {q : query}]);
+    const query = formData.value['q'];
+    if (query) {
+      this.router.navigate(['/properties', {q: query}]);
     }
 
   }

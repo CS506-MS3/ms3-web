@@ -21,6 +21,7 @@ import {PropertyOptionsEffects} from './property-options-get.effects';
 import {PropertyPageComponent} from './property-page/property-page.component';
 import {AgmCoreModule} from '@agm/core';
 import {PropertyGetEffects} from './property-get.effects';
+import {SearchingBarComponent} from './searching-bar/searching-bar.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import {PropertyGetEffects} from './property-get.effects';
     PropertyListPageComponent,
     PropertiesSortComponent,
     PropertiesComponent,
-    PropertyPageComponent
+    PropertyPageComponent,
+    SearchingBarComponent
   ],
   providers: [PropertiesService, PropertyService]
 })

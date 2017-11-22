@@ -41,11 +41,11 @@ export class PropertyPageComponent implements OnInit {
   }
 
   private _isPropertyOption(obj: any): obj is PropertyOptions {
-    return obj.list !== undefined
+    return obj.list !== undefined;
   }
 
   private _isProperty(obj: any): obj is Property {
-    return obj.title !== undefined
+    return obj.title !== undefined;
   }
 
   private _setOptions() {
@@ -54,13 +54,13 @@ export class PropertyPageComponent implements OnInit {
         .map((id) => this.options.find((option) => option.id === id));
 
       this.propertyOptions.amenities = selectedOptions.filter((option) => {
-        return option.type === 'AMENITIES'
+        return option.type === 'AMENITIES';
       });
       this.propertyOptions.pets = selectedOptions.filter((option) => {
-        return option.type === 'PETS'
+        return option.type === 'PETS';
       });
       this.propertyOptions.houseRules = selectedOptions.filter((option) => {
-        return option.type === 'HOUSE_RULES'
+        return option.type === 'HOUSE_RULES';
       });
     }
   }
