@@ -53,7 +53,6 @@ export class PropertyPageComponent implements OnInit {
       const selectedOptions = this.data.options
         .map((id) => this.options.find((option) => option.id === id));
 
-      console.log(selectedOptions);
       this.propertyOptions.amenities = selectedOptions.filter((option) => {
         return option.type === 'AMENITIES'
       });
