@@ -1,0 +1,6 @@
+<div class="property-summary-controls">
+  <button type="button" class="remove" aria-label="Close" (click)="onRemove()">
+    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+  </button>
+</div>
+<app-property-summary-card routerLink="/properties/{{data.id}}" [data]="data"></app-property-summary-card>

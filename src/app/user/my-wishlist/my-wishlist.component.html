@@ -1,0 +1,3 @@
+<div class="property-summary col-lg-12" *ngFor="let property of wishlist">
+  <app-wishlist-card [data]="property" (remove)="onRemove($event)"></app-wishlist-card>
+</div>

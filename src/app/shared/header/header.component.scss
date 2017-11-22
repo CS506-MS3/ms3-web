@@ -1,3 +1,15 @@
 clr-modal {
   display: block;
 }
+
+.wishlist-dropdown {
+  color: black;
+  padding: 0 12px;
+  max-height: 75%;
+  overflow-y: auto;
+
+  ::ng-deep .card {
+    margin: 0.25rem 0;
+  }
+}
+

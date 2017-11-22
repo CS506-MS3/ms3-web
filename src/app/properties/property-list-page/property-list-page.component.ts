@@ -25,6 +25,7 @@ export class PropertyListPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._propertiesService.query(this.queryParams);
     this._activatedRoute.queryParams.subscribe((params) => {
       if (params.sortBy && params.direction) {
         this.queryParams = params;
