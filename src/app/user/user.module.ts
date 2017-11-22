@@ -14,9 +14,9 @@ import {UserInfoGetEffects} from './user-info-get.effects';
 import {RouterModule} from '@angular/router';
 import {PersonalInfoComponent} from './personal-info/personal-info.component';
 import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
-import {PropertySummaryCardComponent} from './property-summary-card/property-summary-card.component';
 import {MyPropertiesListComponent} from './my-properties-list/my-properties-list.component';
 import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -28,13 +28,13 @@ import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card
       DeactivateEffects.Effects,
       UserInfoGetEffects
     ]),
+    SharedModule
   ],
   declarations: [
     AccountInfoPageComponent,
     DeactivateAccountComponent,
     PersonalInfoComponent,
     SubscriptionListComponent,
-    PropertySummaryCardComponent,
     MyPropertiesCardComponent,
     MyPropertiesListComponent
   ],

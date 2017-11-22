@@ -7,7 +7,7 @@ import {ClarityModule} from 'clarity-angular';
 import {PropertyFormComponent} from './property-form/property-form.component';
 import {AddressVerificationFormComponent} from './address-verification-form/address-verification-form.component';
 import {ImageFormComponent} from './image-form/image-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 import {PropertyCreateEffects} from './property-create.effects';
 import {PropertyRemoveEffects} from './property-remove.effects';
@@ -27,6 +27,7 @@ import {SearchingBarComponent} from './searching-bar/searching-bar.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule,
     ClarityModule.forChild(),
     EffectsModule.forFeature([

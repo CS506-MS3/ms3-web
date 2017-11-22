@@ -1,0 +1,25 @@
+:host {
+  position: relative;
+}
+.property-summary-controls {
+  z-index: 100;
+  position: absolute;
+  top: 1rem;
+  right: 0.75rem;
+
+  button {
+    cursor: pointer;
+    padding: 0;
+    line-height: 22px;
+    &:hover {
+      background: ghostwhite;
+    }
+    clr-icon {
+      color: grey;
+      position: relative;
+      transform: none;
+      top: 0;
+      right: 0;
+    }
+  }
+}
