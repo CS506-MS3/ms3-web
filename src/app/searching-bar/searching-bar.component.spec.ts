@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SearchingBarComponent } from './searching-bar.component';
+import {SearchingBarComponent} from './searching-bar.component';
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('SearchingBarComponent', () => {
   let component: SearchingBarComponent;
@@ -8,9 +10,13 @@ describe('SearchingBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchingBarComponent ]
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+      ],
+      declarations: [SearchingBarComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
