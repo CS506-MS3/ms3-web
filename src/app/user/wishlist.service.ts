@@ -20,7 +20,7 @@ export class WishlistService {
   }
 
   add(id: number) {
-    console.log('add');
+    console.log('add' + id);
   }
 
   remove(id: number) {

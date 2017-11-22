@@ -28,7 +28,8 @@ export class WishlistButtonComponent implements OnInit {
   }
 
   isInWishlist() {
-    return this.wishlist.find((item) => this.property.id === item.id);
+    const match = this.wishlist.find((item) => this.property.id === item.id);
+    return !!match;
   }
 
   toggleWishlist($event) {

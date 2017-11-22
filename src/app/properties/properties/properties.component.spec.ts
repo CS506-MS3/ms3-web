@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PropertiesComponent} from './properties.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('PropertiesComponent', () => {
   let component: PropertiesComponent;
@@ -20,6 +21,9 @@ describe('PropertiesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
       imports: [RouterTestingModule],
       declarations: [PropertiesComponent]
     })
