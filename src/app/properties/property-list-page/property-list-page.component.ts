@@ -13,77 +13,15 @@ export class PropertyListPageComponent implements OnInit {
   @HostBinding('class') cssClass = 'content-container';
 
   queryParams: any;
-  data: Properties = {
-    list: [
-      {
-        id: 1,
-        title: 'Lorem Ipsum Dolores',
-        address: '123 Test Ave., Madison, WI',
-        price: 500,
-        startDate: '2017-10-01T00:00:00',
-        duration: 6,
-        thumbnailUrl: 'assets/images/eachProperty.jpg'
-      },
-      {
-        id: 2,
-        title: 'Lorem Ipsum Dolores',
-        address: '123 Test Ave., Madison, WI',
-        price: 500,
-        startDate: '2017-10-01T00:00:00',
-        duration: 6,
-        thumbnailUrl: 'assets/images/eachProperty.jpg'
-      },
-      {
-        id: 3,
-        title: 'Lorem Ipsum Dolores',
-        address: '123 Test Ave., Madison, WI',
-        price: 500,
-        startDate: '2017-10-01T00:00:00',
-        duration: 6,
-        thumbnailUrl: 'assets/images/eachProperty.jpg'
-      },
-      {
-        id: 4,
-        title: 'Lorem Ipsum Dolores',
-        address: '123 Test Ave., Madison, WI',
-        price: 500,
-        startDate: '2017-10-01T00:00:00',
-        duration: 6,
-        thumbnailUrl: 'assets/images/eachProperty.jpg'
-      },
-      {
-        id: 5,
-        title: 'Lorem Ipsum Dolores',
-        address: '123 Test Ave., Madison, WI',
-        price: 500,
-        startDate: '2017-10-01T00:00:00',
-        duration: 6,
-        thumbnailUrl: 'assets/images/eachProperty.jpg'
-      },
-      {
-        id: 6,
-        title: 'Lorem Ipsum Dolores',
-        address: '123 Test Ave., Madison, WI',
-        price: 500,
-        startDate: '2017-10-01T00:00:00',
-        duration: 6,
-        thumbnailUrl: 'assets/images/eachProperty.jpg'
-      },
-    ],
-    cursor: null
-  };
+  data: Properties;
 
   constructor(private _propertiesService: PropertiesService,
               private _activatedRoute: ActivatedRoute,
               private _router: Router) {
-    const urlQueryParams = this._activatedRoute.snapshot.queryParams;
-    if (!urlQueryParams.sortBy || !urlQueryParams.direction) {
-      const newQueryParams = {
-        sortBy: urlQueryParams.sortBy || 'recent',
-        direction: urlQueryParams.direction || 'UP'
-      };
-      this._router.navigate(['properties'], {queryParams: newQueryParams});
-    }
+    this.queryParams = {
+      sortBy: this._activatedRoute.snapshot.queryParams.sortBy || 'recent',
+      direction: this._activatedRoute.snapshot.queryParams.direction || 'UP'
+    };
   }
 
   ngOnInit() {

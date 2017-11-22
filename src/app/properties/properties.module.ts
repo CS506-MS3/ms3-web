@@ -18,6 +18,10 @@ import {PropertiesSortComponent} from './properties-sort/properties-sort.compone
 import {PropertiesComponent} from './properties/properties.component';
 import {PropertiesQueryEffects} from './properties-query.effects';
 import {PropertyOptionsEffects} from './property-options-get.effects';
+import {PropertyPageComponent} from './property-page/property-page.component';
+import {AgmCoreModule} from '@agm/core';
+import {PropertyGetEffects} from './property-get.effects';
+import {SearchingBarComponent} from './searching-bar/searching-bar.component';
 
 @NgModule({
   imports: [
@@ -29,8 +33,12 @@ import {PropertyOptionsEffects} from './property-options-get.effects';
       PropertyCreateEffects,
       PropertyRemoveEffects,
       PropertiesQueryEffects,
-      PropertyOptionsEffects
-    ])
+      PropertyOptionsEffects,
+      PropertyGetEffects
+    ]),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAyBEPHoazpK_80ozU_Hq1wGK8cHj9QqMQ'
+    })
   ],
   declarations: [
     CreateListingPageComponent,
@@ -40,7 +48,9 @@ import {PropertyOptionsEffects} from './property-options-get.effects';
     RemoveListingPageComponent,
     PropertyListPageComponent,
     PropertiesSortComponent,
-    PropertiesComponent
+    PropertiesComponent,
+    PropertyPageComponent,
+    SearchingBarComponent
   ],
   providers: [PropertiesService, PropertyService]
 })

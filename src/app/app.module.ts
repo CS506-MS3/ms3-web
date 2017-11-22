@@ -19,21 +19,17 @@ import * as UserInfo from './_actions/user-info.reducer';
 import * as Wishlist from './_actions/wishlist.reducer';
 import * as Pricings from './_actions/pricings.reducer';
 import * as Properties from './_actions/properties.reducer';
+import * as Property from './_actions/property.reducer';
 import * as PropertyOptions from './_actions/property-options.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
 import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
-import { PropertySummaryCardComponent } from './user/property-summary-card/property-summary-card.component';
-import { MyPropertiesCardComponent } from './user/my-properties-card/my-properties-card.component';
-import { MyPropertiesListComponent } from './user/my-properties-list/my-properties-list.component';
-import { SearchingBarComponent } from './searching-bar/searching-bar.component';
-import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    SearchingBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +43,7 @@ import { FormsModule } from '@angular/forms';
       routerReducer: routerReducer,
       pricings: Pricings.reducer,
       properties: Properties.reducer,
+      property: Property.reducer,
       propertyOptions: PropertyOptions.reducer
     }),
     EffectsModule.forRoot([]),
@@ -61,7 +58,6 @@ import { FormsModule } from '@angular/forms';
     PropertiesModule,
     AccessPurchaseModule,
     ClarityModule.forRoot(),
-    FormsModule,
   ],
   bootstrap: [AppComponent]
 })

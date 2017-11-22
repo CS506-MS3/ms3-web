@@ -1,0 +1,59 @@
+<!-- SIDENAV PROFILE DETAILS -->
+<div class="sidenav" *ngIf="data">
+  <!-- Map Component -->
+  <agm-map [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng" [zoom]="15">
+    <agm-marker [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng"></agm-marker>
+    <agm-circle [latitude]="43.074" [longitude]="-89.392" [radius]="250"></agm-circle>
+  </agm-map>
+  <!-- Contact Form / Get Subscription -->
+  <section>
+    <h4>Get Access</h4>
+    <p>For more detailed information on the property</p>
+  </section>
+</div>
+
+<!-- MAIN CONTENT AREA-->
+<div class="content-area" *ngIf="data">
+  <!-- Image Gallery should go here later -->
+  <section></section>
+  <!-- Main Title & Price etc -->
+  <section>
+    <h3>{{data.title}}</h3>
+    <p>{{ data.address.detailLevel1 }}, {{ data.address.detailLevel2 }}, {{ data.address.city }}, {{ data.address.state
+      }}, {{ data.address.zipcode }} </p>
+    <ul class="list list-spacer">
+
+      <li>${{data.price | number: '1.2-2'}}/Month</li>
+      <li>Starts: {{data.startDate | date: 'yMd'}}, {{data.duration}} months</li>
+      <li>{{data.address.type}} / {{data.roomType}}</li>
+    </ul>
+
+  </section>
+  <!-- Description -->
+  <section>
+    <p>{{ data.description }}</p>
+  </section>
+  <!-- Details -->
+  <section>
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Amenities</h4>
+        <ul class="list">
+          <li *ngFor="let option of propertyOptions.amenities">{{option.alias}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4>Pets</h4>
+        <ul class="list">
+          <li *ngFor="let option of propertyOptions.pets">{{option.alias}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4>House Rules</h4>
+        <ul class="list">
+          <li *ngFor="let option of propertyOptions.houseRules">{{option.alias}}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>

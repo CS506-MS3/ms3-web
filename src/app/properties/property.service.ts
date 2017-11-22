@@ -3,7 +3,7 @@ import {Property} from '../_domains/property';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import * as PropertyOptionsActions from '../_effect-actions/property-options.actions';
-// import * as PropertyGetActions from '../_effect-actions/property-get.actions';
+import * as PropertyGetActions from '../_effect-actions/property-get.actions';
 // import * as PropertyUpdateActions from '../_effect-actions/property-update.actions';
 import * as PropertyCreateActions from '../_effect-actions/property-create.actions';
 import * as PropertyRemoveActions from '../_effect-actions/property-remove.actions';
@@ -20,7 +20,10 @@ export class PropertyService {
   }
 
   get(id) {
-    // this._store.dispatch(new PropertyGetActions.Request(id));
+    if (id) {
+
+      this._store.dispatch(new PropertyGetActions.Request(id));
+    }
   }
 
   create(form) {
