@@ -15,93 +15,93 @@ export class HeaderComponent implements OnInit {
   wishlist: PropertySummary[];
 
   constructor(private _router: Router, private _auth: AuthService) {
-    this.wishlist = [
-      {
-        id: 1,
-        title: 'property1',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property2',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property3',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property4',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property5',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property5',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property6',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      },
-      {
-        id: 1,
-        title: 'property7',
-        status: true,
-        address: '123 Test Ave.',
-        price: 520.12,
-        startDate: '2017-11-30T00:00:00',
-        duration: 3,
-        thumbnailUrl: ''
-      }
-    ];
     this._auth.auth$.subscribe((auth) => {
       this.authenticated = auth.token !== null;
       this.email = auth.email;
       if (this.authenticated) {
         this.loginModalOpen = false;
+        this.wishlist = [
+          {
+            id: 1,
+            title: 'property1',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property2',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property3',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property4',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property5',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property5',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property6',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          },
+          {
+            id: 1,
+            title: 'property7',
+            status: true,
+            address: '123 Test Ave.',
+            price: 520.12,
+            startDate: '2017-11-30T00:00:00',
+            duration: 3,
+            thumbnailUrl: ''
+          }
+        ];
       }
     });
   }
