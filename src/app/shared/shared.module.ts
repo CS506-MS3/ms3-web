@@ -8,7 +8,8 @@ import {SignInFormComponent} from './sign-in-form/sign-in-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {PropertySummaryCardComponent} from './property-summary-card/property-summary-card.component';
-import { WishlistCardComponent } from './wishlist-card/wishlist-card.component';
+import {WishlistCardComponent} from './wishlist-card/wishlist-card.component';
+import {WishlistButtonComponent} from './wishlist-button/wishlist-button.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,20 @@ import { WishlistCardComponent } from './wishlist-card/wishlist-card.component';
     RouterModule,
     ClarityModule.forChild()
   ],
-  declarations: [HeaderComponent, FooterComponent, PropertySummaryCardComponent, SignInFormComponent, WishlistCardComponent],
-  exports: [HeaderComponent, FooterComponent, PropertySummaryCardComponent]
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    PropertySummaryCardComponent,
+    SignInFormComponent,
+    WishlistCardComponent,
+    WishlistButtonComponent
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    PropertySummaryCardComponent,
+    WishlistButtonComponent
+  ]
 })
 export class SharedModule {
 }

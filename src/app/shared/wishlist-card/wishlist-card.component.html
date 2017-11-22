@@ -3,4 +3,4 @@
     <clr-icon aria-hidden="true" shape="close"></clr-icon>
   </button>
 </div>
-<app-property-summary-card [data]="data"></app-property-summary-card>
+<app-property-summary-card routerLink="/properties/{{data.id}}" [data]="data"></app-property-summary-card>

@@ -22,6 +22,7 @@ import {PropertyPageComponent} from './property-page/property-page.component';
 import {AgmCoreModule} from '@agm/core';
 import {PropertyGetEffects} from './property-get.effects';
 import {SearchingBarComponent} from './searching-bar/searching-bar.component';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import {SearchingBarComponent} from './searching-bar/searching-bar.component';
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAyBEPHoazpK_80ozU_Hq1wGK8cHj9QqMQ'
-    })
+    }),
+    SharedModule
   ],
   declarations: [
     CreateListingPageComponent,
