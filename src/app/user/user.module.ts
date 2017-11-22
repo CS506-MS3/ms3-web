@@ -17,6 +17,7 @@ import {SubscriptionListComponent} from './subscription-list/subscription-list.c
 import {MyPropertiesListComponent} from './my-properties-list/my-properties-list.component';
 import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card.component';
 import {SharedModule} from '../shared/shared.module';
+import { MyWishlistComponent } from './my-wishlist/my-wishlist.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import {SharedModule} from '../shared/shared.module';
     PersonalInfoComponent,
     SubscriptionListComponent,
     MyPropertiesCardComponent,
-    MyPropertiesListComponent
+    MyPropertiesListComponent,
+    MyWishlistComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService

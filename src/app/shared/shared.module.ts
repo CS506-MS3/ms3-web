@@ -31,6 +31,7 @@ import {WishlistButtonComponent} from './wishlist-button/wishlist-button.compone
     HeaderComponent,
     FooterComponent,
     PropertySummaryCardComponent,
+    WishlistCardComponent,
     WishlistButtonComponent
   ]
 })
