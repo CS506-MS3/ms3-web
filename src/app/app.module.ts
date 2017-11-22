@@ -29,7 +29,8 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SearchingBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +59,7 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
     PropertiesModule,
     AccessPurchaseModule,
     ClarityModule.forRoot(),
+    FormsModule,
   ],
   bootstrap: [AppComponent]
 })
