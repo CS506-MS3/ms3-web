@@ -6,4 +6,5 @@ export interface PropertySummary {
   startDate: string;
   duration: number;
   thumbnailUrl: string;
+  status?: boolean;
 }
