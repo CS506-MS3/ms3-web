@@ -15,9 +15,7 @@ export class WishlistButtonComponent implements OnInit {
 
   constructor(private _service: WishlistService) {
     this._service.wishlist$.subscribe((data) => {
-      if (data.list.length > 0) {
-        this.wishlist = data.list;
-      }
+      this.wishlist = data.list;
     });
     this._service.featureOn$.subscribe((featureOn) => {
       this.hasWishlist = featureOn;

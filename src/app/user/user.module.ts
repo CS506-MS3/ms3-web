@@ -18,7 +18,7 @@ import {MyPropertiesListComponent} from './my-properties-list/my-properties-list
 import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card.component';
 import {SharedModule} from '../shared/shared.module';
 import {MyWishlistComponent} from './my-wishlist/my-wishlist.component';
-import {WishlistAddEffects} from "./wishlist-add.effects";
+import {WishlistAddEffects} from './wishlist-add.effects';
 import {WishlistRemoveEffects} from './wishlist-remove.effects';
 
 @NgModule({

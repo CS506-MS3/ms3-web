@@ -26,8 +26,6 @@ export class WishlistRemoveEffects {
       const request = new RestApiRequest(API.USER.WISHLIST.DELETE);
       request.setPathParams({id: payload});
 
-      console.log(payload);
-      console.log(parseInt(payload));
       return this._api.request(request)
         .map(response => new WishlistRemoveActions.Success({id: payload}))
         .catch(error => Observable.of(new WishlistRemoveActions.Error(error)));
