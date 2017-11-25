@@ -17,7 +17,9 @@ import {SubscriptionListComponent} from './subscription-list/subscription-list.c
 import {MyPropertiesListComponent} from './my-properties-list/my-properties-list.component';
 import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card.component';
 import {SharedModule} from '../shared/shared.module';
-import { MyWishlistComponent } from './my-wishlist/my-wishlist.component';
+import {MyWishlistComponent} from './my-wishlist/my-wishlist.component';
+import {WishlistAddEffects} from "./wishlist-add.effects";
+import {WishlistRemoveEffects} from './wishlist-remove.effects';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import { MyWishlistComponent } from './my-wishlist/my-wishlist.component';
     RouterModule,
     EffectsModule.forFeature([
       DeactivateEffects.Effects,
-      UserInfoGetEffects
+      UserInfoGetEffects,
+      WishlistAddEffects,
+      WishlistRemoveEffects
     ]),
     SharedModule
   ],
