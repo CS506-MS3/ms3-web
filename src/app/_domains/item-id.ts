@@ -1,3 +1,3 @@
 export interface ItemId {
-  id: number;
+  id: number | string;
 }
