@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Wishlist} from '../_domains/wishlist';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
+import * as WishlistAddActions from '../_effect-actions/wishlist-add.actions';
+import * as WishlistRemoveActions from '../_effect-actions/wishlist-remove.actions';
 
 @Injectable()
 export class WishlistService {
@@ -20,11 +22,13 @@ export class WishlistService {
   }
 
   add(id: number) {
-    console.log('add' + id);
+
+    this._store.dispatch(new WishlistAddActions.Request(id));
   }
 
   remove(id: number) {
-    console.log('remove');
+
+    this._store.dispatch(new WishlistRemoveActions.Request(id.toString()));
   }
 
   clear() {
