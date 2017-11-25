@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {AuthService} from '../../auth/auth.service';
 import {WishlistService} from '../../user/wishlist.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('HeaderComponent', () => {
   const routerMock = {
@@ -33,6 +34,9 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
+      ],
+      imports: [
+        ReactiveFormsModule
       ],
       providers: [
         {provide: Router, useValue: routerMock},

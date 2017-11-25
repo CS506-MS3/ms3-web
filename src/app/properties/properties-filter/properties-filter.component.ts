@@ -36,24 +36,26 @@ export class PropertiesFilterComponent implements OnInit {
   }
 
   generateForm() {
-    this.filterForm = this._fb.group({
-      propertyType: [this.filterInput.propertyType],
-      roomType: [this.filterInput.roomType],
-      startBefore: [this.filterInput.startBefore ? this.filterInput.startBefore : null],
-      endAfter: [this.filterInput.endAfter ? this.filterInput.endAfter : null],
-      minPrice: [this.filterInput.minPrice ? this.filterInput.minPrice : null],
-      maxPrice: [this.filterInput.maxPrice ? this.filterInput.maxPrice : null],
-      zipcode: [this.filterInput.zipcode ? this.filterInput.zipcode : null],
-      amenities: this._fb.array(this.options.AMENITIES.map(
-        (option) => this._fb.control(
-          this.filterInput.options && this.filterInput.options.includes(option.id)))),
-      pets: this._fb.array(this.options.PETS.map(
-        (option) => this._fb.control(
-          this.filterInput.options && this.filterInput.options.includes(option.id)))),
-      houseRules: this._fb.array(this.options.HOUSE_RULES.map(
-        (option) => this._fb.control(
-          this.filterInput.options && this.filterInput.options.includes(option.id))))
-    });
+    if (this.filterInput) {
+      this.filterForm = this._fb.group({
+        propertyType: [this.filterInput.propertyType],
+        roomType: [this.filterInput.roomType],
+        startBefore: [this.filterInput.startBefore ? this.filterInput.startBefore : null],
+        endAfter: [this.filterInput.endAfter ? this.filterInput.endAfter : null],
+        minPrice: [this.filterInput.minPrice ? this.filterInput.minPrice : null],
+        maxPrice: [this.filterInput.maxPrice ? this.filterInput.maxPrice : null],
+        zipcode: [this.filterInput.zipcode ? this.filterInput.zipcode : null],
+        amenities: this._fb.array(this.options.AMENITIES.map(
+          (option) => this._fb.control(
+            this.filterInput.options && this.filterInput.options.includes(option.id)))),
+        pets: this._fb.array(this.options.PETS.map(
+          (option) => this._fb.control(
+            this.filterInput.options && this.filterInput.options.includes(option.id)))),
+        houseRules: this._fb.array(this.options.HOUSE_RULES.map(
+          (option) => this._fb.control(
+            this.filterInput.options && this.filterInput.options.includes(option.id))))
+      });
+    }
   }
 
   applyFilter({value, valid}) {
