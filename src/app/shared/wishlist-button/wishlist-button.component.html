@@ -1,0 +1,3 @@
+<button class="btn btn-icon btn-wishlist" *ngIf="hasWishlist" (click)="toggleWishlist($event); false;">
+  <clr-icon shape="heart" [ngClass]="{'is-solid': isInWishlist()}"></clr-icon>
+</button>

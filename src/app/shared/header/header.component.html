@@ -19,9 +19,17 @@
         <a clrDropdownItem (click)="signOut()">Log out</a>
       </clr-dropdown-menu>
     </clr-dropdown>
+    <clr-dropdown *ngIf="authenticated">
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="heart"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="wishlist-dropdown">
+        <app-wishlist-card [data]="property" (remove)="onWishlistRemove($event)" *ngFor="let property of wishlist"></app-wishlist-card>
+      </clr-dropdown-menu>
+    </clr-dropdown>
   </div>
 </header>
-
 <clr-modal [(clrModalOpen)]="loginModalOpen">
   <h3 class="modal-title">Sign In</h3>
   <div class="modal-body">

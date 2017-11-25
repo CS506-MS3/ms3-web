@@ -5,6 +5,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {AuthService} from '../../auth/auth.service';
+import {WishlistService} from '../../user/wishlist.service';
 
 describe('HeaderComponent', () => {
   const routerMock = {
@@ -18,6 +19,13 @@ describe('HeaderComponent', () => {
 
     unauthenticate = jasmine.createSpy('unauthenticate');
   }
+  class MockWishlistService {
+    wishlist$ = Observable.of({
+      list: []
+    });
+
+    remove = jasmine.createSpy('remove');
+  }
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
@@ -28,7 +36,8 @@ describe('HeaderComponent', () => {
       ],
       providers: [
         {provide: Router, useValue: routerMock},
-        {provide: AuthService, useClass: MockAuthService}
+        {provide: AuthService, useClass: MockAuthService},
+        {provide: WishlistService, useClass: MockWishlistService}
       ],
       declarations: [ HeaderComponent ]
     })

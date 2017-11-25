@@ -4,20 +4,36 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {ClarityModule} from 'clarity-angular';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppRoutingModule} from '../app.routing';
 import {SignInFormComponent} from './sign-in-form/sign-in-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {PropertySummaryCardComponent} from './property-summary-card/property-summary-card.component';
+import {WishlistCardComponent} from './wishlist-card/wishlist-card.component';
+import {WishlistButtonComponent} from './wishlist-button/wishlist-button.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
+    RouterModule,
     ClarityModule.forChild()
   ],
-  declarations: [HeaderComponent, FooterComponent, SignInFormComponent],
-  exports: [HeaderComponent, FooterComponent]
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    PropertySummaryCardComponent,
+    SignInFormComponent,
+    WishlistCardComponent,
+    WishlistButtonComponent
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    PropertySummaryCardComponent,
+    WishlistCardComponent,
+    WishlistButtonComponent
+  ]
 })
 export class SharedModule {
 }

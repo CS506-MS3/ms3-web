@@ -72,18 +72,18 @@ export const API = {
       method: 'PUT',
       url: '/users/${userId}/account-info'
     },
-    BOOKMARKS: {
+    WISHLIST: {
       ADD: {
         method: 'POST',
-        url: '/users/${userId}/bookmarks'
+        url: '/wishlist'
       },
       CLEAR: {
         method: 'DELETE',
-        url: '/users/${userId}/bookmarks'
+        url: '/wishlist'
       },
       DELETE: {
         method: 'DELETE',
-        url: '/users/${userId}/bookmarks/${bookmarkId}'
+        url: '/wishlist/${id}'
       }
     },
     PROPERTIES: {
