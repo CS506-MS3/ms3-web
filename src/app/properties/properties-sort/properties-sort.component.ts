@@ -24,7 +24,10 @@ export class PropertiesSortComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sort = Object.assign({}, this.sortInput);
+    this.sort = {
+      sortBy: this.sortInput.sortBy,
+      direction: this.sortInput.direction
+    };
   }
 
   onSelect(value) {

@@ -1,0 +1,129 @@
+<button class="btn btn-link btn-sm" (click)="openFilter()">Advanced Filters</button>
+<clr-modal [(clrModalOpen)]="filterOpen">
+  <h3 class="modal-title">Advanced Filter</h3>
+  <div class="modal-body">
+  <form novalidate class="compact" *ngIf="filterForm && options" (ngSubmit)="applyFilter(filterForm)"
+      [formGroup]="filterForm">
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label>Apt/House</label>
+      </div>
+      <div class="radio col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <input type="radio" id="property-type-input-1" formControlName="propertyType" value="APARTMENT">
+        <label for="property-type-input-1">Apt</label>
+      </div>
+      <div class="radio col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <input type="radio" id="property-type-input-2" formControlName="propertyType" value="HOUSE">
+        <label for="property-type-input-2">House</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label for="room-type-select">Room type</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+        <div class="select">
+          <select name="room-type-select" id="room-type-select" formControlName="roomType">
+            <option *ngFor="let roomType of options.ROOM_TYPE" value="{{roomType.value}}">{{roomType.alias}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label for="start-date-input">Start Before</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+        <input class="form-control"
+               type="date" id="start-date-input" placeholder="" size="45"
+               formControlName="startBefore">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label for="end-date-input">End After</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+        <input class="form-control"
+               type="date" id="end-date-input" placeholder="" size="45"
+               formControlName="endAfter">
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label for="min-price-input">Min. Price</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+        <input class="form-control"
+               type="number" id="min-price-input" placeholder="min" size="45"
+               formControlName="minPrice">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label for="max-price-input">Max. Price</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+        <input class="form-control"
+               type="number" id="max-price-input" placeholder="max" size="45"
+               formControlName="maxPrice">
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+        <label for="zipcode">Zip Code</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+        <input class="form-control" type="number" id="zipcode" placeholder="" size="45"
+               formControlName="zipcode" max="99999">
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2">
+        <label>Amenities</label>
+      </div>
+      <div class="col-lg-10 row">
+        <div class="checkbox col-lg-4 col-md-4 col-sm-6 col-xs-6" *ngFor="let amenity of filterForm.get('amenities').controls; let i = index;">
+          <input type="checkbox" id="{{'amenities_checkbox_' + i}}" [formControl]="amenity">
+          <label for="{{'amenities_checkbox_' + i}}">{{options.AMENITIES[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2">
+        <label>Pets</label>
+      </div>
+      <div class="col-lg-10 row">
+        <div class="checkbox col-lg-4 col-md-4 col-sm-6 col-xs-6" *ngFor="let pet of filterForm.get('pets').controls; let i = index;">
+          <input type="checkbox" id="{{'pets_checkbox_' + i}}" [formControl]="pet">
+          <label for="{{'pets_checkbox_' + i}}">{{options.PETS[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-2">
+        <label>House Rules</label>
+      </div>
+      <div class="col-lg-10 row">
+        <div class="checkbox col-lg-4 col-md-4 col-sm-6 col-xs-6" *ngFor="let houseRule of filterForm.get('houseRules').controls; let i = index;">
+          <input type="checkbox" id="{{'house_rules_checkbox_' + i}}" [formControl]="houseRule">
+          <label for="{{'house_rules_checkbox_' + i}}">{{options.HOUSE_RULES[i].alias}}</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" (click)="applyFilter(filterForm)"
+            class="btn btn-primary">Apply</button>
+  </div>
+</clr-modal>
