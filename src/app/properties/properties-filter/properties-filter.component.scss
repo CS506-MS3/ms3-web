@@ -1,0 +1,23 @@
+form {
+  label {
+    font-weight: bold;
+    font-size: 0.75rem;
+  }
+  .form-group > .radio {
+    label {
+      font-weight: normal;
+    }
+    margin-right: 0;
+  }
+
+  .checkbox > label {
+    font-weight: normal;
+  }
+  font-size: 0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.btn.btn-link {
+  margin: 0;
+}

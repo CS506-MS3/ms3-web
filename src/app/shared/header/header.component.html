@@ -5,6 +5,11 @@
       <span class="title">UW Sublease</span>
     </a>
   </div>
+  <form class="search" (ngSubmit)="search(searchForm)" [formGroup]="searchForm">
+    <label for="search_input">
+      <input id="search_input" type="text" placeholder="Search for keywords..." formControlName="keyword">
+    </label>
+  </form>
   <div class="header-actions">
     <a (click)="onClick()" class="nav-link nav-text" *ngIf="!authenticated">
       Sign-in/Sign-up

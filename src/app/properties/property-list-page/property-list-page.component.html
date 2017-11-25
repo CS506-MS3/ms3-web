@@ -1,5 +1,6 @@
 <div class="content-area">
   <div class="sort-controls">
+    <app-properties-filter [filterInput]="queryParams" (onApply)="applyFilter($event)"></app-properties-filter>
     <app-properties-sort [sortInput]="queryParams" (onSort)="sortList($event)"></app-properties-sort>
   </div>
   <div class="property-list">
@@ -8,29 +9,6 @@
 </div>
 
 <!-- Filtering starts here -->
-<div class="sidenav">
-  <h4 style="text-align: center;">Filter</h4>
-  <form novalidate (ngSubmit)="onSubmit(signUpForm)" [formGroup]="signUpForm">
-    <section class="form-block">
-        <label for="start-date-input">Start Before</label><br>
-        <input class="form-control" type="date" id="start-date-input" placeholder="" size="45"
-               formControlName="startDate">
-    </section>
-    <section class="form-block">
-      <label for="start-date-input">End After</label><br>
-      <input class="form-control" type="date" id="end-date-input" placeholder="" size="45"
-             formControlName="startDate">
-    </section>
-    <section class="form-block">
-      <label for="start-date-input">Amenities</label><br>
-      <div class="form-group row">
-      <input class="form-control" type="date" id="start-date-input" placeholder="" size="45"
-             formControlName="startDate">
-        <div class="col-sm-4">
 
-        </div>
 
-      </div>
-    </section>
-  </form>
-</div>
+

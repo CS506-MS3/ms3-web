@@ -23,6 +23,7 @@ import {AgmCoreModule} from '@agm/core';
 import {PropertyGetEffects} from './property-get.effects';
 import {SearchingBarComponent} from './searching-bar/searching-bar.component';
 import {SharedModule} from '../shared/shared.module';
+import { PropertiesFilterComponent } from './properties-filter/properties-filter.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import {SharedModule} from '../shared/shared.module';
     PropertiesSortComponent,
     PropertiesComponent,
     PropertyPageComponent,
-    SearchingBarComponent
+    SearchingBarComponent,
+    PropertiesFilterComponent
   ],
   providers: [PropertiesService, PropertyService]
 })
