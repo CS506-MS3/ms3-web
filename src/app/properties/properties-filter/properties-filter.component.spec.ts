@@ -3,7 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {PropertiesFilterComponent} from './properties-filter.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 import {PropertyService} from '../property.service';
 
 describe('PropertiesFilterComponent', () => {
