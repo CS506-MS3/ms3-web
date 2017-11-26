@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'account/deactivate', component: DeactivateAccountComponent, canActivate: [AuthGuard]},
   {path: 'account/info', component: AccountInfoPageComponent, canActivate: [AuthGuard]},
   {path: 'account/info/edit', component: UserInfoEditPageComponent, canActivate: [AuthGuard]},
-  {path: 'account/password', component: PasswordChangePageComponent, canActivate: [AuthGuard]},
+  {path: 'account/info/change-password', component: PasswordChangePageComponent, canActivate: [AuthGuard]},
   {path: 'access/:type', component: AccessPurchasePageComponent, canActivate: [AuthGuard]},
   {path: 'property/create', component: CreateListingPageComponent, canActivate: [AuthGuard]},
   {path: 'property/:id/remove', component: RemoveListingPageComponent, canActivate: [AuthGuard]},
