@@ -10,6 +10,7 @@ import {RouterModule} from '@angular/router';
 import {PropertySummaryCardComponent} from './property-summary-card/property-summary-card.component';
 import {WishlistCardComponent} from './wishlist-card/wishlist-card.component';
 import {WishlistButtonComponent} from './wishlist-button/wishlist-button.component';
+import {EmailFormComponent} from './email-form/email-form.component';
 
 @NgModule({
   imports: [
@@ -25,14 +26,17 @@ import {WishlistButtonComponent} from './wishlist-button/wishlist-button.compone
     PropertySummaryCardComponent,
     SignInFormComponent,
     WishlistCardComponent,
-    WishlistButtonComponent
+    WishlistButtonComponent,
+    EmailFormComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     PropertySummaryCardComponent,
     WishlistCardComponent,
-    WishlistButtonComponent
+    WishlistButtonComponent,
+    EmailFormComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {
