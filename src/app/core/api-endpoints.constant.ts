@@ -64,7 +64,7 @@ export const API = {
       method: 'POST',
       url: '/users/${userId}/check-password'
     },
-    UPDATE_PASSWORD: {
+    CHANGE_PASSWORD: {
       method: 'PUT',
       url: '/users/${userId}/password'
     },

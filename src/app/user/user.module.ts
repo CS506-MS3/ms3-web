@@ -20,6 +20,10 @@ import {SharedModule} from '../shared/shared.module';
 import {MyWishlistComponent} from './my-wishlist/my-wishlist.component';
 import {WishlistAddEffects} from './wishlist-add.effects';
 import {WishlistRemoveEffects} from './wishlist-remove.effects';
+import {PasswordChangePageComponent} from './password-change-page/password-change-page.component';
+import {UserInfoEditPageComponent} from './user-info-edit-page/user-info-edit-page.component';
+import {PasswordChangeEffects} from './password-change.effects';
+import {UserInfoUpdateEffects} from './user-info-update.effects';
 
 @NgModule({
   imports: [
@@ -31,7 +35,9 @@ import {WishlistRemoveEffects} from './wishlist-remove.effects';
       DeactivateEffects.Effects,
       UserInfoGetEffects,
       WishlistAddEffects,
-      WishlistRemoveEffects
+      WishlistRemoveEffects,
+      PasswordChangeEffects,
+      UserInfoUpdateEffects
     ]),
     SharedModule
   ],
@@ -42,7 +48,9 @@ import {WishlistRemoveEffects} from './wishlist-remove.effects';
     SubscriptionListComponent,
     MyPropertiesCardComponent,
     MyPropertiesListComponent,
-    MyWishlistComponent
+    MyWishlistComponent,
+    PasswordChangePageComponent,
+    UserInfoEditPageComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService
