@@ -1,3 +1,79 @@
-<p>
-  user-info-edit-page works!
-</p>
+<div class="sidenav" style="margin-left:20px">
+  <p><strong>Step 1:</strong> Edit Info</p>
+</div>
+
+<!-- MAIN CONTENT AREA-->
+<div class="content-area">
+  <h2>Update Your User Info</h2>
+  <p>Please update your new information here</p>
+  <form novalidate (ngSubmit)="onSubmit(userInfoEditForm)" [formGroup]="userInfoEditForm">
+    <section class="form-block">
+      <div class="form-group row">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+          <label for="password-input">Password</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <label for="password-input"
+                 aria-haspopup="true"
+                 role="tooltip"
+                 class="tooltip tooltip-validation tooltip-sm"
+                 [class.invalid]="userInfoEditForm.get('password').invalid && userInfoEditForm.get('password').touched">
+            <input class="form-control" type="password" id="password-input" placeholder="Enter your password"
+                   size="45"
+                   formControlName="password">
+            <span class="tooltip-content">
+            Password must be of length > 8 and include at least one alphabet and at least one digit
+          </span>
+          </label>
+        </div>
+      </div>
+    </section>
+    <section class="form-block">
+      <div class="form-group row">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+          <label for="phone-input">Phone</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <label for="phone-input"
+                 aria-haspopup="true"
+                 role="tooltip"
+                 class="tooltip tooltip-validation tooltip-sm"
+                 [class.invalid]="userInfoEditForm.get('phone').invalid && userInfoEditForm.get('phone').touched">
+            <input class="form-control" type="text" id="phone-input" placeholder="Enter your phone number" size="45"
+                   formControlName="phone">
+            <span class="tooltip-content">
+            Phone number should be 10 consecutive digits
+          </span>
+          </label>
+
+        </div>
+      </div>
+    </section>
+    <section class="form-block">
+      <div class="form-group row">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+          <label for="notification-input">Notifications</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="checkbox-inline">
+            <input type="checkbox" id="notification-input" formControlName="notification">
+            <label for="notification-input">I would like to receive e-mail updates on properties</label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="form-block">
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-6">
+          <button type="submit" class="btn btn-danger">Update My Info</button>
+          <button type="button" class="btn btn-link" [routerLink]="['/account/info']">Take me back to my account
+          </button>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+    </section>
+  </form>
+</div>

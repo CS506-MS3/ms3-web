@@ -14,10 +14,7 @@ export class PasswordChangePageComponent implements OnInit {
   constructor(private _fb: FormBuilder) {
     this.passwordChangeForm = this._fb.group({
       password: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(/[a-zA-Z0-9!@#\$%\^&.]{8,32}/),
-        Validators.pattern(/.*[A-Za-z]+.*/),
-        Validators.pattern(/.*[0-9]+.*/)
+        Validators.required
       ])],
       new_password: ['', Validators.compose([
         Validators.required,

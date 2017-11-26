@@ -12,7 +12,7 @@ export class UserInfoService {
   private _auth: Auth;
 
   constructor(private _store: Store<any>) {
-    this.userInfo$ = this._store.select('accesses');
+    this.userInfo$ = this._store.select('userInfo');
     this.auth$ = this._store.select('auth');
     this.auth$.subscribe((auth) => {
       this._auth = auth;
