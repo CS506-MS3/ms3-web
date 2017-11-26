@@ -4,6 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {Auth} from '../_domains/auth';
 import * as UserInfoGetActions from '../_effect-actions/user-info-get.actions';
+import * as UserInfoUpdateActions from '../_effect-actions/user-info-update.actions';
+import * as PasswordChangeActions from '../_effect-actions/password-change.actions';
 import {EditUserInfoForm} from '../_domains/edit-user-info-form';
 import {ChangePasswordForm} from '../_domains/change-password-form';
 
@@ -26,10 +28,12 @@ export class UserInfoService {
   }
 
   update(form: EditUserInfoForm) {
-    console.log(form);
+
+    this._store.dispatch(new UserInfoUpdateActions.Request(form, this._auth.id));
   }
 
   changePassword(form: ChangePasswordForm) {
-    console.log(form);
+
+    this._store.dispatch(new PasswordChangeActions.Request(form, this._auth.id));
   }
 }
