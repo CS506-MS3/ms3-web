@@ -33,7 +33,7 @@ export class UserInfoEditPageComponent implements OnInit {
 
   onSubmit({value, valid}) {
     if (valid) {
-      console.log({
+      this._service.update({
         password: value.password,
         phone: value.phone,
         notification: {

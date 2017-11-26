@@ -1,7 +1,7 @@
 import {NotificationSettings} from './notification-settings';
 
 export interface EditUserInfoForm {
-  phone: number;
+  phone: string;
   notification: NotificationSettings;
   password: string;
 }

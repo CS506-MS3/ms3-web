@@ -4,6 +4,8 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {Auth} from '../_domains/auth';
 import * as UserInfoGetActions from '../_effect-actions/user-info-get.actions';
+import {EditUserInfoForm} from '../_domains/edit-user-info-form';
+import {ChangePasswordForm} from '../_domains/change-password-form';
 
 @Injectable()
 export class UserInfoService {
@@ -23,7 +25,11 @@ export class UserInfoService {
     this._store.dispatch(new UserInfoGetActions.Request(this._auth.id));
   }
 
-  update(form: UserInfo) {
-    // TODO: dispatch User Info Update Request action
+  update(form: EditUserInfoForm) {
+    console.log(form);
+  }
+
+  changePassword(form: ChangePasswordForm) {
+    console.log(form);
   }
 }

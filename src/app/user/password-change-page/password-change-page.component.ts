@@ -1,5 +1,6 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserInfoService} from '../user-info.service';
 
 @Component({
   selector: 'app-password-change-page',
@@ -11,7 +12,7 @@ export class PasswordChangePageComponent implements OnInit {
 
   passwordChangeForm: FormGroup;
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _service: UserInfoService, private _fb: FormBuilder) {
     this.passwordChangeForm = this._fb.group({
       password: ['', Validators.compose([
         Validators.required
@@ -30,7 +31,7 @@ export class PasswordChangePageComponent implements OnInit {
 
   onSubmit({value, valid}) {
     if (valid) {
-      console.log(value);
+      this._service.changePassword(value);
     }
   }
 }
