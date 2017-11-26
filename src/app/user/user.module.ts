@@ -21,6 +21,7 @@ import {MyWishlistComponent} from './my-wishlist/my-wishlist.component';
 import {WishlistAddEffects} from './wishlist-add.effects';
 import {WishlistRemoveEffects} from './wishlist-remove.effects';
 import { PasswordChangePageComponent } from './password-change-page/password-change-page.component';
+import { UserInfoEditPageComponent } from './user-info-edit-page/user-info-edit-page.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { PasswordChangePageComponent } from './password-change-page/password-cha
     MyPropertiesCardComponent,
     MyPropertiesListComponent,
     MyWishlistComponent,
-    PasswordChangePageComponent
+    PasswordChangePageComponent,
+    UserInfoEditPageComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService
