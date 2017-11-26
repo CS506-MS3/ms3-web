@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PasswordChangePageComponent } from './password-change-page.component';
+import {PasswordChangePageComponent} from './password-change-page.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('PasswordChangePageComponent', () => {
   let component: PasswordChangePageComponent;
@@ -8,9 +9,12 @@ describe('PasswordChangePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PasswordChangePageComponent ]
+      imports: [
+        ReactiveFormsModule
+      ],
+      declarations: [PasswordChangePageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
