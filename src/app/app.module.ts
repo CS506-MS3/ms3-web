@@ -25,6 +25,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {UserModule} from './user/user.module';
 import {PropertiesModule} from './properties/properties.module';
 import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
+import {PasswordResetModule} from './password-reset/password-reset.module';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {AccessPurchaseModule} from './access-purchase/access-purchase.module';
     UserModule,
     PropertiesModule,
     AccessPurchaseModule,
+    PasswordResetModule,
     ClarityModule.forRoot(),
   ],
   bootstrap: [AppComponent]
