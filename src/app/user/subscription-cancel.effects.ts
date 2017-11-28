@@ -13,9 +13,9 @@ import {RequestError} from '../_domains/request-error';
 import {API} from '../core/api-endpoints.constant';
 
 import {AlertActions} from '../_actions/alert.actions';
-import * as AccessesActions from '../_actions/accesses.actions';
 
 import * as SubscriptionCancelActions from '../_effect-actions/subscription-cancel.actions';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class SubscriptionCancelEffects {
@@ -24,17 +24,16 @@ export class SubscriptionCancelEffects {
     .map((action: SubscriptionCancelActions.Request) => action.payload)
     .switchMap((payload) => {
       const request = new RestApiRequest(API.ACCESSES.CANCEL);
-      request.setPathParams({id: payload});
+      request.setBody(payload);
 
       return this._api.request(request)
         .map(response => new SubscriptionCancelActions.Success(payload.type))
         .catch(error => Observable.of(new SubscriptionCancelActions.Error(error)));
     });
 
-  @Effect() onSuccess$: Observable<Action> = this.actions$
+  @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
     .ofType(SubscriptionCancelActions.SUCCESS)
-    .map((action: SubscriptionCancelActions.Success) =>
-      new AccessesActions.CancelSubscription(action.payload));
+    .do(() => this._router.navigate(['/account/info']));
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(SubscriptionCancelActions.ERROR)
@@ -47,6 +46,6 @@ export class SubscriptionCancelEffects {
       }
     });
 
-  constructor(private _api: RestApiService, private actions$: Actions) {
+  constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
   }
 }

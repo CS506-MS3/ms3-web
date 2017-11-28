@@ -63,14 +63,18 @@ export class UserInfoGetEffects {
       vendor: null,
       customer: null
     };
-    if (response.vendor_next_payment_date) {
+    if (new Date(response.vendor_next_payment_date) > new Date()) {
       accesses.vendor = {
+        id: response.vendor_subscription_id,
+        cancelled: response.vendor_subscription_id === '0',
         nextPaymentDate: response.vendor_next_payment_date,
         paymentAmount: response.vendor_payment_amount
       };
     }
-    if (response.customer_next_payment_date) {
+    if (new Date(response.customer_next_payment_date) > new Date()) {
       accesses.customer = {
+        id: response.customer_subscription_id,
+        cancelled: response.customer_subscription_id === '0',
         nextPaymentDate: response.customer_next_payment_date,
         paymentAmount: response.customer_payment_amount
       };

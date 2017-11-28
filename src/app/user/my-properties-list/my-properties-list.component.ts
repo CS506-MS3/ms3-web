@@ -23,6 +23,6 @@ export class MyPropertiesListComponent implements OnInit {
 
   onRemove(id) {
 
-    this._router.navigate(['property', id, 'remove']);
+    this._router.navigate(['properties', id, 'remove']);
   }
 }

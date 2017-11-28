@@ -1,15 +1,24 @@
 <!-- SIDENAV PROFILE DETAILS -->
 <div class="sidenav" *ngIf="data">
   <!-- Map Component -->
-  <agm-map [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng" [zoom]="15">
+  <agm-map *ngIf="data.address.detailLevel1.length > 0" [latitude]="data.address.geocode.lat"
+           [longitude]="data.address.geocode.lng" [zoom]="15">
     <agm-marker [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng"></agm-marker>
-    <agm-circle [latitude]="43.074" [longitude]="-89.392" [radius]="250"></agm-circle>
+  </agm-map>
+  <agm-map *ngIf="data.address.detailLevel1.length === 0" [latitude]="data.address.geocode.lat"
+           [longitude]="data.address.geocode.lng" [zoom]="15">
+    <agm-circle [latitude]="data.address.geocode.lat" [longitude]="data.address.geocode.lng" [radius]="250"></agm-circle>
   </agm-map>
   <!-- Contact Form / Get Subscription -->
-  <section>
-    <h4>Get Access</h4>
-    <p>For more detailed information on the property</p>
-  </section>
+  <section *ngIf="data.address.detailLevel1.length > 0">
+  <h4>Contact Owner</h4>
+  <p>Form goes here</p>
+</section>
+  <!--<section *ngIf="data.address.detailLevel1.length > 0">-->
+    <!--<h4>Get Access</h4>-->
+    <!--<p>To view the exact location, please purchase a subscription</p>-->
+    <!--<button class="btn btn-block" routerLink="/access/customer">Get View Access</button>-->
+  <!--</section>-->
 </div>
 
 <!-- MAIN CONTENT AREA-->
@@ -19,7 +28,11 @@
   <!-- Main Title & Price etc -->
   <section>
     <h3>{{data.title}}</h3>
-    <p>{{ data.address.detailLevel1 }}, {{ data.address.detailLevel2 }}, {{ data.address.city }}, {{ data.address.state
+    <p *ngIf="data.address.detailLevel1.length > 0">{{ data.address.detailLevel1 }}, {{ data.address.detailLevel2 }}, {{
+      data.address.city }}, {{ data.address.state
+      }}, {{ data.address.zipcode }} </p>
+    <p *ngIf="data.address.detailLevel1.length === 0">{{ data.address.detailLevel2 }}, {{ data.address.city }}, {{
+      data.address.state
       }}, {{ data.address.zipcode }} </p>
     <ul class="list list-spacer">
 

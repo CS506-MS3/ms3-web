@@ -13,7 +13,7 @@ export const API = {
   },
   REQUEST_RESET_PASSWORD: {
     method: 'POST',
-    url: '/reset-password-request'
+    url: '/reset-password'
   },
   RESET_PASSWORD: {
     method: 'PUT',
