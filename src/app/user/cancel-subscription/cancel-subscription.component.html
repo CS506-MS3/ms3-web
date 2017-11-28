@@ -1,13 +1,12 @@
 <div class="sidenav">
   <section class="sidenav-content">
-  <a class="nav-link"><strong>Step 1:</strong> Request Password Reset Link</a>
-  <a class="nav-link active"><strong>Step 2:</strong> Reset Password</a>
+  <a class="nav-link active"><strong>Step 1:</strong> Cancel Subscription</a>
   </section>
 </div>
 <div class="content-area">
-  <h2>Reset your password</h2>
-  <p>Please enter your password & submit to receive a link to reset password page</p>
-  <form novalidate (ngSubmit)="onSubmit(passwordResetForm)" [formGroup]="passwordResetForm">
+  <h2>Enter your password</h2>
+  <p>Please enter your password to confirm subscription</p>
+  <form novalidate (ngSubmit)="onSubmit(cancelForm)" [formGroup]="cancelForm">
     <section class="form-block">
       <div class="form-group row">
         <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
@@ -22,7 +21,8 @@
         <div class="col-lg-2">
         </div>
         <div class="col-lg-6">
-          <button type="submit" class="btn btn-danger">Reset Password</button>
+          <button type="submit" class="btn btn-danger">Cancel Subscription</button>
+          <button type="button" class="btn btn-link" [routerLink]="['/account/info']">Take me back to my account</button>
         </div>
         <div class="col-lg-4">
         </div>

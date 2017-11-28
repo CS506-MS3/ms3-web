@@ -21,6 +21,11 @@ export class PropertyListPageComponent implements OnInit {
     this._activatedRoute.queryParams.subscribe((params) => {
       if (params.sortBy && params.direction) {
         this.queryParams = params;
+      } else {
+        this.queryParams = Object.assign({
+          sortBy: 'recent',
+          direction: 'UP'
+        }, params);
       }
     });
   }
