@@ -9,10 +9,7 @@ import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import * as PasswordChangeActions from '../_effect-actions/password-change.actions';
 import * as AuthActions from '../_actions/auth.actions';
-import * as WishlistActions from '../_actions/wishlist.actions';
 import {AuthResponse} from '../_domains/auth-response';
-import {Wishlist} from '../_domains/wishlist';
-import {Auth} from '../_domains/auth';
 
 @Injectable()
 export class PasswordChangeEffects {
@@ -32,8 +29,7 @@ export class PasswordChangeEffects {
     .ofType(PasswordChangeActions.SUCCESS)
     .map((action: PasswordChangeActions.Success) => action.payload)
     .mergeMap((payload: AuthResponse) => [
-      new AuthActions.Set(new Auth(payload.token, payload.user.email, payload.user.id)),
-      new WishlistActions.Set(new Wishlist(payload.user.wishlist)),
+      new AuthActions.UpdateToken({token: payload.token}),
       new AlertActions.SetInfo('Password Changed')
     ]);
 

@@ -9,6 +9,7 @@ import {HttpStatus} from '../core/http-status.enum';
 import {API} from '../core/api-endpoints.constant';
 import {RestApiRequest} from '../core/rest-api-request';
 import * as PasswordResetActions from '../_effect-actions/password-reset.actions';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class PasswordResetEffects {
@@ -26,6 +27,7 @@ export class PasswordResetEffects {
 
   @Effect() onSuccess$: Observable<Action> = this.actions$
     .ofType(PasswordResetActions.SUCCESS)
+    .do(() => this._router.navigate(['/welcome']))
     .map(() => new AlertActions.SetInfo('Password Reset'));
 
   @Effect() onError$: Observable<Action> = this.actions$
@@ -41,6 +43,6 @@ export class PasswordResetEffects {
       }
     });
 
-  constructor(private _api: RestApiService, private actions$: Actions) {
+  constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
   }
 }

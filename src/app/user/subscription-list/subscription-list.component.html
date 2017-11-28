@@ -2,17 +2,17 @@
   <h6>Subleaser Access</h6>
   <button *ngIf="vendorAccess === null;" class="btn btn-success btn-block" routerLink="/access/vendor">Get Subleaser Access</button>
   <div class="subscription-details" *ngIf="vendorAccess !== null;">
-    <div><span>Next Payment: </span>{{vendorAccess.nextPaymentDate | date: 'yMd'}}</div>
-    <div><span>Expected Charges: </span>${{vendorAccess.paymentAmount | number: '1.2-2' }}</div>
-    <div><a [routerLink]="['cancel-subscription', {queryParams: {type: 'VENDOR'}}]">Cancel Subscription</a></div>
+    <div><span *ngIf="!vendorAccess.cancelled">Next Payment: </span><span *ngIf="vendorAccess.cancelled">Valid Until: </span>{{vendorAccess.nextPaymentDate | date: 'yMd'}}</div>
+    <div *ngIf="!vendorAccess.cancelled"><span>Expected Charges: </span>${{vendorAccess.paymentAmount | number: '1.2-2' }}</div>
+    <div *ngIf="!vendorAccess.cancelled"><a [routerLink]="['cancel-subscription']" [queryParams]="{type: 'VENDOR'}">Cancel Subscription</a></div>
   </div>
 </div>
 <div class="subscription-info">
   <h6>View Access</h6>
   <button *ngIf="customerAccess === null;" class="btn btn-success btn-block" routerLink="/access/customer">Get View Access</button>
   <div class="subscription-details" *ngIf="customerAccess !== null;">
-    <div><span>Next Payment: </span>{{customerAccess.nextPaymentDate | date: 'yMd'}}</div>
-    <div><span>Expected Charges: </span>${{customerAccess.paymentAmount | number: '1.2-2' }}</div>
-    <div><a [routerLink]="['cancel-subscription', {queryParams: {type: 'CUSTOMER'}}]">Cancel Subscription</a></div>
+    <div><span *ngIf="!customerAccess.cancelled">Next Payment: </span><span *ngIf="customerAccess.cancelled">Valid Until: </span>{{customerAccess.nextPaymentDate | date: 'yMd'}}</div>
+    <div *ngIf="!customerAccess.cancelled"><span>Expected Charges: </span>${{customerAccess.paymentAmount | number: '1.2-2' }}</div>
+    <div *ngIf="!customerAccess.cancelled"><a [routerLink]="['cancel-subscription']" [queryParams]="{type: 'CUSTOMER'}">Cancel Subscription</a></div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {PasswordResetService} from '../password-reset.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./password-reset-page.component.scss']
 })
 export class PasswordResetPageComponent implements OnInit {
+  @HostBinding('class') cssClass = 'content-container';
   passwordResetForm: FormGroup;
 
   constructor(private _service: PasswordResetService, private _fb: FormBuilder) {

@@ -11,6 +11,7 @@ import 'rxjs/add/operator/do';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/observable/of';
 import * as PropertyRemoveActions from '../_effect-actions/property-remove.actions';
+import {Router} from '@angular/router';
 @Injectable()
 export class PropertyRemoveEffects {
   @Effect() onRequest$: Observable<Action> = this.actions$
@@ -26,7 +27,8 @@ export class PropertyRemoveEffects {
     });
 
   @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
-    .ofType(PropertyRemoveActions.SUCCESS);
+    .ofType(PropertyRemoveActions.SUCCESS)
+    .do(() => this._router.navigate(['/account/info']));
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(PropertyRemoveActions.ERROR)
@@ -35,7 +37,7 @@ export class PropertyRemoveEffects {
       return new AlertActions.SetError('Unknown Error');
     });
 
-  constructor(private _api: RestApiService, private actions$: Actions) {
+  constructor(private _api: RestApiService, private actions$: Actions, private _router: Router) {
   }
 }
 

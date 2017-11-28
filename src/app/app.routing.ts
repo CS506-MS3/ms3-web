@@ -35,12 +35,12 @@ const routes: Routes = [
   {path: 'account/info/change-password', component: PasswordChangePageComponent, canActivate: [AuthGuard]},
   {path: 'account/info/cancel-subscription', component: CancelSubscriptionComponent, canActivate: [AuthGuard]},
   {path: 'access/:type', component: AccessPurchasePageComponent, canActivate: [AuthGuard]},
-  {path: 'property/create', component: CreateListingPageComponent, canActivate: [AuthGuard]},
-  {path: 'property/:id/remove', component: RemoveListingPageComponent, canActivate: [AuthGuard]},
   {path: 'properties', component: PropertyListPageComponent},
+  {path: 'properties/create', component: CreateListingPageComponent, canActivate: [AuthGuard]},
+  {path: 'properties/:id/remove', component: RemoveListingPageComponent, canActivate: [AuthGuard]},
   {path: 'properties/:id', component: PropertyPageComponent},
+  {path: 'reset-password', component: PasswordResetPageComponent, canActivate: [VisitorGuard]},
   {path: 'reset-password/request-link', component: PasswordResetRequestPageComponent, canActivate: [VisitorGuard]},
-  {path: 'reset-password/form', component: PasswordResetPageComponent, canActivate: [VisitorGuard]},
 ];
 
 @NgModule({

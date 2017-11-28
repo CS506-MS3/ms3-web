@@ -68,6 +68,10 @@ export class PropertiesFilterComponent implements OnInit {
     const houseRules = this.options.HOUSE_RULES
       .filter((option, index) => value.houseRules[index])
       .map((option) => option.id);
+    let options;
+    if (amenities.length > 0 || pets.length > 0 || houseRules.length > 0) {
+      options = `[${[...amenities, ...pets, ...houseRules].join(',')}]`;
+    }
 
     this.filterOpen = false;
     this.onApply.emit({
@@ -78,7 +82,7 @@ export class PropertiesFilterComponent implements OnInit {
       minPrice: value.minPrice,
       maxPrice: value.maxPrice,
       zipcode: value.zipcode,
-      options: `[${[...amenities, ...pets, ...houseRules].join(',')}]`
+      options: options
     });
   }
 
