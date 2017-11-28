@@ -24,6 +24,7 @@ import {PasswordChangePageComponent} from './password-change-page/password-chang
 import {UserInfoEditPageComponent} from './user-info-edit-page/user-info-edit-page.component';
 import {PasswordChangeEffects} from './password-change.effects';
 import {UserInfoUpdateEffects} from './user-info-update.effects';
+import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import {UserInfoUpdateEffects} from './user-info-update.effects';
     MyPropertiesListComponent,
     MyWishlistComponent,
     PasswordChangePageComponent,
-    UserInfoEditPageComponent
+    UserInfoEditPageComponent,
+    CancelSubscriptionComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService

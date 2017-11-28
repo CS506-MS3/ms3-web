@@ -4,6 +4,7 @@
   <div class="subscription-details" *ngIf="vendorAccess !== null;">
     <div><span>Next Payment: </span>{{vendorAccess.nextPaymentDate | date: 'yMd'}}</div>
     <div><span>Expected Charges: </span>${{vendorAccess.paymentAmount | number: '1.2-2' }}</div>
+    <div><a [routerLink]="['cancel-subscription', {queryParams: {type: 'VENDOR_SUBSCRIPTION'}}]">Cancel Subscription</a></div>
   </div>
 </div>
 <div class="subscription-info">
@@ -12,5 +13,6 @@
   <div class="subscription-details" *ngIf="customerAccess !== null;">
     <div><span>Next Payment: </span>{{customerAccess.nextPaymentDate | date: 'yMd'}}</div>
     <div><span>Expected Charges: </span>${{customerAccess.paymentAmount | number: '1.2-2' }}</div>
+    <div><a [routerLink]="['cancel-subscription', {queryParams: {type: 'CUSTOMER_SUBSCRIPTION'}}]">Cancel Subscription</a></div>
   </div>
 </div>

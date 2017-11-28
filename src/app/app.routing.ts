@@ -19,6 +19,7 @@ import {PasswordResetRequestPageComponent} from './password-reset/password-reset
 import {PasswordResetPageComponent} from './password-reset/password-reset-page/password-reset-page.component';
 import {UserInfoEditPageComponent} from './user/user-info-edit-page/user-info-edit-page.component';
 import {PasswordChangePageComponent} from './user/password-change-page/password-change-page.component';
+import {CancelSubscriptionComponent} from './user/cancel-subscription/cancel-subscription.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'account/info', component: AccountInfoPageComponent, canActivate: [AuthGuard]},
   {path: 'account/info/edit', component: UserInfoEditPageComponent, canActivate: [AuthGuard]},
   {path: 'account/info/change-password', component: PasswordChangePageComponent, canActivate: [AuthGuard]},
+  {path: 'account/info/cancel-subscription', component: CancelSubscriptionComponent, canActivate: [AuthGuard]},
   {path: 'access/:type', component: AccessPurchasePageComponent, canActivate: [AuthGuard]},
   {path: 'property/create', component: CreateListingPageComponent, canActivate: [AuthGuard]},
   {path: 'property/:id/remove', component: RemoveListingPageComponent, canActivate: [AuthGuard]},
