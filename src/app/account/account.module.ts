@@ -16,7 +16,7 @@ import {ClarityModule} from 'clarity-angular';
 import {RouterModule} from '@angular/router';
 import {ActivationLinkEffects} from './activation-link.effects';
 import {SignUpProgressComponent} from './sign-up-progress/sign-up-progress.component';
-import {EmailFormComponent} from './email-form/email-form.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import {EmailFormComponent} from './email-form/email-form.component';
       ActivationLinkEffects.Effects
     ]),
     ClarityModule.forChild(),
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   declarations: [
     SignUpFormComponent,
@@ -38,8 +39,7 @@ import {EmailFormComponent} from './email-form/email-form.component';
     ActivationSuccessPageComponent,
     ActivationLinkRequestPageComponent,
     SignUpSuccessPageComponent,
-    SignUpProgressComponent,
-    EmailFormComponent
+    SignUpProgressComponent
   ],
   providers: [AccountService]
 })

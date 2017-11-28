@@ -1,0 +1,32 @@
+<div class="sidenav">
+  <section class="sidenav-content">
+  <a class="nav-link active"><strong>Step 1:</strong> Cancel Subscription</a>
+  </section>
+</div>
+<div class="content-area">
+  <h2>Enter your password</h2>
+  <p>Please enter your password to confirm subscription</p>
+  <form novalidate (ngSubmit)="onSubmit(cancelForm)" [formGroup]="cancelForm">
+    <section class="form-block">
+      <div class="form-group row">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+          <label for="password-input">Password</label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <input class="form-control" type="password" id="password-input" placeholder="Enter your password" size="45"
+                 formControlName="password">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-6">
+          <button type="submit" class="btn btn-danger">Cancel Subscription</button>
+          <button type="button" class="btn btn-link" [routerLink]="['/account/info']">Take me back to my account</button>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+    </section>
+  </form>
+</div>

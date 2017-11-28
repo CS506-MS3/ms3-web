@@ -28,9 +28,10 @@ export class PropertyCreateEffects {
         .catch(error => Observable.of(new PropertyCreateActions.Error(error)));
     });
 
-  @Effect({dispatch: false}) onSuccess$: Observable<Action> = this.actions$
+  @Effect() onSuccess$: Observable<Action> = this.actions$
     .ofType(PropertyCreateActions.SUCCESS)
-    .do(() => this._router.navigate(['accountInfo']));
+    .do(() => this._router.navigate(['account/info']))
+    .map(() => new AlertActions.SetInfo('Property Created'));
 
   @Effect() onError$: Observable<Action> = this.actions$
     .ofType(PropertyCreateActions.ERROR)
@@ -38,8 +39,12 @@ export class PropertyCreateEffects {
     .map((error: RequestError) => {
       switch (error.status) {
         case HttpStatus.PAYMENT_REQUIRED:
-          this._router.navigate(['access']);
-          return new AlertActions.SetInfo('Payment Required');
+          this._router.navigate(['access/vendor-add']);
+          return new AlertActions.SetInfo('Payment Required for additional properties');
+
+        case HttpStatus.FORBIDDEN:
+          this._router.navigate(['access/vendor']);
+          return new AlertActions.SetInfo('Payment Required for subscription');
 
         default:
           return new AlertActions.SetError('Unknown Error');

@@ -15,6 +15,10 @@ export class MyPropertiesCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  onEdit() {
+
+  }
+
   onRemove() {
     this.remove.emit(this.data.id);
   }

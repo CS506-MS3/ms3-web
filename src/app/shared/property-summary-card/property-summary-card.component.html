@@ -3,7 +3,7 @@
     <div class="card-media-block">
       <img src="assets/images/bedroom.jpg" class="card-media-image">
       <div class="card-media-description">
-        <span class="card-media-title">{{data.title}}</span>
+        <span class="card-media-title">{{data.title}}</span><span *ngIf="!data.status" style="color: red;">Payment Required</span>
         <span class="card-media-text">{{data.address}}</span>
       </div>
     </div>

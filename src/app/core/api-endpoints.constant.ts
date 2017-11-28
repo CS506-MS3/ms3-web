@@ -13,7 +13,7 @@ export const API = {
   },
   REQUEST_RESET_PASSWORD: {
     method: 'POST',
-    url: '/reset-password-request'
+    url: '/reset-password'
   },
   RESET_PASSWORD: {
     method: 'PUT',
@@ -41,6 +41,10 @@ export const API = {
     GET_SINGLE: {
       method: 'GET',
       url: '/properties/${propertyId}'
+    },
+    GET_OPTIONS: {
+      method: 'GET',
+      url: '/properties/options'
     }
   },
   USER: {
@@ -60,7 +64,7 @@ export const API = {
       method: 'POST',
       url: '/users/${userId}/check-password'
     },
-    UPDATE_PASSWORD: {
+    CHANGE_PASSWORD: {
       method: 'PUT',
       url: '/users/${userId}/password'
     },
@@ -68,18 +72,18 @@ export const API = {
       method: 'PUT',
       url: '/users/${userId}/account-info'
     },
-    BOOKMARKS: {
+    WISHLIST: {
       ADD: {
         method: 'POST',
-        url: '/users/${userId}/bookmarks'
+        url: '/wishlist'
       },
       CLEAR: {
         method: 'DELETE',
-        url: '/users/${userId}/bookmarks'
+        url: '/wishlist'
       },
       DELETE: {
         method: 'DELETE',
-        url: '/users/${userId}/bookmarks/${bookmarkId}'
+        url: '/wishlist/${id}'
       }
     },
     PROPERTIES: {
@@ -104,10 +108,14 @@ export const API = {
   ACCESSES: {
     GET_PRICE_INFO: {
       method: 'GET',
-      url: '/pricing'
+      url: '/pricings'
     },
     ADD: {
       method: 'POST',
+      url: '/access'
+    },
+    CANCEL: {
+      method: 'PUT',
       url: '/access'
     }
   }

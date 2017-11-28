@@ -1,0 +1,11 @@
+div.content-area > section:not(:last-of-type) {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 24px;
+}
+
+div.sidenav > section {
+  padding: 0 16px;
+}
+agm-map {
+  height: 250px;
+}

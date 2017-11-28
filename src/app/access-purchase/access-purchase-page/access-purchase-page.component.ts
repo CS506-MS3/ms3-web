@@ -16,7 +16,7 @@ export class AccessPurchasePageComponent implements OnInit {
     id: null,
     type: null,
     alias: null,
-    pricePerItem: null,
+    price: null,
     canHaveMultiple: null
   };
   hasToken = false;
@@ -44,9 +44,8 @@ export class AccessPurchasePageComponent implements OnInit {
     if (purchaseData.token !== null) {
       this.hasToken = true;
       this.purchaseForm = {
-        stripeToken: purchaseData.token,
-        type: purchaseData.item.type,
-        count: purchaseData.count
+        token: purchaseData.token,
+        type: purchaseData.item
       };
     } else {
       this.hasToken = false;

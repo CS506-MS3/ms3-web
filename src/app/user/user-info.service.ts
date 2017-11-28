@@ -4,6 +4,10 @@ import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {Auth} from '../_domains/auth';
 import * as UserInfoGetActions from '../_effect-actions/user-info-get.actions';
+import * as UserInfoUpdateActions from '../_effect-actions/user-info-update.actions';
+import * as PasswordChangeActions from '../_effect-actions/password-change.actions';
+import {EditUserInfoForm} from '../_domains/edit-user-info-form';
+import {ChangePasswordForm} from '../_domains/change-password-form';
 
 @Injectable()
 export class UserInfoService {
@@ -12,7 +16,7 @@ export class UserInfoService {
   private _auth: Auth;
 
   constructor(private _store: Store<any>) {
-    this.userInfo$ = this._store.select('accesses');
+    this.userInfo$ = this._store.select('userInfo');
     this.auth$ = this._store.select('auth');
     this.auth$.subscribe((auth) => {
       this._auth = auth;
@@ -20,11 +24,16 @@ export class UserInfoService {
   }
 
   get() {
-
     this._store.dispatch(new UserInfoGetActions.Request(this._auth.id));
   }
 
-  update(form: UserInfo) {
-    // TODO: dispatch User Info Update Request action
+  update(form: EditUserInfoForm) {
+
+    this._store.dispatch(new UserInfoUpdateActions.Request(form, this._auth.id));
+  }
+
+  changePassword(form: ChangePasswordForm) {
+
+    this._store.dispatch(new PasswordChangeActions.Request(form, this._auth.id));
   }
 }

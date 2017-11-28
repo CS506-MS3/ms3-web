@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {SubscriptionListComponent} from './subscription-list.component';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('SubscriptionListComponent', () => {
   class MockStore {
@@ -17,6 +18,9 @@ describe('SubscriptionListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         {provide: Store, useClass: MockStore}
       ],

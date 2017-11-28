@@ -14,9 +14,18 @@ import {UserInfoGetEffects} from './user-info-get.effects';
 import {RouterModule} from '@angular/router';
 import {PersonalInfoComponent} from './personal-info/personal-info.component';
 import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
-import {PropertySummaryCardComponent} from './property-summary-card/property-summary-card.component';
 import {MyPropertiesListComponent} from './my-properties-list/my-properties-list.component';
 import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card.component';
+import {SharedModule} from '../shared/shared.module';
+import {MyWishlistComponent} from './my-wishlist/my-wishlist.component';
+import {WishlistAddEffects} from './wishlist-add.effects';
+import {WishlistRemoveEffects} from './wishlist-remove.effects';
+import {PasswordChangePageComponent} from './password-change-page/password-change-page.component';
+import {UserInfoEditPageComponent} from './user-info-edit-page/user-info-edit-page.component';
+import {PasswordChangeEffects} from './password-change.effects';
+import {UserInfoUpdateEffects} from './user-info-update.effects';
+import {CancelSubscriptionComponent} from './cancel-subscription/cancel-subscription.component';
+import {SubscriptionCancelEffects} from './subscription-cancel.effects';
 
 @NgModule({
   imports: [
@@ -26,17 +35,26 @@ import {MyPropertiesCardComponent} from './my-properties-card/my-properties-card
     RouterModule,
     EffectsModule.forFeature([
       DeactivateEffects.Effects,
-      UserInfoGetEffects
+      UserInfoGetEffects,
+      WishlistAddEffects,
+      WishlistRemoveEffects,
+      PasswordChangeEffects,
+      UserInfoUpdateEffects,
+      SubscriptionCancelEffects
     ]),
+    SharedModule
   ],
   declarations: [
     AccountInfoPageComponent,
     DeactivateAccountComponent,
     PersonalInfoComponent,
     SubscriptionListComponent,
-    PropertySummaryCardComponent,
     MyPropertiesCardComponent,
-    MyPropertiesListComponent
+    MyPropertiesListComponent,
+    MyWishlistComponent,
+    PasswordChangePageComponent,
+    UserInfoEditPageComponent,
+    CancelSubscriptionComponent
   ],
   providers: [
     UserInfoService, AccessService, WishlistService, MyPropertiesService

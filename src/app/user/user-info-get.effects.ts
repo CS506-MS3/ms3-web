@@ -40,8 +40,8 @@ export class UserInfoGetEffects {
     .mergeMap((data) => [
       new UserInfoActions.Set({phone: data.phone, notification: data.notification}),
       new WishlistActions.Set({list: data.wishlist}),
-      new AccessesActions.Set({list: data.access}),
-      new MyPropertiesActions.Set({list: data.listing})
+      new AccessesActions.Set(this.processAccess(data.access)),
+      new MyPropertiesActions.Set({list: data.properties, cursor: null})
     ]);
 
   @Effect() onError$: Observable<Action> = this.actions$
@@ -56,5 +56,30 @@ export class UserInfoGetEffects {
     });
 
   constructor(private _api: RestApiService, private actions$: Actions) {
+  }
+
+  processAccess(response) {
+    const accesses = {
+      vendor: null,
+      customer: null
+    };
+    if (new Date(response.vendor_next_payment_date) > new Date()) {
+      accesses.vendor = {
+        id: response.vendor_subscription_id,
+        cancelled: response.vendor_subscription_id === '0',
+        nextPaymentDate: response.vendor_next_payment_date,
+        paymentAmount: response.vendor_payment_amount
+      };
+    }
+    if (new Date(response.customer_next_payment_date) > new Date()) {
+      accesses.customer = {
+        id: response.customer_subscription_id,
+        cancelled: response.customer_subscription_id === '0',
+        nextPaymentDate: response.customer_next_payment_date,
+        paymentAmount: response.customer_payment_amount
+      };
+    }
+
+    return accesses;
   }
 }
