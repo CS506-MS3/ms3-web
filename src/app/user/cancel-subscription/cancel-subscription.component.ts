@@ -1,6 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params} from '@angular/router';
+import {AccessService} from '../access.service';
 
 @Component({
   selector: 'app-cancel-subscription',
@@ -13,7 +14,9 @@ export class CancelSubscriptionComponent implements OnInit {
   cancelForm: FormGroup;
   subscriptionType: string;
 
-  constructor(private _currentRoute: ActivatedRoute, private _fb: FormBuilder) {
+  constructor(private _service: AccessService,
+              private _currentRoute: ActivatedRoute,
+              private _fb: FormBuilder) {
     this._currentRoute.queryParams.subscribe((params: Params) => {
       this.subscriptionType = params.type;
     });
@@ -27,7 +30,7 @@ export class CancelSubscriptionComponent implements OnInit {
 
   onSubmit({value, valid}) {
     if (valid && this.subscriptionType) {
-      console.log(value, this.subscriptionType);
+      this._service.cancelSubscription(value, this.subscriptionType);
     }
   }
 }

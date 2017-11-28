@@ -113,6 +113,10 @@ export const API = {
     ADD: {
       method: 'POST',
       url: '/access'
+    },
+    CANCEL: {
+      method: 'PUT',
+      url: '/access'
     }
   }
 };
