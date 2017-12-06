@@ -20,7 +20,11 @@ export class PropertiesQueryEffects {
     .map((action: PropertiesQueryActions.Request) => action.payload)
     .switchMap((payload) => {
       const request = new RestApiRequest(API.PROPERTIES.QUERY);
-      request.setUrlParams(payload);
+      if (payload.cursor) {
+        request.setUrlParams(Object.assign({}, payload, {cursor: encodeURIComponent(payload.cursor)}));
+      } else {
+        request.setUrlParams(payload);
+      }
 
       if (payload.cursor) {
         return this._api.request(request)
