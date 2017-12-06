@@ -33,6 +33,7 @@ describe('PropertiesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PropertiesComponent);
     component = fixture.componentInstance;
+    component.cursor = 'testCursor';
     component.properties = testProperties;
     fixture.detectChanges();
   });

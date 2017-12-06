@@ -25,4 +25,4 @@
     </a>
   </div>
 </div>
-<button class="btn btn-block btn-more" (click)="getMore()">See More</button>
+<button class="btn btn-block btn-more" (click)="getMore()" [disabled]="cursor == null">See More</button>
