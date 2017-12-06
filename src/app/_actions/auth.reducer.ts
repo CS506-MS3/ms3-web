@@ -8,7 +8,14 @@ const INIT = 'INIT';
 const initialState: Auth = new Auth();
 
 export function reducer(state = initialState, action: Action = {type: INIT}): Auth {
-  const newState = Crud.reducer(state, action, prefix, initialState);
+  switch (action.type) {
+    case AuthActions.UPDATE_TOKEN:
+      return Object.assign({}, state, (<AuthActions.UpdateToken>action).payload);
 
-  return newState === null ? initialState : newState;
+    default:
+      const newState = Crud.reducer(state, action, prefix, initialState);
+
+      return newState === null ? initialState : newState;
+  }
+
 }

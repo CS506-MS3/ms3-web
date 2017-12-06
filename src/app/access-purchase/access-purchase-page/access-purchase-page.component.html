@@ -7,6 +7,6 @@
       </div>
       <div class="col-lg-6"></div>
     </div>
-    <button class="btn btn-primary purchase" [disabled]="!hasToken">Make Purchase</button>
+    <button class="btn btn-primary purchase" (click)="onSubmit()" [disabled]="!hasToken">Make Purchase</button>
   </div>
 </div>

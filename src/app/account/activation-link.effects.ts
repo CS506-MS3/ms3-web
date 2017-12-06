@@ -1,5 +1,4 @@
 import {Action} from '@ngrx/store';
-import {Auth} from '../_domains/auth';
 import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
 import {RestApiService} from '../core/rest-api.service';

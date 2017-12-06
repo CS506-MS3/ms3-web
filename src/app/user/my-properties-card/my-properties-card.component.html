@@ -1,6 +1,12 @@
 <div class="property-summary-controls">
-  <button type="button" class="close" aria-label="Close" (click)="onRemove()">
+  <button *ngIf="!data.status" type="button" class="purchase" aria-label="Close" routerLink="/access/vendor-add">
+    <clr-icon aria-hidden="true" shape="credit-card"></clr-icon>
+  </button>
+  <button type="button" class="edit" aria-label="Close" (click)="onRemove()">
+    <clr-icon aria-hidden="true" shape="edit"></clr-icon>
+  </button>
+  <button type="button" class="remove" aria-label="Close" (click)="onRemove()">
     <clr-icon aria-hidden="true" shape="close"></clr-icon>
   </button>
 </div>
-<app-property-summary-card [data]="data"></app-property-summary-card>
+<app-property-summary-card routerLink="/properties/{{data.id}}" [data]="data"></app-property-summary-card>

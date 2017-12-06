@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
+import {PropertySummary} from '../../_domains/property-summary';
+import {WishlistService} from '../../user/wishlist.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -11,14 +14,25 @@ export class HeaderComponent implements OnInit {
   authenticated = false;
   loginModalOpen = false;
   email: string;
+  wishlist: PropertySummary[];
+  searchForm: FormGroup;
 
-  constructor(private _router: Router, private _auth: AuthService) {
+  constructor(private _router: Router,
+              private _fb: FormBuilder,
+              private _auth: AuthService,
+              private _wishlist: WishlistService) {
     this._auth.auth$.subscribe((auth) => {
       this.authenticated = auth.token !== null;
       this.email = auth.email;
       if (this.authenticated) {
         this.loginModalOpen = false;
       }
+    });
+    this._wishlist.wishlist$.subscribe((wishlist) => {
+      this.wishlist = wishlist.list;
+    });
+    this.searchForm = this._fb.group({
+      keyword: ['', Validators.required]
     });
   }
 
@@ -34,8 +48,24 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/account/register']);
   }
 
+  onWishlistRemove(id) {
+    this._wishlist.remove(id);
+  }
+
   signOut() {
 
     this._auth.unauthenticate();
+  }
+
+  search({value, valid}) {
+    if (valid) {
+      this._router.navigate(['properties'], {
+        queryParams: {
+          sortBy: 'recent',
+          direction: 'UP',
+          keyword: value.keyword
+        }
+      });
+    }
   }
 }

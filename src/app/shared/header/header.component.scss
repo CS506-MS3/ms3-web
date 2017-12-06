@@ -1,3 +1,41 @@
 clr-modal {
   display: block;
 }
+
+.wishlist-dropdown {
+  color: black;
+  padding: 0 12px;
+  max-height: 75%;
+  overflow-y: auto;
+
+  ::ng-deep .card {
+    margin: 0.25rem 0;
+  }
+
+  ::ng-deep app-wishlist-card {
+    position: relative;
+  }
+  ::ng-deep app-wishlist-card .property-summary-controls {
+    z-index: 100;
+    position: absolute;
+    top: 1rem;
+    right: 0.75rem;
+
+    button {
+      cursor: pointer;
+      padding: 0;
+      line-height: 22px;
+      &:hover {
+        background: ghostwhite;
+      }
+      clr-icon {
+        color: grey;
+        position: relative;
+        transform: none;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+

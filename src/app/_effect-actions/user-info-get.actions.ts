@@ -8,7 +8,7 @@ export const ERROR = 'UserInfoGet.ERROR';
 export class Request implements Action {
   readonly type = REQUEST;
 
-  constructor(public payload: number) {
+  constructor(public payload: number | string) {
   }
 }
 

@@ -1,5 +1,6 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-
+import {Properties} from '../_domains/properties';
+import {PropertiesService} from '../properties/properties.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -8,56 +9,18 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 export class LandingPageComponent implements OnInit {
   @HostBinding('class') cssClass = 'content-container';
 
-  data = {
-    properties: [
-      {
-        Image: 'assets/images/eachProperty.jpg',
-        Address: '123 Badger St, Madison, WI',
-        PropertyType: '3-bed Apartment',
-        Price: '$800',
-        LeaseType: '12-month'
-      },
-      {
-        Image: 'assets/images/eachProperty.jpg',
-        Address: '123 Badger St, Madison, WI',
-        PropertyType: '3-bed Apartment',
-        Price: '$800',
-        LeaseType: '12-month'
-      },
-      {
-        Image: 'assets/images/eachProperty.jpg',
-        Address: '123 Badger St, Madison, WI',
-        PropertyType: '3-bed Apartment',
-        Price: '$800',
-        LeaseType: '12-month'
-      },
-      {
-        Image: 'assets/images/eachProperty.jpg',
-        Address: '123 Badger St, Madison, WI',
-        PropertyType: '3-bed Apartment',
-        Price: '$800',
-        LeaseType: '12-month'
-      },
-      {
-        Image: 'assets/images/eachProperty.jpg',
-        Address: '123 Badger St, Madison, WI',
-        PropertyType: '3-bed Apartment',
-        Price: '$800',
-        LeaseType: '12-month'
-      },
-      {
-        Image: 'assets/images/eachProperty.jpg',
-        Address: '123 Badger St, Madison, WI',
-        PropertyType: '3-bed Apartment',
-        Price: '$800',
-        LeaseType: '12-month'
-      }
-    ]
-  };
+  queryParams: any;
+  data: Properties;
 
-  constructor() { }
+  constructor(private _propertiesService: PropertiesService) {
+    this.queryParams = {sortBy: 'recent', direction: 'UP', count: 6};
+  }
 
   ngOnInit() {
+    this._propertiesService.query(this.queryParams);
+    this._propertiesService.properties$.subscribe((properties) => {
+      this.data = properties;
+    });
   }
 
 }
