@@ -8,6 +8,7 @@ import {PropertySummary} from '../../_domains/property-summary';
 })
 export class PropertiesComponent implements OnInit {
   @Input() properties: PropertySummary[];
+  @Input() cursor: string;
   @Output() requestMore = new EventEmitter<any>();
 
   constructor() {
@@ -17,7 +18,8 @@ export class PropertiesComponent implements OnInit {
   }
 
   getMore() {
-
-    this.requestMore.emit();
+    if (this.cursor != null) {
+      this.requestMore.emit();
+    }
   }
 }

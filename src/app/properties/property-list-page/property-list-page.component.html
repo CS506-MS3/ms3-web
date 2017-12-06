@@ -4,7 +4,7 @@
     <app-properties-sort [sortInput]="queryParams" (onSort)="sortList($event)"></app-properties-sort>
   </div>
   <div class="property-list">
-<app-properties [properties]="data.list" (requestMore)="requestMore()"></app-properties>
+<app-properties [properties]="data.list" [cursor]="data.cursor" (requestMore)="requestMore()"></app-properties>
   </div>
 </div>
 
