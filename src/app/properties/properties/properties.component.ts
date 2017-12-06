@@ -21,6 +21,5 @@ export class PropertiesComponent implements OnInit {
     if (this.cursor != null) {
       this.requestMore.emit();
     }
-
   }
 }

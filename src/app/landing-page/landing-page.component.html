@@ -8,15 +8,35 @@
   </div>
   <div class="properties">
     <div class="title">Recent Properties</div>
-    <div *ngFor="let item of data.properties" ngClass="eachProperty">
-      <div class="items">
-        <img src="{{item.Image}}" alt="">
-        <span>{{item.Address}}</span>
-        <span>{{item.Price}}</span>
-        <span>{{item.PropertyType}}</span>
-        <span>{{item.LeaseType}}</span>
+    <div class="row">
+      <div *ngFor="let property of data.list" class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <!--<div class="items">-->
+          <!--<span>{{item.title}}</span>-->
+        <!--</div>-->
+        <a routerLink="/properties/{{property.id}}" class="card clickable" >
+          <div class="card-img">
+            <img [src]="property.thumbnailUrl || 'assets/images/eachProperty.jpg'" alt="..." style="height: 218px; object-fit: cover;"/>
+          </div>
+          <div class="card-block">
+            <div class="card-title" [textContent]="property.title"></div>
+            <div class="card-text" [textContent]="property.address"></div>
+            <app-wishlist-button [property]="property"></app-wishlist-button>
+          </div>
+          <div class="card-block">
+            <div class="card-text">
+              Start Date: {{ property.startDate | date:'yMd' }}
+            </div>
+            <div class="card-text">
+              Duration: {{ property.duration }} months
+            </div>
+          </div>
+          <div class="card-block">
+            <div class="card-text">
+              <b>Price: ${{property.price | number: '1.2-2'}} / month</b>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-
 </div>
