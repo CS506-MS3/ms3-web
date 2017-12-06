@@ -77,8 +77,8 @@ export class PropertiesFilterComponent implements OnInit {
     this.onApply.emit({
       propertyType: value.propertyType,
       roomType: value.roomType,
-      startBefore: value.startBefore,
-      endBefore: value.endBefore,
+      startBefore: value.startBefore ? value.startBefore : null,
+      endAfter: value.endAfter ? value.endAfter : null,
       minPrice: value.minPrice,
       maxPrice: value.maxPrice,
       zipcode: value.zipcode,
