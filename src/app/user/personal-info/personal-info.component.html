@@ -1,5 +1,5 @@
 <div>E-mail: {{email}}</div>
-<div>Phone: {{phone}}</div>
+<div>Phone: {{phone ? phone : '-'}}</div>
 <clr-checkbox [clrDisabled]="true" [clrChecked]="notification">Receive E-mail Notifications</clr-checkbox>
 <button class="btn btn-block" routerLink="change-password">Change Password</button>
 <button class="btn btn-block" routerLink="edit">Edit User Info</button>
