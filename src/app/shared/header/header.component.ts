@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
 import {PropertySummary} from '../../_domains/property-summary';
 import {WishlistService} from '../../user/wishlist.service';
@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(private _router: Router,
+              private _activatedRoute: ActivatedRoute,
               private _fb: FormBuilder,
               private _auth: AuthService,
               private _wishlist: WishlistService) {
@@ -34,6 +35,13 @@ export class HeaderComponent implements OnInit {
     this.searchForm = this._fb.group({
       keyword: ['', Validators.required]
     });
+    this._activatedRoute.queryParams.subscribe((params) => {
+      if (params.keyword) {
+        this.searchForm.controls['keyword'].setValue(params.keyword);
+      } else {
+        this.searchForm.controls['keyword'].setValue('');
+      }
+    })
   }
 
   ngOnInit() {
@@ -64,6 +72,13 @@ export class HeaderComponent implements OnInit {
           sortBy: 'recent',
           direction: 'UP',
           keyword: value.keyword
+        }
+      });
+    } else {
+      this._router.navigate(['properties'], {
+        queryParams: {
+          sortBy: 'recent',
+          direction: 'UP',
         }
       });
     }
