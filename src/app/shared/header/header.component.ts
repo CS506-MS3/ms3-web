@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
       } else {
         this.searchForm.controls['keyword'].setValue('');
       }
-    })
+    });
   }
 
   ngOnInit() {
