@@ -89,4 +89,10 @@ export class PropertiesFilterComponent implements OnInit {
   openFilter() {
     this.filterOpen = true;
   }
+
+  clearFilter() {
+    this.filterForm.reset();
+    this.onApply.emit({
+    });
+  }
 }
