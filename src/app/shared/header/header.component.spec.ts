@@ -2,16 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {AuthService} from '../../auth/auth.service';
 import {WishlistService} from '../../user/wishlist.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('HeaderComponent', () => {
-  const routerMock = {
-    navigate: jasmine.createSpy('navigate')
-  };
   class MockAuthService {
     auth$ = Observable.of({
       token: null,
@@ -36,10 +33,10 @@ describe('HeaderComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ],
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule
       ],
       providers: [
-        {provide: Router, useValue: routerMock},
         {provide: AuthService, useClass: MockAuthService},
         {provide: WishlistService, useClass: MockWishlistService}
       ],
