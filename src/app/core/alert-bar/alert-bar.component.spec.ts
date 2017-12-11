@@ -6,6 +6,7 @@ import {StoreModule} from '@ngrx/store';
 import {AppAlert} from '../../_domains/app-alert';
 import {AlertActions} from '../../_actions/alert.actions';
 import {ALERT_TYPE_CSS} from '../../_constants/alert-bar-css.constant';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AlertBarComponent', () => {
   let component: AlertBarComponent;
@@ -21,7 +22,8 @@ describe('AlertBarComponent', () => {
     mockAppAlertReducer = jasmine.createSpy('appAlertReducer').and.returnValue(testAlert);
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({alert: mockAppAlertReducer})
+        StoreModule.forRoot({alert: mockAppAlertReducer}),
+        RouterTestingModule
       ],
       declarations: [AlertBarComponent]
     })

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AlertActions} from '../../_actions/alert.actions';
 import {AppAlert} from '../../_domains/app-alert';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-alert-bar',
@@ -17,10 +18,15 @@ export class AlertBarComponent implements OnInit {
     message: null
   };
 
-  constructor(private _store: Store<any>) {
+  constructor(private _store: Store<any>, private _router: Router) {
     const store$ = this._store.select('alert');
     this.alertSubscription = store$
       .subscribe((payload: AppAlert) => this.alert = payload);
+    this._router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.onClose();
+      }
+    });
   }
 
   ngOnInit() {
