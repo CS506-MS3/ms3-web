@@ -38,7 +38,7 @@
 <clr-modal [(clrModalOpen)]="loginModalOpen">
   <h3 class="modal-title">Sign In</h3>
   <div class="modal-body">
-    <app-sign-in-form></app-sign-in-form>
+    <app-sign-in-form (onSignIn)="loginModalOpen = false;"></app-sign-in-form>
     <button type="button" class="btn btn-secondary btn-block" (click)="onSignUpRequest()">Sign Up</button>
   </div>
   <div class="modal-footer">

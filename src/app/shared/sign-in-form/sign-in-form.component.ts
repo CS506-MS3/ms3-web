@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Credentials} from '../../_domains/credentials';
 import {AuthService} from '../../auth/auth.service';
@@ -10,6 +10,7 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class SignInFormComponent implements OnInit {
   credentials: FormGroup;
+  @Output() onSignIn: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private _auth: AuthService, private _formBuilder: FormBuilder) {
   }
@@ -25,6 +26,7 @@ export class SignInFormComponent implements OnInit {
     if (valid) {
 
       this._auth.authenticate(value);
+      this.onSignIn.emit({});
     }
   }
 }
